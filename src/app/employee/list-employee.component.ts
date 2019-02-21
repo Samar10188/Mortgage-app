@@ -26,4 +26,4 @@ export class ListEmployeeComponent implements OnInit {
     this.router.navigate(['employees/edit', employeeId])
   }
 
-}
+} 

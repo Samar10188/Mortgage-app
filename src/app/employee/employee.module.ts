@@ -19,4 +19,4 @@ import { SharedModule } from '../shared/shared.module';
     ListEmployeeComponent
   ]
 })
-export class EmployeeModule { }
+export class EmployeeModule { } 

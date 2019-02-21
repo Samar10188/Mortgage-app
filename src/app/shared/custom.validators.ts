@@ -13,6 +13,6 @@ export class CustomValidators {
                 return { 'emailDomain': true };
             }
         }
-        };
+        }; 
     }
 }

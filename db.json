@@ -1,6 +1,6 @@
 {
   "employees": [
-    {
+    { 
       "id": 1,
       "fullName": "Samarpit",
       "contactPreference": "phone",

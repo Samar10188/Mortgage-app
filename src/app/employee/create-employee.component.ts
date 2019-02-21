@@ -310,5 +310,5 @@ function matchEmail(group: AbstractControl): { [key: string]: any } | null {
     return null;
   } else {
     return { 'emailMismatch': true }
-  }
+  } 
 }

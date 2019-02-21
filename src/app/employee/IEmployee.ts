@@ -8,4 +8,4 @@ export interface IEmployee {
     phone: number;
     contactPreference: string;
     skills: ISkill[];
-}
+} 
