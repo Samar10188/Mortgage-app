@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ang6proj": {
+    "mortgage-project": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ang6proj",
+            "outputPath": "dist/mortgage-project",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,11 +24,12 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/jquery/dist/jquery.slim.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -61,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ang6proj:build"
+            "browserTarget": "mortgage-project:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ang6proj:build:production"
+              "browserTarget": "mortgage-project:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ang6proj:build"
+            "browserTarget": "mortgage-project:build"
           }
         },
         "test": {
@@ -106,7 +107,7 @@
         }
       }
     },
-    "ang6proj-e2e": {
+    "mortgage-project-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +116,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ang6proj:serve"
+            "devServerTarget": "mortgage-project:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ang6proj:serve:production"
+              "devServerTarget": "mortgage-project:serve:production"
             }
           }
         },
@@ -135,5 +136,5 @@
       }
     }
   },
-  "defaultProject": "ang6proj"
+  "defaultProject": "mortgage-project"
 }
