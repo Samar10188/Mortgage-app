@@ -1,35 +1,28 @@
-<body>
-  <form (ngSubmit)="onSignIn()" class="form-signin">
-    <div class="panel-body">
-      <img class="logo" src="/assets/images/samar2.JPG">
-      <h1 class="h1 mb-3 font-weight-normal">Mortgage Application</h1>
-    </div>
-    <br>
-    <br>
-    <!-- <div class="form-label-group">
-  <input type="text" id="userName" formControlName="userName" class="form-control" 
-    placeholder="Username" required autofocus>
-  <label for="userName">Email address</label>
-</div> -->
+<form [formGroup]="userForm" (ngSubmit)="onSignIn()" class="form-signin">
+  <div class="panel-body">
+    <img class="logo" src="/assets/images/samar2.JPG">
+    <h1 class="h1 mb-3 font-weight-normal">Mortgage Application</h1>
+  </div>
+  <br>
+  <br>
+  <div class="form-label-group">
+    <input type="text" id="userName" formControlName="userName" class="form-control" placeholder="Username" required
+      autofocus>
+    <label for="userName">Email address</label>
+  </div>
 
-    <div class="form-label-group">
-      <input id="userName" formControlName="userName" type="text" placeholder="Username" required autofocus
-        class="form-control">
-      <label for="userName">Email address</label>
-    </div>
 
-    <div class="form-label-group">
-  <input type="password" id="inputPassword" formControlName="password" class="form-control" 
-    placeholder="Password" required>
-  <label for="inputPassword">Password</label>
-</div>
+  <div class="form-label-group">
+    <input type="password" id="inputPassword" formControlName="password" class="form-control" placeholder="Password"
+      required>
+    <label for="inputPassword">Password</label>
+  </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" (click)="onSignIn()" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
-  </form>
-</body>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block"  type="submit" >Sign in</button>
+  <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
+</form>

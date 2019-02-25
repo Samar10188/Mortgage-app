@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
+import { IAdmin } from "./login-details";
 
 @Component({
   selector: 'app-login-page',
@@ -9,33 +10,35 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
   userForm: FormGroup;
-  loginId: string = "abc@y.com";
-  passcode: string = "password";
-  
+  // loginId: string = "abc@y.com";
+  // passcode: string = "password";
+  login: IAdmin;
+
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
     this.userForm = this.fb.group({
-      userName: ['', [Validators.required ]],
-      password: ['', [Validators.required ]]
+      userName: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     })
   }
 
   onSignIn(): void {
-    if ((this.loginId = this.userForm.value.userName)
-     &&
-        (this.passcode = this.userForm.value.password ) 
-        )
-        {
-          this.userForm.value.username.subscribe(
-            () => this.router.navigate(['home'])
-          );
+    if ((this.userForm.value.userName = "abc@y.com")
+      &&
+      (this.userForm.value.password = "samar123")) {
+      this.router.navigate(['home']);
     }
     else {
-        alert("wrong credentials")
+      alert("wrong credentials")
     }
   }
 
+  // mapFormValuesToEmployeeModel() {
+  //   this.login.userName = this.userForm.value.userName;
+  //   this.login.password = this.userForm.value.password;
+
+  // }
 }
