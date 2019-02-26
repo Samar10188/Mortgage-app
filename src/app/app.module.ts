@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-
-
 import { AppRoutingModule } from './app-routing.module';
+import { CustomerModule } from './customer/customer.module';
+
+
+
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { FormBuilder } from '@angular/forms';
@@ -20,6 +22,7 @@ import { HomeComponent } from './home.component';
   ],
   imports: [
     BrowserModule,
+    CustomerModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,

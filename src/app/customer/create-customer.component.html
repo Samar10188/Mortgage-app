@@ -1,3 +1,138 @@
-<p>
-  create-customer works!
-</p>
+<form [formGroup]="custForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group row">
+        <label for="date" class="col-sm-2 col-form-label">Date</label>
+        <div class="col-sm-2">
+          <input type="datetime" formControlName="date" class="form-control" id="date" placeholder="Date">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="custName" class="col-sm-2 col-form-label">Customer Name</label>
+        <div class="col-sm-5">
+          <input type="text" formControlName="custName" class="form-control" id="custName" placeholder="FullName">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Relation</label>
+        <div class="col-sm-8">
+          <label class="radio-inline">
+            <input type="radio" value="S/O" formControlName="relation">S/O
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="D/O" formControlName="proficiency">D/O
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="W/O" formControlName="proficiency">W/O
+          </label>
+          <!-- <span class="help-block" *ngIf="skill.get('proficiency').errors?.required &&
+                                    skill.get('proficiency').touched">
+                  Proficiency is required
+                </span> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="relName" class="col-sm-2 col-form-label">Relative Name</label>
+        <div class="col-sm-5">
+          <input type="text" formControlName="relName" class="form-control" id="relName" placeholder="Relative Name">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="village" class="col-sm-2 col-form-label">Village</label>
+        <div class="col-sm-5">
+          <input type="text" formControlName="village" class="form-control" id="village" placeholder="village">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="phone" class="col-sm-2 col-form-label">Phone No</label>
+        <div class="col-sm-3">
+          <input type="text" formControlName="phone" class="form-control" id="phone" placeholder="phone">
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="well">
+        <h5>Ornament Details</h5>
+        <div class="form-group row">
+          <label for="ornament" class="col-sm-2 col-form-label">Ornament</label>
+          <div class="col-sm-3">
+            <input type="text" formControlName="ornament" class="form-control" id="ornament" placeholder="ornament">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-6 control-label">Metal</label>
+          <div class="col-sm-8">
+            <label class="radio-inline">
+              <input type="radio" value="Gold" formControlName="metal">Gold
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="Silver" formControlName="metal">Silver
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="weight" class="col-sm-2 col-form-label">Weight</label>
+          <div class="col-sm-2">
+            <input type="number" formControlName="weight" class="form-control" id="weight" placeholder="weight">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="rupees" class="col-sm-2 col-form-label">Rupees</label>
+          <div class="col-sm-3">
+            <input type="number" formControlName="rupees" class="form-control" id="rupees" placeholder="rupees">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="timeduration" class="col-sm-2 col-form-label">Total Days</label>
+          <div class="col-sm-2">
+            <input type="datetime" formControlName="timeduration" class="form-control" id="timeduration"
+              placeholder="timeduration">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel-footer">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+
+</form>
+<!-- <table border="2">
+  <tr>
+    <th style="padding: 10px">FormGroup</th>
+    <th style="padding: 10px">FormControl (custName)</th>
+  </tr>
+  <tr>
+    <td style="padding: 10px">
+      touched : {{ employeeForm.touched }}
+      <br /> dirty : {{ employeeForm.dirty }}
+      <br /> valid : {{ employeeForm.valid }}
+      <br /> Form values : {{ employeeForm.value | json }}
+
+    </td>
+    <td style="padding: 10px">
+      touched : {{ employeeForm.get('custName').touched }}
+      <br /> dirty : {{ employeeForm.get('custName').dirty }}
+      <br /> valid : {{ employeeForm.get('custName').valid }}
+      <br /> Form Values : {{ employeeForm.controls.custName.value | json }}
+
+    </td>
+  </tr>
+</table> -->

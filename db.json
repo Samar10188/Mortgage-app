@@ -1,0 +1,19 @@
+{
+    "customers": [
+      { 
+        "id": 1,
+        "date": 260219,
+        "custName": "DharamPal Singh",
+        "relation": "S/O",
+        "relName": "Amarpal Singh",
+        "village": "Akbarpur",
+        "phone": "9988776655",
+        "ornament": "Ring",
+        "metal": "Gold",
+        "weight": "2",
+        "rupees": "3000",
+        "timeDuration": ""
+      }
+    ]
+}
+    
