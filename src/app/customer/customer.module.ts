@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from "../shared/shared.module";
+import { CommonModule } from '@angular/common';
+
 
 import { CustomerRoutingModule } from './customer-routing.module';
 
 import { CreateCustomerComponent } from './create-customer.component';
 import { ListCustomerComponent } from './list-customer.component';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -12,8 +14,8 @@ import { ListCustomerComponent } from './list-customer.component';
     ListCustomerComponent
   ],
   imports: [
-    SharedModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
+    SharedModule
   ],
   exports: [
     ListCustomerComponent,

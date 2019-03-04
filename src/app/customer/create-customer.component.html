@@ -1,13 +1,13 @@
-<form [formGroup]="custForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+<form [formGroup]="custForm" class="form-horizontal">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Create</h3>
+      <h3 class="panel-title">{{pageTitle}}</h3>
     </div>
     <div class="panel-body">
       <div class="form-group row">
         <label for="date" class="col-sm-2 col-form-label">Date</label>
-        <div class="col-sm-2">
-          <input type="datetime" formControlName="date" class="form-control" id="date" placeholder="Date">
+        <div class="col-sm-3">
+          <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date">
         </div>
       </div>
 
@@ -25,15 +25,11 @@
             <input type="radio" value="S/O" formControlName="relation">S/O
           </label>
           <label class="radio-inline">
-            <input type="radio" value="D/O" formControlName="proficiency">D/O
+            <input type="radio" value="D/O" formControlName="relation">D/O
           </label>
           <label class="radio-inline">
-            <input type="radio" value="W/O" formControlName="proficiency">W/O
+            <input type="radio" value="W/O" formControlName="relation">W/O
           </label>
-          <!-- <span class="help-block" *ngIf="skill.get('proficiency').errors?.required &&
-                                    skill.get('proficiency').touched">
-                  Proficiency is required
-                </span> -->
         </div>
       </div>
 
@@ -59,52 +55,99 @@
       </div>
       <br>
       <br>
+      <h5>Ornament Details</h5>
+
       <div class="well">
-        <h5>Ornament Details</h5>
-        <div class="form-group row">
-          <label for="ornament" class="col-sm-2 col-form-label">Ornament</label>
-          <div class="col-sm-3">
-            <input type="text" formControlName="ornament" class="form-control" id="ornament" placeholder="ornament">
-          </div>
-        </div>
-
         <div class="form-group">
-          <label class="col-sm-6 control-label">Metal</label>
-          <div class="col-sm-8">
-            <label class="radio-inline">
-              <input type="radio" value="Gold" formControlName="metal">Gold
-            </label>
-            <label class="radio-inline">
-              <input type="radio" value="Silver" formControlName="metal">Silver
-            </label>
+          <div class="col-md-offset-2 col-md-4">
+            <button type='button' class="btn btn-primary" (click)="addOrnamentButtonClick()"
+              [disabled]="custForm.get('ornaments').invalid">
+              Add Ornament
+            </button>
           </div>
         </div>
 
-        <div class="form-group row">
-          <label for="weight" class="col-sm-2 col-form-label">Weight</label>
-          <div class="col-sm-2">
-            <input type="number" formControlName="weight" class="form-control" id="weight" placeholder="weight">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="rupees" class="col-sm-2 col-form-label">Rupees</label>
-          <div class="col-sm-3">
-            <input type="number" formControlName="rupees" class="form-control" id="rupees" placeholder="rupees">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="timeduration" class="col-sm-2 col-form-label">Total Days</label>
-          <div class="col-sm-2">
-            <input type="datetime" formControlName="timeduration" class="form-control" id="timeduration"
-              placeholder="timeduration">
-          </div>
-        </div>
 
+        <div formArrayName="ornaments" *ngFor="let ornam of custForm.get('ornaments').controls; let i = index">
+          <!-- <hr *ngIf="i>0"> -->
+          <!-- <div [formGroupName]="i"> -->
+
+            <div class="form-group" [ngClass]="{'has-error': ornam.get('ornaments.ornament').touched}">
+                              <!-- ornam.get('ornament').invalid && ornam.get('ornament').touched}"> -->
+              <label class="col-sm-2 control-label" [attr.for]="'ornament'+i">
+                Ornament
+              </label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" [id]="'ornament'+i" formControlName="ornament" placeholder="Ring, Chain, etc..">
+                <span class="help-block" *ngIf="ornam.get('ornament').errors?.required &&
+                                                                  ornam.get('ornament').touched">
+                  Ornament Name is required
+                </span>
+              </div>
+              <div class="col-sm-6" *ngIf="custForm.get('ornaments').length>1">
+                <button type="button" class="btn btn-danger btn-sm pull-right" title="delete ornament"
+                  (click)="removeornamentButtonClick(i)">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-error': ornam.get('ornaments.metal').touched}">
+                                      <!-- ornam.get('metal').invalid && ornam.get('metal').touched}"> -->
+              <label class="col-sm-2 control-label">Metal</label>
+              <div class="col-sm-8">
+                <label class="radio-inline">
+                  <input type="radio" value="Gold" formControlName="metal">Gold
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" value="Silver" formControlName="metal">Silver
+                </label>
+                <span class="help-block" *ngIf="ornam.get('metal').errors?.required &&
+                                                    ornam.get('metal').touched">
+                  Metal is required
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-error': ornam.get('ornaments.weight').touched}">
+                            <!-- ornam.get('weight').invalid && ornam.get('weight').touched}"> -->
+              <label class="col-sm-2 control-label" [attr.for]="'weight'+i">
+                Weight
+              </label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" [id]="'weight'+i" formControlName="weight"
+                  placeholder="In Years">
+                <span class="help-block" *ngIf="ornam.get('weight').errors?.required &&
+                                              ornam.get('weight').touched">
+                  Weight is required
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group" [ngClass]="{'has-error': ornam.get('ornaments.rupees').touched}">
+                                <!-- ornam.get('rupees').invalid && ornam.get('rupees').touched}"> -->
+              <label class="col-sm-2 control-label" [attr.for]="'rupees'+i">
+                Rupees
+              </label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" [id]="'rupees'+i" formControlName="rupees"
+                  placeholder="In Years">
+                <span class="help-block" *ngIf="ornam.get('rupees').errors?.required &&
+                                        ornam.get('rupees').touched">
+                  Rupees is required
+                </span>
+              </div>
+            </div>
+          <!-- </div> -->
+
+        </div>
       </div>
 
       <div class="panel-footer">
-        <div class="col-sm-10">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+        <div class="col-sm-5">
+          <br>
+          <br>
+          <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
         </div>
       </div>
     </div>
@@ -114,25 +157,25 @@
   <br>
 
 </form>
-<!-- <table border="2">
+<table border="2">
   <tr>
-    <th style="padding: 10px">FormGroup</th>
-    <th style="padding: 10px">FormControl (custName)</th>
+    <th style="padding: 10px">FormArray</th>
+    <th style="padding: 10px">FormControl (rupees)</th>
   </tr>
   <tr>
     <td style="padding: 10px">
-      touched : {{ employeeForm.touched }}
-      <br /> dirty : {{ employeeForm.dirty }}
-      <br /> valid : {{ employeeForm.valid }}
-      <br /> Form values : {{ employeeForm.value | json }}
+      touched : {{ custForm.ornaments.touched }}
+      <br /> dirty : {{ custForm.ornaments.dirty }}
+      <br /> valid : {{ custForm.ornaments.valid }}
+      <br /> Form values : {{ custForm.ornaments.value | json }}
 
     </td>
     <td style="padding: 10px">
-      touched : {{ employeeForm.get('custName').touched }}
-      <br /> dirty : {{ employeeForm.get('custName').dirty }}
-      <br /> valid : {{ employeeForm.get('custName').valid }}
-      <br /> Form Values : {{ employeeForm.controls.custName.value | json }}
+      touched : {{ custForm.get('ornaments.rupees').touched }}
+      <br /> dirty : {{ custForm.get('ornaments.rupees').dirty }}
+      <br /> valid : {{ custForm.get('ornaments.rupees').valid }}
+      <br /> Form Values : {{ custForm.controls.ornaments.rupees.value | json }}
 
     </td>
   </tr>
-</table> -->
+</table>

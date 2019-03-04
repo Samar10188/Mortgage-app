@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import { CustomerModule } from './customer/customer.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -26,7 +28,8 @@ import { HomeComponent } from './home.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
     
   ],
   providers: [FormBuilder],
