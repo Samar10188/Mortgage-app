@@ -2,64 +2,12 @@
   "customers": [
     {
       "id": 0,
-      "date": "2019-03-06",
-      "custName": "",
-      "relation": "S/O",
-      "relName": "Amarpal Singh",
-      "village": "Akbarpur",
-      "phone": "9988776655",
-      "ornament": "Ring",
-      "metal": "Gold",
-      "weight": "2",
-      "rupees": "3000"
-    },
-    {
-      "id": 1,
-      "date": "2019-03-06",
+      "date": "05-03-2019",
       "custName": "shalini",
       "relation": "S/O",
       "relName": "Naresh Singh",
       "village": "begulal Khera",
       "phone": "8193920739",
-      "ornament": "Chain",
-      "metal": "Gold",
-      "weight": "5",
-      "rupees": "10000"
-    },
-    {
-      "id": 2,
-      "date": "2019-03-06",
-      "custName": "sandeep",
-      "relation": "S/O",
-      "relName": "R K SINGH",
-      "village": "SULTANGANJ",
-      "phone": "8899877865",
-      "ornament": "RING",
-      "metal": "Gold",
-      "weight": "2",
-      "rupees": "1200"
-    },
-    {
-      "id": 3,
-      "date": "2019-03-06",
-      "custName": "samarpit",
-      "relation": "S/O",
-      "relName": "Ravindra Kumar Verma",
-      "village": "Malawan",
-      "phone": "8899822074",
-      "ornament": "Chain",
-      "metal": "Gold",
-      "weight": 10,
-      "rupees": 15000
-    },
-    {
-      "id": 4,
-      "date": "2019-07-17",
-      "custName": "Gaurav ",
-      "relation": "S/O",
-      "relName": "Naresh Singh",
-      "village": "Begulal Khera",
-      "phone": "9898989897",
       "ornaments": [
         null,
         {
@@ -67,6 +15,48 @@
           "metal": "",
           "weight": "",
           "rupees": ""
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "date": "2019-03-07",
+      "custName": "samarpit verma",
+      "relation": "S/O",
+      "relName": "R K Verma",
+      "village": "malawan",
+      "phone": "8899822074",
+      "ornaments": [
+        null
+      ]
+    },
+    {
+      "id": 2,
+      "date": "2019-03-07",
+      "custName": "shalini singh",
+      "relation": "D/O",
+      "relName": "naresh singh",
+      "village": "begulal khaira",
+      "phone": "98767887766",
+      "ornaments": [
+        null
+      ]
+    },
+    {
+      "id": 3,
+      "date": 0.0003714710252600297,
+      "custName": "shalini singh",
+      "relation": "D/O",
+      "relName": "",
+      "village": "begulal khaira",
+      "phone": "98767887766",
+      "ornaments": [
+        null,
+        {
+          "ornament": "ring",
+          "metal": "Gold",
+          "weight": "2",
+          "rupees": "3000"
         }
       ]
     }

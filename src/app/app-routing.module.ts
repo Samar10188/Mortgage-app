@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
   { path: 'home', component: HomeComponent , children: [
     { path: 'customers', component: ListCustomerComponent},
-    { path: 'create', component: CreateCustomerComponent}
+    { path: 'create', component: CreateCustomerComponent},
+    { path: "edit/:id", component: CreateCustomerComponent }
   ]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent}
