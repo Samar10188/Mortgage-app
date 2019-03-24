@@ -7,14 +7,16 @@
       <div class="form-group row">
         <label for="date" class="col-sm-2 col-form-label">Date</label>
         <div class="col-sm-3">
-          <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date">
+          <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date"
+            (blur)="logValidationErrors()">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="custName" class="col-sm-2 col-form-label">Customer Name</label>
         <div class="col-sm-5">
-          <input type="text" formControlName="custName" class="form-control" id="custName" placeholder="FullName">
+          <input type="text" formControlName="custName" class="form-control" id="custName"
+            (blur)="logValidationErrors()" placeholder="FullName">
         </div>
       </div>
 
@@ -22,13 +24,13 @@
         <label class="col-sm-2 control-label">Relation</label>
         <div class="col-sm-8">
           <label class="radio-inline">
-            <input type="radio" value="S/O" formControlName="relation">S/O
+            <input type="radio" value="S/O" (blur)="logValidationErrors()" formControlName="relation">S/O
           </label>
           <label class="radio-inline">
-            <input type="radio" value="D/O" formControlName="relation">D/O
+            <input type="radio" value="D/O" (blur)="logValidationErrors()" formControlName="relation">D/O
           </label>
           <label class="radio-inline">
-            <input type="radio" value="W/O" formControlName="relation">W/O
+            <input type="radio" value="W/O" (blur)="logValidationErrors()" formControlName="relation">W/O
           </label>
         </div>
       </div>
@@ -36,28 +38,31 @@
       <div class="form-group row">
         <label for="relName" class="col-sm-2 col-form-label">Relative Name</label>
         <div class="col-sm-5">
-          <input type="text" formControlName="relName" class="form-control" id="relName" placeholder="Relative Name">
+          <input type="text" formControlName="relName" class="form-control" id="relName" (blur)="logValidationErrors()"
+            placeholder="Relative Name">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="village" class="col-sm-2 col-form-label">Village</label>
         <div class="col-sm-5">
-          <input type="text" formControlName="village" class="form-control" id="village" placeholder="village">
+          <input type="text" formControlName="village" class="form-control" id="village" (blur)="logValidationErrors()"
+            placeholder="village">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="phone" class="col-sm-2 col-form-label">Phone No</label>
         <div class="col-sm-3">
-          <input type="text" formControlName="phone" class="form-control" id="phone" placeholder="phone">
+          <input type="text" formControlName="phone" class="form-control" id="phone" (blur)="logValidationErrors()"
+            placeholder="phone">
         </div>
       </div>
       <br>
       <br>
-      <h5>Ornament Details</h5>
 
       <div class="well">
+        <h5>Ornament Details</h5>
         <div class="form-group">
           <div class="col-md-offset-2 col-md-4">
             <button type='button' class="btn btn-primary" (click)="addOrnamentButtonClick()"
@@ -67,13 +72,16 @@
           </div>
         </div>
 
+        <!-- <label class="col-sm-2 control-label" for="ornament">
+            Ornament
+        </label>
+        <input type="text" class="form-control" id="ornament" formControlName="ornament" placeholder="Ring, Chain, etc.."> -->
 
-        <div formArrayName="ornaments" *ngFor="let ornam of custForm.get('ornaments').controls; let i = index">
-          <!-- <hr *ngIf="i>0"> -->
-          <!-- <div [formGroupName]="i"> -->
+        <div formArrayName="ornaments">
+          <hr *ngIf="i>0">
+          <div class="col-12" *ngFor="let ornam of custForm.controls.ornaments.controls; let i = index" formGroupName="{{i}}">
 
-            <div class="form-group" [ngClass]="{'has-error': ornam.get('ornaments.ornament').touched}">
-                              <!-- ornam.get('ornament').invalid && ornam.get('ornament').touched}"> -->
+            <div class="form-group" >
               <label class="col-sm-2 control-label" [attr.for]="'ornament'+i">
                 Ornament
               </label>
@@ -86,14 +94,14 @@
               </div>
               <div class="col-sm-6" *ngIf="custForm.get('ornaments').length>1">
                 <button type="button" class="btn btn-danger btn-sm pull-right" title="delete ornament"
-                  (click)="removeornamentButtonClick(i)">
+                  (click)="removeOrnamentButtonClick(i)">
                   <span class="glyphicon glyphicon-remove"></span>
                 </button>
               </div>
             </div>
 
-            <div class="form-group" [ngClass]="{'has-error': ornam.get('ornaments.metal').touched}">
-                                      <!-- ornam.get('metal').invalid && ornam.get('metal').touched}"> -->
+            <div class="form-group">
+                    
               <label class="col-sm-2 control-label">Metal</label>
               <div class="col-sm-8">
                 <label class="radio-inline">
@@ -109,8 +117,8 @@
               </div>
             </div>
 
-            <div class="form-group" [ngClass]="{'has-error': ornam.get('ornaments.weight').touched}">
-                            <!-- ornam.get('weight').invalid && ornam.get('weight').touched}"> -->
+            <div class="form-group">
+      
               <label class="col-sm-2 control-label" [attr.for]="'weight'+i">
                 Weight
               </label>
@@ -124,8 +132,7 @@
               </div>
             </div>
 
-            <div class="form-group" [ngClass]="{'has-error': ornam.get('ornaments.rupees').touched}">
-                                <!-- ornam.get('rupees').invalid && ornam.get('rupees').touched}"> -->
+            <div class="form-group">
               <label class="col-sm-2 control-label" [attr.for]="'rupees'+i">
                 Rupees
               </label>
@@ -138,8 +145,14 @@
                 </span>
               </div>
             </div>
-          <!-- </div> -->
 
+            <div>
+              Enter the Rate of Interest: 
+              <input type="number" id="ROI" [(ngModel)]="InterestRate">
+              Rate of Interest is: {{InterestRate}}
+            </div>
+
+          </div>
         </div>
       </div>
 
@@ -152,30 +165,5 @@
       </div>
     </div>
   </div>
-  <br>
-  <br>
-  <br>
 
 </form>
-<table border="2">
-  <tr>
-    <th style="padding: 10px">FormArray</th>
-    <th style="padding: 10px">FormControl (rupees)</th>
-  </tr>
-  <tr>
-    <td style="padding: 10px">
-      touched : {{ custForm.ornaments.touched }}
-      <br /> dirty : {{ custForm.ornaments.dirty }}
-      <br /> valid : {{ custForm.ornaments.valid }}
-      <br /> Form values : {{ custForm.ornaments.value | json }}
-
-    </td>
-    <td style="padding: 10px">
-      touched : {{ custForm.get('ornaments.rupees').touched }}
-      <br /> dirty : {{ custForm.get('ornaments.rupees').dirty }}
-      <br /> valid : {{ custForm.get('ornaments.rupees').valid }}
-      <br /> Form Values : {{ custForm.controls.ornaments.rupees.value | json }}
-
-    </td>
-  </tr>
-</table>

@@ -3,9 +3,9 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl, FormA
 import { CustomerService } from './customer.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ICustomer } from './ICustomer';
-
-import { getLocaleDateFormat } from '@angular/common';
 import { IOrnament } from './IOrnament';
+
+
 
 @Component({
   selector: 'app-create-customer',
@@ -17,6 +17,7 @@ export class CreateCustomerComponent implements OnInit {
   custForm: FormGroup;
   pageTitle: string;
   curDate: string;
+  InterestRate:number = null;
   customer: ICustomer = {
     id: null,
     date: null,
@@ -25,9 +26,52 @@ export class CreateCustomerComponent implements OnInit {
     relName: null,
     village: null,
     phone: null,
-    ornaments: []
+    ornaments: [null]
   };
 
+  formErrors = {
+    'custName': '',
+    'relation': '',
+    'relName': '',
+    'village': '',
+    'phone': '',
+    'ornament': '',
+    'metal': '',
+    'weight': '',
+    'rupees': ''
+  };
+
+    // This object contains all the validation messages for this form
+    validationMessages = {
+      'custName': {
+        'required': 'Full Name is required.'
+      },
+      'relation': {
+        'required': 'Relation is required.'
+      },
+      'relName': {
+        'required': 'Relative Name is required.',
+        'emailDomain': 'Email should be dell.com'
+      },
+      'village': {
+        'emailMismatch': 'Village name is required.'
+      },
+      'phone': {
+        'required': 'Phone is required.'
+      },
+      'ornament': {
+        'required': 'Ornament is required.'
+      },
+      'metal': {
+        'required': 'Metal is required.'
+      },
+      'weight': {
+        'required': 'Weight is required.'
+      },
+      'rupees': {
+        'required': 'Rupees is required.'
+      }
+    };
 
   constructor(private fb: FormBuilder,
     private customerService: CustomerService,
@@ -43,9 +87,13 @@ export class CreateCustomerComponent implements OnInit {
       village: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       ornaments: this.fb.array([
-        this.addOrnamentsFormGroup
+        this.addOrnamentsFormGroup()
       ])
-    })
+    });
+
+    this.custForm.valueChanges.subscribe((data) => {
+      this.logValidationErrors(this.custForm);
+    });
 
     // this.customer
 
@@ -75,6 +123,10 @@ export class CreateCustomerComponent implements OnInit {
       }
     });
 
+  }
+
+  addOrnamentButtonClick(): void {
+    (<FormArray>this.custForm.get('ornaments')).push(this.addOrnamentsFormGroup());
   }
 
   getCustomer(id: number) {
@@ -113,9 +165,6 @@ export class CreateCustomerComponent implements OnInit {
     return formArray;
   }
 
-  addOrnamentButtonClick(): void {
-    (<FormArray>this.custForm.get('ornaments')).push(this.addOrnamentsFormGroup());
-  }
 
   removeOrnamentButtonClick(skillGroupIndex: number): void {
     const skillsFormArray = <FormArray>this.custForm.get('ornaments');
@@ -130,27 +179,69 @@ export class CreateCustomerComponent implements OnInit {
       metal: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       rupees: ['', [Validators.required]]
-    })
+    });
   }
 
-    // logValidationErrors(group: FormGroup = this.custForm): void {
-    //   Object.keys(group.controls).forEach((key: string) => {
-    //     const AbstractControl = group.get(key);
+  // addOrnamentsFormGroup() {
+  //   this.ornamentsArray.push(this.fb.group({
+  //     ornament:new FormControl (""),
+  //     metal: new FormControl (""),
+  //     weight: new FormControl (""),
+  //     rupees: new FormControl ("")
+  //   }))
+  // }
 
-    //     this.formErrors[key] = '';
-    //     if (AbstractControl && !AbstractControl.valid &&
-    //       AbstractControl.touched || AbstractControl.dirty || AbstractControl.value !== '') {
-    //       const messages = this.validationMessages[key];
 
-    //       for (const errorKey in AbstractControl.errors) {
-    //         if (errorKey) {
-    //           this.formErrors[key] += messages[errorKey] + ' ';
+  get ornamentsArray() {
+    return <FormArray>this.custForm.get('ornaments');
+  }
+
+  logValidationErrors(group: FormGroup = this.custForm): void {
+    Object.keys(group.controls).forEach((key: string) => {
+      const AbstractControl = group.get(key);
+
+      this.formErrors[key] = '';
+      if (AbstractControl && !AbstractControl.valid &&
+        AbstractControl.touched || AbstractControl.dirty || AbstractControl.value !== '') {
+        const messages = this.validationMessages[key];
+
+        for (const errorKey in AbstractControl.errors) {
+          if (errorKey) {
+            this.formErrors[key] += messages[errorKey] + ' ';
+
+            // if (AbstractControl instanceof FormArray) {
+            //   for (const control of AbstractControl.controls)
+            //     if (control instanceof FormGroup) {
+            //       this.logValidationErrors(control);
+            //     }
+            // }
+            if (AbstractControl instanceof FormGroup) {
+              this.logValidationErrors(AbstractControl);
+            }
+          }
+        }
+      }
+
+      // logKeyValuePairs(group: FormGroup): void {
+      //   Object.keys(group.controls).forEach((key: string ) => {
+      //     const AbstractControl = group.get(key)
+      //     if (AbstractControl instanceof FormGroup) {
+      //       this.logKeyValuePairs(AbstractControl);
+      //     } else
+      //     {
+      //   // console.log('key =' + key + 'value =' + AbstractControl.value)
+      //       AbstractControl.markAsDirty(); 
+      //   }
+
+    });
+  }
+
 
     onSubmit(): void {
       this.mapFormValuesTocustomerModel();
       if (this.customer.id) {
         this.customerService.updateCustomer(this.customer).subscribe(
-          () => this.router.navigate(['customers']),
+          () => this.router.navigate(['home/customers']),
           (err: any) => console.log(err)
         );
       }

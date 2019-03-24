@@ -1,45 +1,43 @@
 {
   "customers": [
     {
-      "id": 0,
-      "date": "05-03-2019",
+      "id": 1,
+      "date": "2019-03-07",
       "custName": "shalini",
       "relation": "S/O",
       "relName": "Naresh Singh",
       "village": "begulal Khera",
       "phone": "8193920739",
       "ornaments": [
-        null,
         {
-          "ornament": "",
-          "metal": "",
-          "weight": "",
-          "rupees": ""
+          "ornament": "ring",
+          "metal": "gold",
+          "weight": "2",
+          "rupees": "4000"
+        },
+        {
+          "ornament": "chain",
+          "metal": "gold",
+          "weight": "2",
+          "rupees": "5000"
         }
       ]
     },
     {
-      "id": 1,
-      "date": "2019-03-07",
+      "id": 2,
+      "date": "2019-03-17",
       "custName": "samarpit verma",
       "relation": "S/O",
       "relName": "R K Verma",
       "village": "malawan",
       "phone": "8899822074",
       "ornaments": [
-        null
-      ]
-    },
-    {
-      "id": 2,
-      "date": "2019-03-07",
-      "custName": "shalini singh",
-      "relation": "D/O",
-      "relName": "naresh singh",
-      "village": "begulal khaira",
-      "phone": "98767887766",
-      "ornaments": [
-        null
+        {
+          "ornament": "ring",
+          "metal": "gold",
+          "weight": "2",
+          "rupees": "4000"
+        }
       ]
     },
     {
@@ -47,16 +45,44 @@
       "date": 0.0003714710252600297,
       "custName": "shalini singh",
       "relation": "D/O",
-      "relName": "",
+      "relName": "Sunita Singh",
       "village": "begulal khaira",
       "phone": "98767887766",
       "ornaments": [
-        null,
+        {
+          "ornament": "ring",
+          "metal": "gold",
+          "weight": "2",
+          "rupees": "4000"
+        },
+        {
+          "ornament": "chain",
+          "metal": "gold",
+          "weight": "2",
+          "rupees": "5000"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "date": "2019-03-05",
+      "custName": "arpit kumar",
+      "relation": "S/O",
+      "relName": "R K Verma",
+      "village": "malawan",
+      "phone": "8285555156",
+      "ornaments": [
+        {
+          "ornament": "chain",
+          "metal": "Gold",
+          "weight": "10",
+          "rupees": "15000"
+        },
         {
           "ornament": "ring",
           "metal": "Gold",
-          "weight": "2",
-          "rupees": "3000"
+          "weight": "2.5",
+          "rupees": "5000"
         }
       ]
     }

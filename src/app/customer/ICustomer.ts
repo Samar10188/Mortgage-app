@@ -9,5 +9,5 @@ export interface ICustomer {
       relName: string;
       village: string;
       phone: number;
-      ornaments: IOrnament[]; 
+      ornaments: IOrnament[];
   }  
