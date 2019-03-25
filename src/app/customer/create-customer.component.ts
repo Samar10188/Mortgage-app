@@ -143,7 +143,7 @@ export class CreateCustomerComponent implements OnInit {
     this.custForm.patchValue({
       custName: customer.custName,
       relation: customer.relation,
-      relative: customer.relName,
+      relName: customer.relName,
       village: customer.village,
       phone: customer.phone
 

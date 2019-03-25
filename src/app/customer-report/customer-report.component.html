@@ -1,3 +1,80 @@
-<p>
-  customer-report works!
-</p>
+<div class="form-row">
+        <div class="col-md-4 mb-3">
+                <label >Customer name </label>
+                <input class="form-control" type="text" value={{customer.custName}} disabled>
+        </div>
+
+        <div class="col-md-2 mb-3">
+                <label >Relation </label>
+                <input class="form-control" type="text" value={{customer.relation}} disabled>
+        </div>
+
+        <div class="col-md-5 mb-3">
+                <label >Relative name </label>
+                <input class="form-control" type="text" value={{customer.relName}} disabled>
+        </div>
+
+        <div class="col-md-5 mb-3">
+                <label >Village </label>
+                <input class="form-control" type="text" value={{customer.village}} disabled>
+            </div>
+    
+        <div class="col-md-5 mb-3">
+                <label >Contact No </label>
+                <input class="form-control" type="text" value={{customer.phone}} disabled>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+    
+        <div class="col-ornament" *ngFor="let ornam of this.customer.ornaments; let i = index">
+
+                <div class="col-md-3 mb-3">
+                        <label for="ornament" >Ornament </label>
+                        <input type="text" id="ornament" value={{ornam.ornament}} disabled>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                        <label for="metal" >Metal </label>
+                        <input type="text" id="metal" value={{ornam.metal}} disabled>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                        <label for="weight">Weight </label>
+                        <input type="text" id="weight" value={{ornam.weight}} disabled>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                        <label for="rupees" >Rupees </label>
+                        <input type="text" id="rupees" value={{ornam.rupees}} disabled>
+                </div>
+
+                <!-- <div class="col-md-3 mb-3">
+                        <label for="ROI" >Enter the Rate of Interest</label>
+                        <input type="number" id="ROI" [(ngModel)]="'InterestRate'+i" >
+                        ROI is : {{InterestRate+i}}
+                </div> -->
+            <div>
+                Interest is : {{(ornam.rupees/100)*InterestRate*time}}
+            </div>
+
+             <div>
+                 Enter the Rate of Interest :
+                 <input type="number" [(ngModel)]="InterestRate">
+                 <br />
+                 {{InterestRate}}
+             </div>
+
+             <!-- <div>
+                    <button class="btn btn-secondary" type="button" (onclick)="interestCalculateButtonClick()"></button>
+                    <input type="number" [value]="amount" disabled>
+                    <br />
+                    
+                </div> -->
+
+<br />
+<br />
+<br />
+            </div>
+</div>
+ 

@@ -25,4 +25,8 @@ export class ListCustomerComponent implements OnInit {
   editButtonClick(customerId: number){
     this.router.navigate(['home/edit', customerId])
   }
+
+  viewButtonClick(customerId: number){
+    this.router.navigate(['home/view', customerId])
+  }
 }

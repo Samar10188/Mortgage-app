@@ -85,6 +85,47 @@
           "rupees": "5000"
         }
       ]
+    },
+    {
+      "id": 5,
+      "date": 0.0003714710252600297,
+      "custName": "Phool Devi",
+      "relation": "D/O",
+      "relName": "Ram  Ladete",
+      "village": "Akbarpur",
+      "phone": "9877664331",
+      "ornaments": [
+        {
+          "ornament": "Paajeb",
+          "metal": "Silver",
+          "weight": 100,
+          "rupees": 2500
+        },
+        {
+          "ornament": "Chain",
+          "metal": "Gold",
+          "weight": 10,
+          "rupees": 15000
+        },
+        {
+          "ornament": "Ring",
+          "metal": "Gold",
+          "weight": 5,
+          "rupees": 8000
+        },
+        {
+          "ornament": "Half Kardhani",
+          "metal": "Silver",
+          "weight": 200,
+          "rupees": 6000
+        },
+        {
+          "ornament": "necklace",
+          "metal": "Gold",
+          "weight": 30,
+          "rupees": 45000
+        }
+      ]
     }
   ]
 }

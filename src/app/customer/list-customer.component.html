@@ -17,7 +17,12 @@
           <td>{{ customer.relation }}</td>
           <td>{{ customer.relName }}</td>
           <td>{{ customer.village }}</td>
-          <td> <button class="btn btn-primary" (click)="editButtonClick(customer.id)">Edit</button> </td>
+          <td> 
+            <div class="btn-toolbar">
+              <button class="btn btn-primary" (click)="editButtonClick(customer.id)">Edit</button>' '
+              <button class="btn btn-secondary" (click)="viewButtonClick(customer.id)">View</button>
+            </div> 
+          </td>
         </tr>
       </tbody>
     </table>

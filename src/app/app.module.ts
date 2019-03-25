@@ -14,7 +14,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { FormBuilder } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { HomeComponent } from './home.component';
-import { CustomerReportComponent } from './customer-report/customer-report/customer-report.component';
+import { CustomerReportComponent } from './customer-report/customer-report.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +26,9 @@ import { CustomerReportComponent } from './customer-report/customer-report/custo
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     CustomerModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule

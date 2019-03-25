@@ -3,26 +3,26 @@
     <div class="panel-heading">
       <h3 class="panel-title">{{pageTitle}}</h3>
     </div>
-    <div class="panel-body">
-      <div class="form-group row">
-        <label for="date" class="col-sm-2 col-form-label">Date</label>
-        <div class="col-sm-3">
+    <div class="form-row">
+      <div class="col-md-3 mb-3">
+        <label for="date" >Date</label>
+        <!-- <div class="col-sm-3"> -->
           <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date"
             (blur)="logValidationErrors()">
-        </div>
+        <!-- </div> -->
       </div>
 
-      <div class="form-group row">
-        <label for="custName" class="col-sm-2 col-form-label">Customer Name</label>
-        <div class="col-sm-5">
+      <div class="col-md-8 mb-8">
+        <label for="custName" >Customer Name</label>
+        <!-- <div class="col-sm-5"> -->
           <input type="text" formControlName="custName" class="form-control" id="custName"
             (blur)="logValidationErrors()" placeholder="FullName">
-        </div>
+        <!-- </div> -->
       </div>
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Relation</label>
-        <div class="col-sm-8">
+      <div class="col-md-2 mb-8">
+        <label >Relation</label>
+        <div >
           <label class="radio-inline">
             <input type="radio" value="S/O" (blur)="logValidationErrors()" formControlName="relation">S/O
           </label>
@@ -35,28 +35,38 @@
         </div>
       </div>
 
-      <div class="form-group row">
-        <label for="relName" class="col-sm-2 col-form-label">Relative Name</label>
-        <div class="col-sm-5">
+      <!-- <div class="col-md-3 mb-8">
+          <select class="custom-select" required>
+            <option value="">Relation</option>
+            <option value="S/O" formControlName="relation">S/O</option>
+            <option value="D/O" formControlName="relation">D/O</option>
+            <option value="W/O" formControlName="relation">W/O</option>
+          </select>
+          <div class="invalid-feedback">Invalid Relation</div>
+        </div> -->
+
+      <div class="col-md-3 mb-8">
+        <label for="relName" >Relative Name</label>
+        <!-- <div class="col-sm-5"> -->
           <input type="text" formControlName="relName" class="form-control" id="relName" (blur)="logValidationErrors()"
             placeholder="Relative Name">
-        </div>
+        <!-- </div> -->
       </div>
 
-      <div class="form-group row">
-        <label for="village" class="col-sm-2 col-form-label">Village</label>
-        <div class="col-sm-5">
+      <div class="col-md-3 mb-8">
+        <label for="village" >Village</label>
+        <!-- <div class="col-sm-5"> -->
           <input type="text" formControlName="village" class="form-control" id="village" (blur)="logValidationErrors()"
             placeholder="village">
-        </div>
+        <!-- </div> -->
       </div>
 
-      <div class="form-group row">
-        <label for="phone" class="col-sm-2 col-form-label">Phone No</label>
-        <div class="col-sm-3">
+      <div class="col-md-3 mb-8">
+        <label for="phone">Phone No</label>
+        <!-- <div class="col-sm-3"> -->
           <input type="text" formControlName="phone" class="form-control" id="phone" (blur)="logValidationErrors()"
             placeholder="phone">
-        </div>
+        <!-- </div> -->
       </div>
       <br>
       <br>
@@ -78,20 +88,20 @@
         <input type="text" class="form-control" id="ornament" formControlName="ornament" placeholder="Ring, Chain, etc.."> -->
 
         <div formArrayName="ornaments">
-          <hr *ngIf="i>0">
+          
           <div class="col-12" *ngFor="let ornam of custForm.controls.ornaments.controls; let i = index" formGroupName="{{i}}">
-
-            <div class="form-group" >
-              <label class="col-sm-2 control-label" [attr.for]="'ornament'+i">
+              <hr *ngIf="i>0">
+            <div class="col-md-3 mb-8" >
+              <label [attr.for]="'ornament'+i">
                 Ornament
               </label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" [id]="'ornament'+i" formControlName="ornament" placeholder="Ring, Chain, etc..">
+              <!-- <div class="col-sm-4"> -->
+                <input type="text" [id]="'ornament'+i" formControlName="ornament" placeholder="Ring, Chain, etc..">
                 <span class="help-block" *ngIf="ornam.get('ornament').errors?.required &&
                                                                   ornam.get('ornament').touched">
                   Ornament Name is required
                 </span>
-              </div>
+              <!-- </div> -->
               <div class="col-sm-6" *ngIf="custForm.get('ornaments').length>1">
                 <button type="button" class="btn btn-danger btn-sm pull-right" title="delete ornament"
                   (click)="removeOrnamentButtonClick(i)">
@@ -117,47 +127,43 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <div class="col-md-3 mb-8">
       
-              <label class="col-sm-2 control-label" [attr.for]="'weight'+i">
+              <label [attr.for]="'weight'+i">
                 Weight
               </label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" [id]="'weight'+i" formControlName="weight"
-                  placeholder="In Years">
+              <!-- <div class="col-sm-4"> -->
+                <input type="number" [id]="'weight'+i" formControlName="weight"
+                  placeholder="In grams">
                 <span class="help-block" *ngIf="ornam.get('weight').errors?.required &&
                                               ornam.get('weight').touched">
                   Weight is required
                 </span>
-              </div>
+              <!-- </div> -->
             </div>
 
-            <div class="form-group">
-              <label class="col-sm-2 control-label" [attr.for]="'rupees'+i">
+            <div class="col-md-3 mb-8">
+              <label [attr.for]="'rupees'+i">
                 Rupees
               </label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" [id]="'rupees'+i" formControlName="rupees"
-                  placeholder="In Years">
+              <!-- <div class="col-sm-4"> -->
+                <input type="number" [id]="'rupees'+i" formControlName="rupees"
+                  placeholder="In Rupees">
                 <span class="help-block" *ngIf="ornam.get('rupees').errors?.required &&
                                         ornam.get('rupees').touched">
                   Rupees is required
                 </span>
-              </div>
+                <br />
+                <br />
+                <br />
+              <!-- </div> -->
             </div>
-
-            <div>
-              Enter the Rate of Interest: 
-              <input type="number" id="ROI" [(ngModel)]="InterestRate">
-              Rate of Interest is: {{InterestRate}}
-            </div>
-
           </div>
         </div>
       </div>
 
       <div class="panel-footer">
-        <div class="col-sm-5">
+        <div class="col-ornament">
           <br>
           <br>
           <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
@@ -167,3 +173,9 @@
   </div>
 
 </form>
+
+<!-- <div>
+  Enter the Rate of Interest: 
+  <input type="number" id="ROI" [(ngModel)]="InterestRate">
+  Rate of Interest is: {{InterestRate}}
+</div> -->

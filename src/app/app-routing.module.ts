@@ -7,13 +7,16 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { HomeComponent } from './home.component';
 import { ListCustomerComponent } from './customer/list-customer.component';
 import { CreateCustomerComponent } from './customer/create-customer.component';
+import { CustomerReportComponent } from './customer-report/customer-report.component';
 
+ 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
   { path: 'home', component: HomeComponent , children: [
     { path: 'customers', component: ListCustomerComponent},
     { path: 'create', component: CreateCustomerComponent},
-    { path: "edit/:id", component: CreateCustomerComponent }
+    { path: "edit/:id", component: CreateCustomerComponent },
+    { path: "view/:id", component: CustomerReportComponent}
   ]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent}

@@ -10,10 +10,12 @@ import { ListCustomerComponent } from './list-customer.component';
 import { SharedModule } from "../shared/shared.module";
 
 
+
 @NgModule({
   declarations: [
     CreateCustomerComponent,
     ListCustomerComponent
+
   ],
   imports: [
     FormsModule,
