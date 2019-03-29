@@ -2,128 +2,94 @@
   "customers": [
     {
       "id": 1,
-      "date": "2019-03-07",
-      "custName": "shalini",
-      "relation": "S/O",
-      "relName": "Naresh Singh",
-      "village": "begulal Khera",
-      "phone": "8193920739",
-      "ornaments": [
-        {
-          "ornament": "ring",
-          "metal": "gold",
-          "weight": "2",
-          "rupees": "4000"
-        },
-        {
-          "ornament": "chain",
-          "metal": "gold",
-          "weight": "2",
-          "rupees": "5000"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "date": "2019-03-17",
-      "custName": "samarpit verma",
-      "relation": "S/O",
+      "date": "2019-03-21",
+      "custName": "Richa Verma",
+      "relation": "D/O",
       "relName": "R K Verma",
       "village": "malawan",
-      "phone": "8899822074",
+      "phone": "9643439440",
       "ornaments": [
         {
-          "ornament": "ring",
-          "metal": "gold",
-          "weight": "2",
-          "rupees": "4000"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "date": 0.0003714710252600297,
-      "custName": "shalini singh",
-      "relation": "D/O",
-      "relName": "Sunita Singh",
-      "village": "begulal khaira",
-      "phone": "98767887766",
-      "ornaments": [
-        {
-          "ornament": "ring",
-          "metal": "gold",
-          "weight": "2",
-          "rupees": "4000"
-        },
-        {
-          "ornament": "chain",
-          "metal": "gold",
-          "weight": "2",
-          "rupees": "5000"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "date": "2019-03-05",
-      "custName": "arpit kumar",
-      "relation": "S/O",
-      "relName": "R K Verma",
-      "village": "malawan",
-      "phone": "8285555156",
-      "ornaments": [
-        {
-          "ornament": "chain",
-          "metal": "Gold",
-          "weight": "10",
-          "rupees": "15000"
-        },
-        {
-          "ornament": "ring",
-          "metal": "Gold",
-          "weight": "2.5",
-          "rupees": "5000"
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "date": 0.0003714710252600297,
-      "custName": "Phool Devi",
-      "relation": "D/O",
-      "relName": "Ram  Ladete",
-      "village": "Akbarpur",
-      "phone": "9877664331",
-      "ornaments": [
-        {
-          "ornament": "Paajeb",
-          "metal": "Silver",
-          "weight": 100,
-          "rupees": 2500
-        },
-        {
-          "ornament": "Chain",
-          "metal": "Gold",
-          "weight": 10,
-          "rupees": 15000
-        },
-        {
+          "subDate": "",
           "ornament": "Ring",
           "metal": "Gold",
           "weight": 5,
           "rupees": 8000
         },
         {
-          "ornament": "Half Kardhani",
-          "metal": "Silver",
-          "weight": 200,
-          "rupees": 6000
-        },
-        {
+          "subDate": "",
           "ornament": "necklace",
           "metal": "Gold",
-          "weight": 30,
-          "rupees": 45000
+          "weight": 25,
+          "rupees": 40000
+        },
+        {
+          "subDate": "",
+          "ornament": "paajeb",
+          "metal": "Silver",
+          "weight": 100,
+          "rupees": 2500
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "date": "2019-03-01",
+      "custName": "Shalini Singh",
+      "relation": "D/O",
+      "relName": "Naresh Singh",
+      "village": "Begulal Khera",
+      "phone": "81932999888",
+      "ornaments": [
+        {
+          "subDate": "",
+          "ornament": "ring",
+          "metal": "Gold",
+          "weight": 5,
+          "rupees": 8000
+        },
+        {
+          "subDate": "",
+          "ornament": "Chain",
+          "metal": "Gold",
+          "weight": 10,
+          "rupees": 15000
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "date": "",
+      "custName": "samarpit",
+      "relation": "S/O",
+      "relName": "R K Verma",
+      "village": "malawan",
+      "phone": "8899822074",
+      "ornaments": [
+        {
+          "subDate": "",
+          "ornament": "Ring",
+          "metal": "Gold",
+          "weight": 1,
+          "rupees": 1000
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "date": "",
+      "custName": "Amarpal",
+      "relation": "S/O",
+      "relName": "Satyajeet ",
+      "village": "nagla agar",
+      "phone": "7654356789",
+      "ornaments": [
+        {
+          "subDate": "",
+          "ornament": "ring",
+          "metal": "Gold",
+          "weight": 3,
+          "rupees": 5000
         }
       ]
     }

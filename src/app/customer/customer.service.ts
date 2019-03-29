@@ -57,4 +57,13 @@ export class CustomerService {
       return this.httpClient.delete<void>(`${this.baseUrl}/${id}`)
           .pipe(catchError(this.handleError));
   }
+
+  formatDate(date: Date): string {
+      const day = date.getDate();
+      const month = date.getMonth();
+      const year = date.getFullYear();
+
+      return `${year}-${month}-${day}`
+  }
+  
 }

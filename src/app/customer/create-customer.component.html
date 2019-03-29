@@ -1,179 +1,201 @@
-<form [formGroup]="custForm" class="form-horizontal">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">{{pageTitle}}</h3>
-    </div>
-    <div class="form-row">
-      <div class="col-md-3 mb-3">
-        <label for="date" >Date</label>
-        <!-- <div class="col-sm-3"> -->
+<div class="cust-body">
+  <form [formGroup]="custForm" class="form-horizontal">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{pageTitle}}</h3>
+        <h4>{{today | date}}</h4>
+      </div>
+      <div class="form-row">
+        <div class="col-md-3 mb-3" [ngClass]="{'has-error' : formErrors.date}">
+          <label for="date">Date</label>
           <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date"
             (blur)="logValidationErrors()">
-        <!-- </div> -->
-      </div>
+          <span class='help-block' *ngIf="formErrors.date">
+            {{formErrors.date}}
+          </span>
+        </div>
 
-      <div class="col-md-8 mb-8">
-        <label for="custName" >Customer Name</label>
-        <!-- <div class="col-sm-5"> -->
+        <div class="col-md-8 mb-8" [ngClass]="{'has-error' : formErrors.custName}">
+          <label for="custName">Customer Name</label>
           <input type="text" formControlName="custName" class="form-control" id="custName"
-            (blur)="logValidationErrors()" placeholder="FullName">
-        <!-- </div> -->
-      </div>
+            (blur)="logValidationErrors()" placeholder="FullName" required>
+          <span class="help-block" *ngIf="this.custForm.get('custName').errors?.required &&
+              this.custForm.get('custName').touched">
+            Customer FullName is required
+          </span>
+        </div>
 
-      <div class="col-md-2 mb-8">
-        <label >Relation</label>
-        <div >
-          <label class="radio-inline">
-            <input type="radio" value="S/O" (blur)="logValidationErrors()" formControlName="relation">S/O
-          </label>
-          <label class="radio-inline">
-            <input type="radio" value="D/O" (blur)="logValidationErrors()" formControlName="relation">D/O
-          </label>
-          <label class="radio-inline">
-            <input type="radio" value="W/O" (blur)="logValidationErrors()" formControlName="relation">W/O
-          </label>
+        <div class="col-md-2 mb-8">
+          <label>Relation</label>
+          <div>
+            <label class="radio-inline">
+              <input type="radio" value="S/O" (blur)="logValidationErrors()" formControlName="relation">S/O
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="D/O" (blur)="logValidationErrors()" formControlName="relation">D/O
+            </label>
+            <label class="radio-inline">
+              <input type="radio" value="W/O" (blur)="logValidationErrors()" formControlName="relation">W/O
+            </label>
+            <span class="help-block" *ngIf="this.custForm.get('relation').errors?.required &&
+              this.custForm.get('relation').touched">
+              Relation is required
+            </span>
+          </div>
+        </div>
+
+        <!-- <div class="col-md-3 mb-8">
+            <select class="custom-select" required>
+              <option value="">Relation</option>
+              <option value="S/O" formControlName="relation">S/O</option>
+              <option value="D/O" formControlName="relation">D/O</option>
+              <option value="W/O" formControlName="relation">W/O</option>
+            </select>
+            <div class="invalid-feedback">Invalid Relation</div>
+          </div> -->
+
+        <div class="col-md-3 mb-8">
+          <label for="relName">Relative Name</label>
+          <input type="text" formControlName="relName" class="form-control" id="relName" (blur)="logValidationErrors()"
+            placeholder="Relative Name">
+          <span class="help-block" *ngIf="this.custForm.get('relName').errors?.required &&
+              this.custForm.get('relName').touched">
+            Relative name is required
+          </span>
+        </div>
+
+        <div class="col-md-3 mb-8">
+          <label for="village">Village</label>
+          <input type="text" formControlName="village" class="form-control" id="village" (blur)="logValidationErrors()"
+            placeholder="village">
+          <span class="help-block" *ngIf="this.custForm.get('village').errors?.required &&
+              this.custForm.get('village').touched">
+            Village Name is required
+          </span>
+        </div>
+
+        <div class="col-md-3 mb-8">
+          <label for="phone">Phone No</label>
+          <input type="text" formControlName="phone" class="form-control" id="phone" (blur)="logValidationErrors()"
+            placeholder="phone">
+          <span class="help-block" *ngIf="this.custForm.get('phone').errors?.required &&
+              this.custForm.get('phone').touched">
+            Phone No is required
+          </span>
         </div>
       </div>
 
-      <!-- <div class="col-md-3 mb-8">
-          <select class="custom-select" required>
-            <option value="">Relation</option>
-            <option value="S/O" formControlName="relation">S/O</option>
-            <option value="D/O" formControlName="relation">D/O</option>
-            <option value="W/O" formControlName="relation">W/O</option>
-          </select>
-          <div class="invalid-feedback">Invalid Relation</div>
-        </div> -->
+      <br />
 
-      <div class="col-md-3 mb-8">
-        <label for="relName" >Relative Name</label>
-        <!-- <div class="col-sm-5"> -->
-          <input type="text" formControlName="relName" class="form-control" id="relName" (blur)="logValidationErrors()"
-            placeholder="Relative Name">
-        <!-- </div> -->
-      </div>
-
-      <div class="col-md-3 mb-8">
-        <label for="village" >Village</label>
-        <!-- <div class="col-sm-5"> -->
-          <input type="text" formControlName="village" class="form-control" id="village" (blur)="logValidationErrors()"
-            placeholder="village">
-        <!-- </div> -->
-      </div>
-
-      <div class="col-md-3 mb-8">
-        <label for="phone">Phone No</label>
-        <!-- <div class="col-sm-3"> -->
-          <input type="text" formControlName="phone" class="form-control" id="phone" (blur)="logValidationErrors()"
-            placeholder="phone">
-        <!-- </div> -->
-      </div>
-      <br>
-      <br>
-
-      <div class="col-md-3 mb-8">
+      <div class="form-column">
         <h5>Ornament Details</h5>
-        <div class="col-md-3 mb-8">
+        <br />
+        <div class="col-md-6 mb-8">
           <div class="col-md-offset-2 col-md-4">
             <button type='button' class="btn btn-primary" (click)="addOrnamentButtonClick()"
-              [disabled]="custForm.get('ornaments').invalid">
+              [disabled]="custForm.get('ornaments').invalid" title="Add ornament">
               Add Ornament
             </button>
           </div>
         </div>
+      </div>
+      <div formArrayName="ornaments">
 
-        <!-- <label class="col-sm-2 control-label" for="ornament">
-            Ornament
-        </label>
-        <input type="text" class="form-control" id="ornament" formControlName="ornament" placeholder="Ring, Chain, etc.."> -->
+        <div class="form-row" *ngFor="let ornam of custForm.controls.ornaments.controls; let i = index"
+          formGroupName="{{i}}">
+          <br />
+          <div class="form-column">
 
-        <div formArrayName="ornaments" class="col-md-3 mb-8" >
-          
-          <div class="col-12" *ngFor="let ornam of custForm.controls.ornaments.controls; let i = index" formGroupName="{{i}}">
-              <hr *ngIf="i>0">
-            <div class="col-md-3 mb-8" >
-              <label [attr.for]="'ornament'+i">
-                Ornament
+            <div class="col-md-3 mb-8">
+              <label [attr.for]="'subDate'+i">
+                Date
               </label>
-              <!-- <div class="col-sm-4"> -->
-                <input type="text" [id]="'ornament'+i" formControlName="ornament" placeholder="Ring, Chain, etc..">
-                <span class="help-block" *ngIf="ornam.get('ornament').errors?.required &&
-                                                                  ornam.get('ornament').touched">
-                  Ornament Name is required
-                </span>
-              <!-- </div> -->
-              <div class="col-sm-6" *ngIf="custForm.get('ornaments').length>1">
-                <button type="button" class="btn btn-danger btn-sm pull-right" title="delete ornament"
-                  (click)="removeOrnamentButtonClick(i)">
-                  <span class="glyphicon glyphicon-remove"></span>
+              <input type="datetime" [id]="'subDate'+i" formControlName="subDate" value={{currentDate}} disabled>
+            </div>
+            <br />
+            <div class="well">
+              <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              <div class="col-md-10 mb-8" *ngIf="custForm.get('ornaments').length>1">
+                <button type="button" class="btn-delete" title="delete ornament"
+                  (click)="removeOrnamentButtonClick(i)"><i class="fa fa-trash"></i>Delete
                 </button>
               </div>
             </div>
 
+          </div>
+
+          <div class="col-md-2 mb-8">
+            <label [attr.for]="'ornament'+i">
+              Ornament
+            </label>
+            <input type="text" class="form-control" [id]="'ornament'+i" formControlName="ornament"
+              placeholder="Ring, Chain, etc.." required>
+            <span class="help-block" *ngIf="ornam.get('ornament').errors?.required &&
+                                                                        ornam.get('ornament').touched">
+              Ornament Name is required
+            </span>
+          </div>
+
+          <div class="col-md-2 mb-8">
             <div class="form-group">
-                    
-              <label class="col-sm-2 control-label">Metal</label>
-              <div class="col-sm-8">
+              <label class="col-sm-6 control-label">
+                Metal
+              </label>
+              <div class="row-sm-6">
                 <label class="radio-inline">
                   <input type="radio" value="Gold" formControlName="metal">Gold
                 </label>
                 <label class="radio-inline">
                   <input type="radio" value="Silver" formControlName="metal">Silver
                 </label>
-                <span class="help-block" *ngIf="ornam.get('metal').errors?.required &&
-                                                    ornam.get('metal').touched">
-                  Metal is required
-                </span>
               </div>
-            </div>
-
-            <div class="col-md-3 mb-8">
-      
-              <label [attr.for]="'weight'+i">
-                Weight
-              </label>
-              <!-- <div class="col-sm-4"> -->
-                <input type="number" [id]="'weight'+i" formControlName="weight"
-                  placeholder="In grams">
-                <span class="help-block" *ngIf="ornam.get('weight').errors?.required &&
-                                              ornam.get('weight').touched">
-                  Weight is required
-                </span>
-              <!-- </div> -->
-            </div>
-
-            <div class="col-md-3 mb-8">
-              <label [attr.for]="'rupees'+i">
-                Rupees
-              </label>
-              <!-- <div class="col-sm-4"> -->
-                <input type="number" [id]="'rupees'+i" formControlName="rupees"
-                  placeholder="In Rupees">
-                <span class="help-block" *ngIf="ornam.get('rupees').errors?.required &&
-                                        ornam.get('rupees').touched">
-                  Rupees is required
-                </span>
-                <br />
-                <br />
-              <!-- </div> -->
+              <span class="help-block" *ngIf="ornam.get('metal').errors?.required &&
+                                                      ornam.get('metal').touched">
+                Metal is required
+              </span>
             </div>
           </div>
+
+          <div class="col-md-2 mb-8">
+
+            <label [attr.for]="'weight'+i">
+              Weight
+            </label>
+            <input type="number" class="form-control" [id]="'weight'+i" formControlName="weight" placeholder="In grams">
+            <span class="help-block" *ngIf="ornam.get('weight').errors?.required &&
+                                                ornam.get('weight').touched">
+              Weight is required
+            </span>
+          </div>
+          <br />
+          <div class="col-md-2 mb-8">
+            <label [attr.for]="'rupees'+i">
+              Rupees
+            </label>
+
+            <input type="number" class="form-control" [id]="'rupees'+i" formControlName="rupees"
+              placeholder="In Rupees">
+            <span class="help-block" *ngIf="ornam.get('rupees').errors?.required &&
+                                          ornam.get('rupees').touched">
+              Rupees is required
+            </span>
+            <br />
+          </div>
+
+        </div>
+
+      </div>
+      <div class="col-md-3 mb-8">
+        <div class="col-ornament">
+          <br />
+          <br />
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
         </div>
       </div>
-
-
     </div>
-  </div>
-  <div class="panel-footer">
-      <div class="col-ornament">
-        <br>
-        <br>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
-      </div>
-    </div>
-
-</form>
-
+  </form>
+</div>
 <!-- <div>
   Enter the Rate of Interest: 
   <input type="number" id="ROI" [(ngModel)]="InterestRate">

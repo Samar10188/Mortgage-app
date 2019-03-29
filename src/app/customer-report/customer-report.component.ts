@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../customer/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICustomer } from '../customer/ICustomer';
+import { ReturnStatement } from '@angular/compiler';
 
 @Component({
   selector: 'app-customer-report',
@@ -10,12 +11,11 @@ import { ICustomer } from '../customer/ICustomer';
 })
 export class CustomerReportComponent implements OnInit {
 
-  InterestRate: number = 2;
+  principalAmount = [];
+  amount: number;
+  interestRate: number = 2;
   time:number = 2;
-  InterestRate2: number = null;
-  InterestRate3: number = null;
-  InterestRate4: number = null;
-  InterestRate5: number = null;
+  interest: number;
   customer: ICustomer = {
     id: null,
     date: null,
@@ -24,8 +24,9 @@ export class CustomerReportComponent implements OnInit {
     relName: null,
     village: null,
     phone: null,
-    ornaments: [null]
+    ornaments: []
   };
+
   
   constructor(private customerService: CustomerService,
               private route: ActivatedRoute,
@@ -37,6 +38,8 @@ export class CustomerReportComponent implements OnInit {
       const custId = +params.get('id');
       this.getCustomer(custId);
       });
+
+    
       
   }
 
@@ -65,8 +68,15 @@ export class CustomerReportComponent implements OnInit {
     // this.custForm.setControl('ornaments', this.setExistingSkills(customer.ornaments));
   }
 
-  // interestCalculateButtonClick() {
-  //   amount = 
-  // }
+  interestCalculateButtonClick(index: number) {
+    this.interestCalculation(index);
+    return console.log(this.interest);
+  }
+
+  interestCalculation(index: number) {
+    this.principalAmount[index] = this.customer.ornaments[index].rupees;
+    this.amount = this.principalAmount[index];
+    this.interest = (this.amount*this.interestRate*this.time)/100;
+  }
 
 }

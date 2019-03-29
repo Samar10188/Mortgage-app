@@ -1,6 +1,7 @@
 export class IOrnament { 
     constructor(
     
+    public subDate: Date,
     public ornament: string,
     public metal: string,
     public weight: number,

@@ -30,22 +30,27 @@
         <div class="col-ornament" *ngFor="let ornam of this.customer.ornaments; let i = index">
 
                 <div class="col-md-3 mb-3">
-                        <label for="ornament" >Ornament </label>
+                        <label [attr.for]="'subDate'+i" >Date </label>
+                        <input type="text" [id]="'subDate'+i" value={{ornam.subDate}} disabled>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                        <label [attr.for]="'ornament'+i" >Ornament </label>
                         <input type="text" id="ornament" value={{ornam.ornament}} disabled>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                        <label for="metal" >Metal </label>
+                        <label [attr.for]="'metal'+i" >Metal </label>
                         <input type="text" id="metal" value={{ornam.metal}} disabled>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                        <label for="weight">Weight </label>
+                        <label [attr.for]="'weight'+i">Weight </label>
                         <input type="text" id="weight" value={{ornam.weight}} disabled>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                        <label for="rupees" >Rupees </label>
+                        <label [attr.for]="'rupees'+i" >Rupees </label>
                         <input type="text" id="rupees" value={{ornam.rupees}} disabled>
                 </div>
 
@@ -54,24 +59,25 @@
                         <input type="number" id="ROI" [(ngModel)]="'InterestRate'+i" >
                         ROI is : {{InterestRate+i}}
                 </div> -->
-            <div>
+            <!-- <div>
                 Interest is : {{(ornam.rupees/100)*InterestRate*time}}
-            </div>
+            </div> -->
 
              <div>
-                 Enter the Rate of Interest :
-                 <input type="number" [(ngModel)]="InterestRate">
-                 <br />
-                 {{InterestRate}}
+                 <label [attr.for]="'ROI'+i" ></label>
+                 <input type="number" [id]="'ROI'+i" [value]="interestRate"
+                (input)='interestRate=$event.target.value' placeholder="Rate of Interest">
+                 <!-- <br /> -->
+                 {{interestRate}}
              </div>
-
-             <!-- <div>
-                    <button class="btn btn-secondary" type="button" (onclick)="interestCalculateButtonClick()"></button>
-                    <input type="number" [value]="amount" disabled>
-                    <br />
-                    
-                </div> -->
-
+             <br />
+             <div class="form-row">
+                <div class="col-md-2 mb-3">
+                        <button class="btn btn-secondary" type="button" (onclick)="interestCalculateButtonClick(i)">Calculate</button>
+                        <input type="number" [id]="'interest'+i" value={{interest}} disabled>
+                        <br />
+                </div>
+             </div>
 <br />
 <br />
 <br />

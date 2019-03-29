@@ -17,7 +17,9 @@ export class CreateCustomerComponent implements OnInit {
   custForm: FormGroup;
   pageTitle: string;
   curDate: string;
-  InterestRate:number = null;
+  today = new Date();
+  // currentDate = this.today.toDateString()
+  currentDate: string;
   customer: ICustomer = {
     id: null,
     date: null,
@@ -30,46 +32,33 @@ export class CreateCustomerComponent implements OnInit {
   };
 
   formErrors = {
+    'date': '',
     'custName': '',
     'relation': '',
     'relName': '',
     'village': '',
-    'phone': '',
-    'ornament': '',
-    'metal': '',
-    'weight': '',
-    'rupees': ''
+    'phone': ''
   };
 
     // This object contains all the validation messages for this form
     validationMessages = {
+      'date': {
+        'required': 'date is required.'
+      },
       'custName': {
-        'required': 'Full Name is required.'
+        'required': 'Customer Name is required.'
       },
       'relation': {
         'required': 'Relation is required.'
       },
       'relName': {
-        'required': 'Relative Name is required.',
-        'emailDomain': 'Email should be dell.com'
+        'required': 'Relative Name is required.'
       },
       'village': {
-        'emailMismatch': 'Village name is required.'
+        'required': 'Village name is required.'
       },
       'phone': {
-        'required': 'Phone is required.'
-      },
-      'ornament': {
-        'required': 'Ornament is required.'
-      },
-      'metal': {
-        'required': 'Metal is required.'
-      },
-      'weight': {
-        'required': 'Weight is required.'
-      },
-      'rupees': {
-        'required': 'Rupees is required.'
+        'required': 'Phone number is required.'
       }
     };
 
@@ -78,10 +67,11 @@ export class CreateCustomerComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
+    
   ngOnInit() {
     this.custForm = this.fb.group({
-      date: [3 / 4 / 2019],
-      custName: [''],
+      date: [''],
+      custName: ['', [Validators.required]],
       relation: ['', [Validators.required]],
       relName: ['', [Validators.required]],
       village: ['', [Validators.required]],
@@ -95,6 +85,7 @@ export class CreateCustomerComponent implements OnInit {
       this.logValidationErrors(this.custForm);
     });
 
+  
     // this.customer
 
     // this.route.paramMap.subscribe(params => {
@@ -122,6 +113,8 @@ export class CreateCustomerComponent implements OnInit {
         }
       }
     });
+
+    this.currentDate = this.customerService.formatDate(this.today)
 
   }
 
@@ -156,6 +149,7 @@ export class CreateCustomerComponent implements OnInit {
     const formArray = new FormArray([]);
     ornamentSets.forEach(s => {
       formArray.push(this.fb.group({
+        subDate: s.subDate,
         ornament: s.ornament,
         metal: s.metal,
         weight: s.weight,
@@ -175,6 +169,7 @@ export class CreateCustomerComponent implements OnInit {
 
   addOrnamentsFormGroup(): FormGroup {
     return this.fb.group({
+      subDate: [''],
       ornament: ['', [Validators.required]],
       metal: ['', [Validators.required]],
       weight: ['', [Validators.required]],
@@ -221,18 +216,6 @@ export class CreateCustomerComponent implements OnInit {
           }
         }
       }
-
-      // logKeyValuePairs(group: FormGroup): void {
-      //   Object.keys(group.controls).forEach((key: string ) => {
-      //     const AbstractControl = group.get(key)
-      //     if (AbstractControl instanceof FormGroup) {
-      //       this.logKeyValuePairs(AbstractControl);
-      //     } else
-      //     {
-      //   // console.log('key =' + key + 'value =' + AbstractControl.value)
-      //       AbstractControl.markAsDirty(); 
-      //   }
-
     });
   }
 
