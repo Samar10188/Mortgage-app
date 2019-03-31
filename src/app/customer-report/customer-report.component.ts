@@ -31,7 +31,7 @@ export class CustomerReportComponent implements OnInit {
   constructor(private customerService: CustomerService,
               private route: ActivatedRoute,
               private router: Router) { }
-
+  
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
@@ -68,9 +68,10 @@ export class CustomerReportComponent implements OnInit {
     // this.custForm.setControl('ornaments', this.setExistingSkills(customer.ornaments));
   }
 
-  interestCalculateButtonClick(index: number) {
+  interestCalculateButtonClick(index: number): number {
     this.interestCalculation(index);
-    return console.log(this.interest);
+    console.log('interest');
+    return this.interest;
   }
 
   interestCalculation(index: number) {

@@ -3,13 +3,13 @@
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">{{pageTitle}}</h3>
-        <h4>{{today | date}}</h4>
+        <h4>{{currentDate}}</h4>
       </div>
       <div class="form-row">
         <div class="col-md-3 mb-3" [ngClass]="{'has-error' : formErrors.date}">
           <label for="date">Date</label>
-          <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date"
-            (blur)="logValidationErrors()">
+          <input type="text" formControlName="date" class="form-control" id="date" placeholder="Date" 
+           (blur)="logValidationErrors()">
           <span class='help-block' *ngIf="formErrors.date">
             {{formErrors.date}}
           </span>
@@ -110,7 +110,7 @@
               <label [attr.for]="'subDate'+i">
                 Date
               </label>
-              <input type="datetime" [id]="'subDate'+i" formControlName="subDate" value={{currentDate}} disabled>
+              <input type="text" [id]="'subDate'+i" formControlName="subDate" >
             </div>
             <br />
             <div class="well">

@@ -4,6 +4,8 @@ import { CustomerService } from './customer.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ICustomer } from './ICustomer';
 import { IOrnament } from './IOrnament';
+import * as moment from 'moment';
+import { format } from 'url';
 
 
 
@@ -18,8 +20,7 @@ export class CreateCustomerComponent implements OnInit {
   pageTitle: string;
   curDate: string;
   today = new Date();
-  // currentDate = this.today.toDateString()
-  currentDate: string;
+  currentDate: any;
   customer: ICustomer = {
     id: null,
     date: null,
@@ -70,7 +71,7 @@ export class CreateCustomerComponent implements OnInit {
     
   ngOnInit() {
     this.custForm = this.fb.group({
-      date: [''],
+      date: [this.currentDate],
       custName: ['', [Validators.required]],
       relation: ['', [Validators.required]],
       relName: ['', [Validators.required]],
@@ -100,10 +101,11 @@ export class CreateCustomerComponent implements OnInit {
         this.pageTitle = "Edit Customer";
       }
       else {
+        this.currentDate = moment().format('dd MM YYYY');
         this.pageTitle = "Create Customer";
         this.customer = {
           "id": null,
-          "date": "",
+          "date": "" ,
           "custName": "",
           "relation": "",
           "relName": "",
@@ -114,8 +116,7 @@ export class CreateCustomerComponent implements OnInit {
       }
     });
 
-    this.currentDate = this.customerService.formatDate(this.today)
-
+    this.currentDate = moment().format('DD/MM/YYYY')
   }
 
   addOrnamentButtonClick(): void {
@@ -134,6 +135,7 @@ export class CreateCustomerComponent implements OnInit {
 
   editCustomer(customer: ICustomer) {
     this.custForm.patchValue({
+      date: customer.date,
       custName: customer.custName,
       relation: customer.relation,
       relName: customer.relName,

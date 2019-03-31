@@ -2,7 +2,7 @@
   "customers": [
     {
       "id": 1,
-      "date": "2019-03-21",
+      "date": "2019-02-14",
       "custName": "Richa Verma",
       "relation": "D/O",
       "relName": "R K Verma",
@@ -10,21 +10,21 @@
       "phone": "9643439440",
       "ornaments": [
         {
-          "subDate": "",
+          "subDate": "2019-03-06",
           "ornament": "Ring",
           "metal": "Gold",
           "weight": 5,
           "rupees": 8000
         },
         {
-          "subDate": "",
+          "subDate": "2019-03-14",
           "ornament": "necklace",
           "metal": "Gold",
           "weight": 25,
           "rupees": 40000
         },
         {
-          "subDate": "",
+          "subDate": "2019-02-14",
           "ornament": "paajeb",
           "metal": "Silver",
           "weight": 100,
@@ -42,14 +42,14 @@
       "phone": "81932999888",
       "ornaments": [
         {
-          "subDate": "",
+          "subDate": "2019-03-01",
           "ornament": "ring",
           "metal": "Gold",
           "weight": 5,
           "rupees": 8000
         },
         {
-          "subDate": "",
+          "subDate": "2019-03-01",
           "ornament": "Chain",
           "metal": "Gold",
           "weight": 10,
@@ -59,7 +59,7 @@
     },
     {
       "id": 3,
-      "date": "",
+      "date": "2019-02-14",
       "custName": "samarpit",
       "relation": "S/O",
       "relName": "R K Verma",
@@ -67,7 +67,7 @@
       "phone": "8899822074",
       "ornaments": [
         {
-          "subDate": "",
+          "subDate": "2019-02-14",
           "ornament": "Ring",
           "metal": "Gold",
           "weight": 1,
@@ -77,7 +77,7 @@
     },
     {
       "id": 4,
-      "date": "",
+      "date": "2019-02-14",
       "custName": "Amarpal",
       "relation": "S/O",
       "relName": "Satyajeet ",
@@ -85,10 +85,64 @@
       "phone": "7654356789",
       "ornaments": [
         {
-          "subDate": "",
+          "subDate": "2019-02-14",
           "ornament": "ring",
           "metal": "Gold",
           "weight": 3,
+          "rupees": 5000
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "date": "2019-02-14",
+      "custName": "Nishant",
+      "relation": "S/O",
+      "relName": "N K Sharma",
+      "village": "Kota",
+      "phone": "8877665544",
+      "ornaments": [
+        {
+          "subDate": "2019-02-14",
+          "ornament": "Ring",
+          "metal": "Gold",
+          "weight": 4,
+          "rupees": 5000
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "date": "2019-02-14",
+      "custName": "sandeep",
+      "relation": "S/O",
+      "relName": "Meena ",
+      "village": "sultanpur",
+      "phone": "7897654333",
+      "ornaments": [
+        {
+          "subDate": "2019-02-14",
+          "ornament": "chain",
+          "metal": "Gold",
+          "weight": 10,
+          "rupees": 15000
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "date": "2019-04-01",
+      "custName": "ankush",
+      "relation": "S/O",
+      "relName": "kanhaiya",
+      "village": "kuberpur",
+      "phone": "8787665509",
+      "ornaments": [
+        {
+          "subDate": "2019-04-01",
+          "ornament": "ring",
+          "metal": "Gold",
+          "weight": 4,
           "rupees": 5000
         }
       ]
