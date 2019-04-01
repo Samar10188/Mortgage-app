@@ -3,6 +3,7 @@ import { CustomerService } from '../customer/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICustomer } from '../customer/ICustomer';
 import { ReturnStatement } from '@angular/compiler';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-customer-report',
@@ -11,11 +12,11 @@ import { ReturnStatement } from '@angular/compiler';
 })
 export class CustomerReportComponent implements OnInit {
 
-  principalAmount = [];
+  currentDate: any;
   amount: number;
-  interestRate: number = 2;
-  time:number = 2;
-  interest: number;
+  interestRate: any;
+  totalDays:number = 1;
+  interest = [];
   customer: ICustomer = {
     id: null,
     date: null,
@@ -26,6 +27,7 @@ export class CustomerReportComponent implements OnInit {
     phone: null,
     ornaments: []
   };
+  
 
   
   constructor(private customerService: CustomerService,
@@ -39,45 +41,34 @@ export class CustomerReportComponent implements OnInit {
       this.getCustomer(custId);
       });
 
-    
+      this.currentDate = moment();
       
   }
 
   getCustomer(id: number) {
     this.customerService.getCustomer(id).subscribe(
       (cust: ICustomer) => {
-        // this.viewCustomer(cust);
         this.customer = cust;
-        this.viewCustomer(cust);
       },
       (err: any) => console.log(err)
     )
   }
 
-  viewCustomer(customer: ICustomer) {
-    return console.log(this.customer.ornaments)
-    // this.custForm.patchValue({
-    //   custName: customer.custName,
-    //   relation: customer.relation,
-    //   relative: customer.relName,
-    //   village: customer.village,
-    //   phone: customer.phone
 
-    // });
-
-    // this.custForm.setControl('ornaments', this.setExistingSkills(customer.ornaments));
+  interestCalculateButtonClick(index: number) {
+    this.amount = this.customer.ornaments[index].rupees;
+    this.dateDifference(index);
+    console.log(this.totalDays);
+    this.interestFormula(index);
+  }
+  // Date difference function
+  dateDifference(index: number) {
+    this.totalDays = this.currentDate.diff(this.customer.ornaments[index].subDate, 'days');
   }
 
-  interestCalculateButtonClick(index: number): number {
-    this.interestCalculation(index);
-    console.log('interest');
-    return this.interest;
-  }
-
-  interestCalculation(index: number) {
-    this.principalAmount[index] = this.customer.ornaments[index].rupees;
-    this.amount = this.principalAmount[index];
-    this.interest = (this.amount*this.interestRate*this.time)/100;
+  // Interest calculation function
+  interestFormula(index: number) {
+    this.interest[index] = (this.amount*this.interestRate*this.totalDays)/(100*30);
   }
 
 }

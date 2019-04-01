@@ -146,6 +146,49 @@
           "rupees": 5000
         }
       ]
+    },
+    {
+      "id": 8,
+      "date": "2019-04-01",
+      "custName": "Samarpit verma",
+      "relation": "S/O",
+      "relName": "Geeta Verma",
+      "village": "malawan",
+      "phone": "8899822074",
+      "ornaments": [
+        {
+          "subDate": "04/01/2019",
+          "ornament": "Kada",
+          "metal": "Gold",
+          "weight": 25,
+          "rupees": 30000
+        },
+        {
+          "subDate": "04/01/2019",
+          "ornament": "chain",
+          "metal": "Gold",
+          "weight": 15,
+          "rupees": 15000
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "date": "2019-04-01",
+      "custName": "golu verma",
+      "relation": "S/O",
+      "relName": "Geeta veerma",
+      "village": "malawan",
+      "phone": "7906093568",
+      "ornaments": [
+        {
+          "subDate": "2019-03-01",
+          "ornament": "Ring",
+          "metal": "Gold",
+          "weight": 5,
+          "rupees": 5000
+        }
+      ]
     }
   ]
 }

@@ -8,7 +8,7 @@
       <div class="form-row">
         <div class="col-md-3 mb-3" [ngClass]="{'has-error' : formErrors.date}">
           <label for="date">Date</label>
-          <input type="text" formControlName="date" class="form-control" id="date" placeholder="Date" 
+          <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date" 
            (blur)="logValidationErrors()">
           <span class='help-block' *ngIf="formErrors.date">
             {{formErrors.date}}
@@ -110,7 +110,7 @@
               <label [attr.for]="'subDate'+i">
                 Date
               </label>
-              <input type="text" [id]="'subDate'+i" formControlName="subDate" >
+              <input type="date" [id]="'subDate'+i" formControlName="subDate" >
             </div>
             <br />
             <div class="well">
