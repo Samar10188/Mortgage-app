@@ -32,7 +32,8 @@
                 <h4><u>Ornament Details</u></h4>
                 <!-- <div class="col-ornament" *ngFor="let ornam of this.customer.ornaments; let i = index"> -->
             <div class="form-row">
-                        <div class="form-row" *ngFor="let ornam of this.customer.ornaments; let i = index">
+                <div class="form-row" *ngFor="let ornam of this.customer.ornaments; let i = index">
+   
                         <div class="col-md-2 mb-3">
                                 <label [attr.for]="'subDate'+i" >Date </label>
                                 <input type="text" class="form-control" [id]="'subDate'+i" value={{ornam.subDate}} disabled>
@@ -48,18 +49,13 @@
                                 <input type="text" class="form-control" id="metal" value={{ornam.metal}} disabled>
                         </div>
 
-                        <!-- <div class="col-md-2 mb-3">
-                                <label [attr.for]="'weight'+i">Weight </label>
-                                <input type="text" class="form-control" id="weight" value={{ornam.weight}} disabled>
-                        </div> -->
-
                         <div class="col-md-2 mb-3">
                                         <label  [attr.for]="'weight'+i">Weight</label>
                                         <div class="input-group mb-3">
                                              <input type="text" class="form-control" id="weight" 
                                              placeholder="" value={{ornam.weight}} disabled>
                                              <div class="input-group-append">
-                                                        <div class="input-group-text">gram</div>
+                                                <div class="input-group-text">gram</div>
                                              </div>
                                         </div>
                         </div>

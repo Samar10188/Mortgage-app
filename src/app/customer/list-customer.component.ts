@@ -29,4 +29,9 @@ export class ListCustomerComponent implements OnInit {
   viewButtonClick(customerId: number){
     this.router.navigate(['home/view', customerId])
   }
+
+  deleteButtonClick(customerID: number){
+    this.customerService.deleteCustomer(customerID);
+    this.router.navigate(['home/customers']);
+  }
 }
