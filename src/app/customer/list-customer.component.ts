@@ -11,10 +11,21 @@ import { Router } from '@angular/router';
 export class ListCustomerComponent implements OnInit {
 
   customers: ICustomer[];
+  customer: ICustomer = {
+    id: null,
+    date: null,
+    custName: null,
+    relation: null,
+    relName: null,
+    village: null,
+    phone: null,
+    ornaments: [null]
+  };
 
   constructor(private customerService: CustomerService,
               private router: Router) { }
-            
+
+              
   ngOnInit() {
     this.customerService.getCustomers().subscribe(
       (listCustomers) => this.customers = listCustomers,
@@ -30,8 +41,12 @@ export class ListCustomerComponent implements OnInit {
     this.router.navigate(['home/view', customerId])
   }
 
-  deleteButtonClick(customerID: number){
-    this.customerService.deleteCustomer(customerID);
-    this.router.navigate(['home/customers']);
+
+  deleteButtonClick(customerId: number): void{
+    this.customerService.deleteCustomer(customerId).subscribe(
+      () => this.router.navigate(['home']),
+      (err: any) => console.log(err)
+    );
   }
+
 }
