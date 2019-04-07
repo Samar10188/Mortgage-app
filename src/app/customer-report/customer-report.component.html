@@ -1,95 +1,128 @@
 <div class="cust-body">
-                <h4><u>Customer Details</u></h4>
+        <h4><u>Customer Details</u></h4>
         <div class="form-row">
                 <div class="col-md-4 mb-3">
-                        <label >Customer name </label>
+                        <label>Customer name </label>
                         <input class="form-control" type="text" value={{customer.custName}} disabled>
                 </div>
 
                 <div class="col-md-2 mb-3">
-                        <label >Relation </label>
+                        <label>Relation </label>
                         <input class="form-control" type="text" value={{customer.relation}} disabled>
                 </div>
 
                 <div class="col-md-5 mb-3">
-                        <label >Relative name </label>
+                        <label>Relative name </label>
                         <input class="form-control" type="text" value={{customer.relName}} disabled>
                 </div>
 
                 <div class="col-md-5 mb-3">
-                        <label >Village </label>
+                        <label>Village </label>
                         <input class="form-control" type="text" value={{customer.village}} disabled>
                 </div>
 
                 <div class="col-md-5 mb-3">
-                        <label >Contact No </label>
+                        <label>Contact No </label>
                         <input class="form-control" type="text" value={{customer.phone}} disabled>
                 </div>
-                <br/>
-                <br/>
-                <br/>
+                <br />
+                <br />
+                <br />
 
                 <h4><u>Ornament Details</u></h4>
-                <!-- <div class="col-ornament" *ngFor="let ornam of this.customer.ornaments; let i = index"> -->
-            <div class="form-row">
-                <div class="form-row" *ngFor="let ornam of this.customer.ornaments; let i = index">
-   
+                <div class="form-row-ornam" *ngFor="let ornam of this.customer.ornaments; let i = index">
                         <div class="col-md-2 mb-3">
-                                <label [attr.for]="'subDate'+i" >Date </label>
-                                <input type="text" class="form-control" [id]="'subDate'+i" value={{ornam.subDate}} disabled>
+                                <label [attr.for]="'subDate'+i">Date</label>
+                                <input type="text" class="form-control" [id]="'subDate'+i" value={{ornam.subDate}}
+                                        disabled>
                         </div>
 
                         <div class="col-md-2 mb-3">
-                                <label [attr.for]="'ornament'+i" >Ornament </label>
-                                <input type="text" class="form-control" id="ornament" value={{ornam.ornament}} disabled>
+                                <label [attr.for]="'ornament'+i">Ornament </label>
+                                <input type="text" class="form-control" [id]="'ornament'+i" value={{ornam.ornament}} disabled>
                         </div>
 
                         <div class="col-md-2 mb-3">
-                                <label [attr.for]="'metal'+i" >Metal </label>
-                                <input type="text" class="form-control" id="metal" value={{ornam.metal}} disabled>
+                                <label [attr.for]="'metal'+i">Metal </label>
+                                <input type="text" class="form-control" [id]="'metal'+i" value={{ornam.metal}} disabled>
                         </div>
 
                         <div class="col-md-2 mb-3">
-                                        <label  [attr.for]="'weight'+i">Weight</label>
-                                        <div class="input-group mb-3">
-                                             <input type="text" class="form-control" id="weight" 
-                                             placeholder="" value={{ornam.weight}} disabled>
-                                             <div class="input-group-append">
+                                <label [attr.for]="'weight'+i">Weight</label>
+                                <div class="input-group mb-3">
+                                        <input type="text" class="form-control" [id]="'weight'+i" placeholder=""
+                                                value={{ornam.weight}} disabled>
+                                        <div class="input-group-append">
                                                 <div class="input-group-text">gram</div>
-                                             </div>
                                         </div>
+                                </div>
                         </div>
 
                         <div class="col-auto">
-                           <label  [attr.for]="'rupees'+i">Rupees</label>
-                           <div class="input-group mb-4">
-                                <div class="input-group-append">
-                                        <div class="input-group-text">₹</div>
+                                <label [attr.for]="'rupees'+i">Rupees</label>
+                                <div class="input-group mb-4">
+                                        <div class="input-group-append">
+                                                <div class="input-group-text">₹</div>
+                                        </div>
+                                        <input type="text" class="form-control" [id]="'rupees'+i" placeholder=""
+                                                value={{ornam.rupees}} disabled>
                                 </div>
-                                <input type="text" class="form-control" id="rupees" 
-                                placeholder="" value={{ornam.rupees}} disabled>
-                           </div>
                         </div>
+                <div class="form-row-calculation">
+                        <div class="col-md-3 mb-3">
+                                <label [attr.for]="'ROI'+i">Rate</label>
+                                <input class="form-control-input-tag" type="number" [id]="'ROI'+i"
+                                        value="interestRate[i]" (input)='interestRate=$event.target.value'
+                                        placeholder="Enter Rate of interest">
 
-                        <div>
-                                <label [attr.for]="'ROI'+i" >Rate of Interest</label>
-                                <input class="form-control-input-tag" type="number" [id]="'ROI'+i" value="interestRate[i]"
-                                (input)='interestRate=$event.target.value' placeholder="Enter Rate of Interest">
-                
                         </div>
                         <br />
                         <div class="col-md-1.5 mb-3">
-                                <br/>
-                                <button class="btn btn-secondary" type="button" (click)="interestCalculateButtonClick(i)">Calculate</button>
+                                <br />
+                                <button class="btn btn-secondary" type="button"
+                                        (click)="interestCalculateButtonClick(i)">Calculate</button>
                         </div>
-                        <div class="col-md-2 mb-3">
-                                <label [attr.for]="'interest'+i" >Total Interest</label>       
-                                <input type="number" class="form-control-input-tag" [id]="'interest'+i" 
-                                value={{interest[i]}} placeholder="Total Interest" disabled>
+                        <div class="col-md-3 mb-3">
+                                <label [attr.for]="'interest'+i">Interest</label>
+                                <input type="number" class="form-control" [id]="'interest'+i" value={{interest[i]}}
+                                        placeholder="Total Interest" disabled>
                                 <br />
                         </div>
-                        <br/>
+                        <div>
+                                <label for="remainAmount">Actual Amount</label>
+                                <input type="number" class="form-control" id="remainAmount"
+                                        [(ngModel)]=remainAmount disabled>
+                        </div>
                 </div>
-            </div>
+                <div class="form-row-deposit">
+                        <table>
+                                <tr>
+                                        <th>Deposit</th>
+                                        <th>Deposit Date</th>
+                                </tr>
+                                <tr *ngFor="let item of ornam?.deposit; let p = index" >
+                                        <td>{{item.depositAmount}}</td>
+                                        <td>{{item.depositDate}}</td>
+                                </tr>
+                        </table>
+
+                        <div class="col-md-3 mb-3">
+                                <label [attr.for]="'deposit'+p">Deposit</label>
+                                <input type="number" class="form-control-input-tag" [id]="'deposit'+p"
+                                        [(ngModel)]=depositValue>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                                <label [attr.for]="'depositDate'+p">Date </label>
+                                <input type="text" class="form-control" [id]="'depositDate'+p" [(ngModel)]=depositDate>
+                        </div>
+
+                        <div class="col-md-1.5 mb-3">
+                                <br />
+                                <button class="btn btn-secondary" type="button"
+                                        (click)="depositAmountButtonClick(i)">Deposit</button>
+                        </div>
+                </div>
+                </div>
         </div>
- </div>
+</div>

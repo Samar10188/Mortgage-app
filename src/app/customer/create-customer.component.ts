@@ -82,9 +82,9 @@ export class CreateCustomerComponent implements OnInit {
       ])
     });
 
-    this.custForm.valueChanges.subscribe((data) => {
-      this.logValidationErrors(this.custForm);
-    });
+    // this.custForm.valueChanges.subscribe((data) => {
+    //   this.logValidationErrors(this.custForm);
+    // });
 
   
     // this.customer
@@ -155,7 +155,7 @@ export class CreateCustomerComponent implements OnInit {
         ornament: s.ornament,
         metal: s.metal,
         weight: s.weight,
-        rupees: s.rupees
+        rupees: s.rupees,
       }));
     })
     return formArray;
@@ -175,51 +175,37 @@ export class CreateCustomerComponent implements OnInit {
       ornament: ['', [Validators.required]],
       metal: ['', [Validators.required]],
       weight: ['', [Validators.required]],
-      rupees: ['', [Validators.required]]
+      rupees: ['', [Validators.required]],
+      deposit: [[]]
     });
   }
-
-  // addOrnamentsFormGroup() {
-  //   this.ornamentsArray.push(this.fb.group({
-  //     ornament:new FormControl (""),
-  //     metal: new FormControl (""),
-  //     weight: new FormControl (""),
-  //     rupees: new FormControl ("")
-  //   }))
-  // }
 
 
   get ornamentsArray() {
     return <FormArray>this.custForm.get('ornaments');
   }
 
-  logValidationErrors(group: FormGroup = this.custForm): void {
-    Object.keys(group.controls).forEach((key: string) => {
-      const AbstractControl = group.get(key);
+  // logValidationErrors(group: FormGroup = this.custForm): void {
+  //   Object.keys(group.controls).forEach((key: string) => {
+  //     const AbstractControl = group.get(key);
 
-      this.formErrors[key] = '';
-      if (AbstractControl && !AbstractControl.valid &&
-        AbstractControl.touched || AbstractControl.dirty || AbstractControl.value !== '') {
-        const messages = this.validationMessages[key];
+  //     this.formErrors[key] = '';
+  //     if (AbstractControl && !AbstractControl.valid &&
+  //       AbstractControl.touched || AbstractControl.dirty || AbstractControl.value !== '') {
+  //       const messages = this.validationMessages[key];
 
-        for (const errorKey in AbstractControl.errors) {
-          if (errorKey) {
-            this.formErrors[key] += messages[errorKey] + ' ';
+  //       for (const errorKey in AbstractControl.errors) {
+  //         if (errorKey) {
+  //           this.formErrors[key] += messages[errorKey] + ' ';
 
-            // if (AbstractControl instanceof FormArray) {
-            //   for (const control of AbstractControl.controls)
-            //     if (control instanceof FormGroup) {
-            //       this.logValidationErrors(control);
-            //     }
-            // }
-            if (AbstractControl instanceof FormGroup) {
-              this.logValidationErrors(AbstractControl);
-            }
-          }
-        }
-      }
-    });
-  }
+  //           if (AbstractControl instanceof FormGroup) {
+  //             this.logValidationErrors(AbstractControl);
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
 
 
     onSubmit(): void {

@@ -8,8 +8,8 @@
       <div class="form-row">
         <div class="col-md-3 mb-3" [ngClass]="{'has-error' : formErrors.date}">
           <label for="date">Date</label>
-          <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date" 
-           (blur)="logValidationErrors()">
+          <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date"
+            (blur)="logValidationErrors()">
           <span class='help-block' *ngIf="formErrors.date">
             {{formErrors.date}}
           </span>
@@ -44,15 +44,6 @@
           </div>
         </div>
 
-        <!-- <div class="col-md-3 mb-8">
-            <select class="custom-select" required>
-              <option value="">Relation</option>
-              <option value="S/O" formControlName="relation">S/O</option>
-              <option value="D/O" formControlName="relation">D/O</option>
-              <option value="W/O" formControlName="relation">W/O</option>
-            </select>
-            <div class="invalid-feedback">Invalid Relation</div>
-          </div> -->
 
         <div class="col-md-3 mb-8">
           <label for="relName">Relative Name</label>
@@ -111,7 +102,7 @@
               <label [attr.for]="'subDate'+i">
                 Date
               </label>
-              <input type="date" class="form-control" [id]="'subDate'+i" formControlName="subDate" >
+              <input type="date" class="form-control" [id]="'subDate'+i" formControlName="subDate">
             </div>
             <br />
             <!-- <div class="well">
@@ -185,14 +176,14 @@
           </div>
 
           <div class="col-md-1 mb-8">
-              <link rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-              <div class="col-md-10 mb-8" *ngIf="custForm.get('ornaments').length>1">
-                <button type="button" class="btn-delete" title="delete ornament"
-                  (click)="removeOrnamentButtonClick(i)"><i class="fa fa-trash"></i>Delete
-                </button>
-              </div>
+            <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <div class="col-md-10 mb-8" *ngIf="custForm.get('ornaments').length>1">
+              <button type="button" class="btn-delete" title="delete ornament" (click)="removeOrnamentButtonClick(i)"><i
+                  class="fa fa-trash"></i>Delete
+              </button>
             </div>
+          </div>
 
         </div>
 

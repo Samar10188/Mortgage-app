@@ -7,6 +7,16 @@
     flex: 0 0 25%;
     max-width: 25%;	
 }
+.col-new-1 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  -ms-flex: 0 0 8.333333%;
+  flex: 0 0 8.333333%;
+  max-width: 50%;
+
+}
 .cust-body {
     background-color: rgba(243, 189, 189, 0.76);
     /* border: outset; */
@@ -15,6 +25,69 @@
     border-width: 5px;
     border-radius: 10px;
     border-style: groove;
+}
+.form-row-ornam {
+  background-color: #ced4da;
+  border-style: ridge;
+  border-radius: 10px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -8px;
+  margin-left: -8px;
+  margin-bottom: 4px;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.form-row-ornam > .col,
+.form-row-ornam > [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.form-row-calculation {
+  background-color: wheat;
+  border-style: ridge;
+  border-radius: 10px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: 100px;
+  margin-left: 5px;
+  margin-bottom: 15px;
+  padding-top: 5px;
+  padding-left: 5px;
+  /* padding-right: -50px; */
+}
+
+.form-row-calculation > .col,
+.form-row-calculation > [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.form-row-deposit {
+  align-self: right;
+  position: relative;
+  background-color: aliceblue;
+  border-style: ridge;
+  border-radius: 10px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: 30pc;
+  margin-left: 5px;
+  margin-bottom: 4px;
+  padding-top: 15px;
+  padding-left: 5px;
+}
+
+.form-row-deposit > .col,
+.form-row-deposit > [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
 }
 .hr { 
     display: block;
@@ -30,11 +103,12 @@
     display: block;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
+    padding: 0.375rem;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #495057;
+    margin-right: -5px;
     background-color: rgb(148, 235, 167);
     background-clip: padding-box;
     border: 1px solid #ced4da;
