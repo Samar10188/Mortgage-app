@@ -119,7 +119,6 @@
                                 <br />
                                 <br />
                                 <br />
-
                                 <div class="col-md-3 mb-3">
                                         <label [attr.for]="'deposit'+p">Deposit</label>
                                         <input type="number" class="form-control-input-tag" [id]="'deposit'+p"
@@ -146,7 +145,7 @@
                                                 (click)="depositAmountButtonClick(i)">Deposit</button>
                                 </div>
                                 <div class="form-row-calculation">
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-2 mb-3">
                                                 <label [attr.for]="'ROI'+i">Rate</label>
                                                 <input class="form-control-input-tag" type="number" [id]="'ROI'+i"
                                                         value="interestRate[i]"
@@ -154,21 +153,26 @@
                                                         placeholder="Enter Rate">
                                         </div>
                                         <br />
-                                        <div class="col-md-1.5 mb-3">
+                                        <div class="col-md-2 mb-3">
                                                 <br />
                                                 <button class="btn btn-secondary" type="button"
                                                         (click)="interestCalculateButtonClick(i)">Calculate</button>
                                         </div>
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-2 mb-3">
                                                 <label [attr.for]="'interest'+i">Interest</label>
                                                 <input type="number" class="form-control" [id]="'interest'+i"
                                                         value={{interest[i]}} placeholder="Total Interest" disabled>
                                                 <br />
                                         </div>
-                                        <div>
-                                                <label for="remainAmount">Actual Amount</label>
-                                                <input type="number" class="form-control" id="remainAmount"
-                                                        [(ngModel)]=remainAmount disabled>
+                                        <div class="col-md-2 mb-3">
+                                                <label [attr.for]="'remainAmount'+i">Actual Amount</label>
+                                                <input type="number" class="form-control" [id]="remainAmount"
+                                                        [(ngModel)]=actualValue disabled>
+                                        </div>
+                                        <div class="col-md-2 mb-3">
+                                                <label [attr.for]="calculatedAmount">Total Amount</label>
+                                                <input type="number" class="form-control" [id]="'calculatedAmount'+i"
+                                                        [(ngModel)]=totalAmount disabled>
                                         </div>
                                 </div>
                         </div>

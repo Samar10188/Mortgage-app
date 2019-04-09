@@ -50,14 +50,6 @@
               "interest": 1226.6666666666667,
               "remainInterest": 0,
               "totalAmount": 6226.666666666666
-            },
-            {
-              "depositDate": "2019-04-15",
-              "depositAmount": 5000,
-              "actualAmount": 1662.5333333333328,
-              "interest": 435.8666666666666,
-              "remainInterest": 0,
-              "totalAmount": 1662.5333333333328
             }
           ]
         },

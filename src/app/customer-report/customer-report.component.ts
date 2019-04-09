@@ -108,6 +108,7 @@ export class CustomerReportComponent implements OnInit {
 
     console.log(this.count+"last");
     this.interestFormula(index);
+    this.amountAnalysis(index);
   }
 
 
@@ -123,7 +124,7 @@ export class CustomerReportComponent implements OnInit {
   }
 
   depositAmountButtonClick(index: number) {
-    this.afterDepositCalculation(index);
+    this.interestCalculateButtonClick(index);
     this.customer.ornaments[index].deposit.push({ 'depositDate': this.depositDate,
       'depositAmount': this.depositValue, 'actualAmount': this.actualValue, 
       'interest': this.interest[index], 'remainInterest': this.remainInterest,
@@ -133,19 +134,17 @@ export class CustomerReportComponent implements OnInit {
     this.updateCustomer();
   }
 
-  afterDepositCalculation(index: number){
-    this.interestCalculateButtonClick(index);
+
+  amountAnalysis(index: number){
     if (this.interest[index] > this.depositValue) {
       this.actualValue = this.amount;
       this.remainInterest = this.interest[index] - this.depositValue;
       this.totalAmount = this.actualValue + this.remainInterest;
-      this.remainAmount = this.actualValue;
     }
     else {
       this.actualValue = (this.amount + this.interest[index]) - this.depositValue;
       this.remainInterest = 0;
       this.totalAmount = this.actualValue;
-      this.remainAmount = this.actualValue;
     }
   }
 
