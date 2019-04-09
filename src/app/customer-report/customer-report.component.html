@@ -39,7 +39,8 @@
 
                         <div class="col-md-2 mb-3">
                                 <label [attr.for]="'ornament'+i">Ornament </label>
-                                <input type="text" class="form-control" [id]="'ornament'+i" value={{ornam.ornament}} disabled>
+                                <input type="text" class="form-control" [id]="'ornament'+i" value={{ornam.ornament}}
+                                        disabled>
                         </div>
 
                         <div class="col-md-2 mb-3">
@@ -68,61 +69,109 @@
                                                 value={{ornam.rupees}} disabled>
                                 </div>
                         </div>
-                <div class="form-row-calculation">
-                        <div class="col-md-3 mb-3">
-                                <label [attr.for]="'ROI'+i">Rate</label>
-                                <input class="form-control-input-tag" type="number" [id]="'ROI'+i"
-                                        value="interestRate[i]" (input)='interestRate=$event.target.value'
-                                        placeholder="Enter Rate of interest">
+                        <!-- <div class="form-row-calculation">
+                                <div class="col-md-3 mb-3">
+                                        <label [attr.for]="'ROI'+i">Rate</label>
+                                        <input class="form-control-input-tag" type="number" [id]="'ROI'+i"
+                                                value="interestRate[i]" (input)='interestRate=$event.target.value'
+                                                placeholder="Enter Rate of interest">
 
-                        </div>
-                        <br />
-                        <div class="col-md-1.5 mb-3">
+                                </div>
                                 <br />
-                                <button class="btn btn-secondary" type="button"
-                                        (click)="interestCalculateButtonClick(i)">Calculate</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                                <label [attr.for]="'interest'+i">Interest</label>
-                                <input type="number" class="form-control" [id]="'interest'+i" value={{interest[i]}}
-                                        placeholder="Total Interest" disabled>
+                                <div class="col-md-1.5 mb-3">
+                                        <br />
+                                        <button class="btn btn-secondary" type="button"
+                                                (click)="interestCalculateButtonClick(i)">Calculate</button>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                        <label [attr.for]="'interest'+i">Interest</label>
+                                        <input type="number" class="form-control" [id]="'interest'+i"
+                                                value={{interest[i]}} placeholder="Total Interest" disabled>
+                                        <br />
+                                </div>
+                                <div>
+                                        <label for="remainAmount">Actual Amount</label>
+                                        <input type="number" class="form-control" id="remainAmount"
+                                                [(ngModel)]=remainAmount disabled>
+                                </div>
+                        </div> -->
+                        <div class="form-row-deposit">
+
+                                <table>
+                                        <tr>
+                                                <th>Deposit Date</th>
+                                                <th>Deposit</th>
+                                                <th>Actual Amount</th>
+                                                <th>Interest</th>
+                                                <th>Remain Interest</th>
+                                                <th>Total Amount</th>
+                                        </tr>
+                                        <tr *ngFor="let item of ornam.deposit; let r = index">
+                                                <td>{{item.depositDate}}</td>
+                                                <td>{{item.depositAmount}}</td>
+                                                <td>{{item.actualAmount}}</td>
+                                                <td>{{item.interest}}</td>
+                                                <td>{{item.remainInterest}}</td>
+                                                <td>{{item.totalAmount}}</td>
+                                        </tr>
+                                </table>
                                 <br />
-                        </div>
-                        <div>
-                                <label for="remainAmount">Actual Amount</label>
-                                <input type="number" class="form-control" id="remainAmount"
-                                        [(ngModel)]=remainAmount disabled>
-                        </div>
-                </div>
-                <div class="form-row-deposit">
-                        <table>
-                                <tr>
-                                        <th>Deposit</th>
-                                        <th>Deposit Date</th>
-                                </tr>
-                                <tr *ngFor="let item of ornam?.deposit; let p = index" >
-                                        <td>{{item.depositAmount}}</td>
-                                        <td>{{item.depositDate}}</td>
-                                </tr>
-                        </table>
-
-                        <div class="col-md-3 mb-3">
-                                <label [attr.for]="'deposit'+p">Deposit</label>
-                                <input type="number" class="form-control-input-tag" [id]="'deposit'+p"
-                                        [(ngModel)]=depositValue>
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                                <label [attr.for]="'depositDate'+p">Date </label>
-                                <input type="text" class="form-control" [id]="'depositDate'+p" [(ngModel)]=depositDate>
-                        </div>
-
-                        <div class="col-md-1.5 mb-3">
                                 <br />
-                                <button class="btn btn-secondary" type="button"
-                                        (click)="depositAmountButtonClick(i)">Deposit</button>
+                                <br />
+                                <br />
+
+                                <div class="col-md-3 mb-3">
+                                        <label [attr.for]="'deposit'+p">Deposit</label>
+                                        <input type="number" class="form-control-input-tag" [id]="'deposit'+p"
+                                                [(ngModel)]=depositValue>
+                                </div>
+
+                                <div class="col-md-2 mb-3">
+                                                <label [attr.for]="'ROI'+i">Rate</label>
+                                                <input class="form-control-input-tag" type="number" [id]="'ROI'+i"
+                                                        value="interestRate[i]"
+                                                        (input)='interestRate=$event.target.value'
+                                                        placeholder="Enter Rate">
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                        <label [attr.for]="'depositDate'+p">Date </label>
+                                        <input type="date" class="form-control" [id]="'depositDate'+p"
+                                                [(ngModel)]=depositDate>
+                                </div>
+
+                                <div class="col-md-1.5 mb-3">
+                                        <br />
+                                        <button class="btn btn-secondary" type="button"
+                                                (click)="depositAmountButtonClick(i)">Deposit</button>
+                                </div>
+                                <div class="form-row-calculation">
+                                        <div class="col-md-3 mb-3">
+                                                <label [attr.for]="'ROI'+i">Rate</label>
+                                                <input class="form-control-input-tag" type="number" [id]="'ROI'+i"
+                                                        value="interestRate[i]"
+                                                        (input)='interestRate=$event.target.value'
+                                                        placeholder="Enter Rate">
+                                        </div>
+                                        <br />
+                                        <div class="col-md-1.5 mb-3">
+                                                <br />
+                                                <button class="btn btn-secondary" type="button"
+                                                        (click)="interestCalculateButtonClick(i)">Calculate</button>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                                <label [attr.for]="'interest'+i">Interest</label>
+                                                <input type="number" class="form-control" [id]="'interest'+i"
+                                                        value={{interest[i]}} placeholder="Total Interest" disabled>
+                                                <br />
+                                        </div>
+                                        <div>
+                                                <label for="remainAmount">Actual Amount</label>
+                                                <input type="number" class="form-control" id="remainAmount"
+                                                        [(ngModel)]=remainAmount disabled>
+                                        </div>
+                                </div>
                         </div>
-                </div>
                 </div>
         </div>
 </div>

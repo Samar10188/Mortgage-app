@@ -6,6 +6,7 @@ import { ReturnStatement } from '@angular/compiler';
 import * as moment from 'moment';
 import { indexDebugNode } from '@angular/core/src/debug/debug_node';
 import { DecimalPipe } from '@angular/common';
+import { CONTAINER_INDEX } from '@angular/core/src/render3/interfaces/view';
 
 @Component({
   selector: 'app-customer-report',
@@ -14,15 +15,18 @@ import { DecimalPipe } from '@angular/common';
 })
 export class CustomerReportComponent implements OnInit {
 
-  count: number;
+  count: number = 0;
   depositValue: number = 0;
+  totalAmount: number = 0;
+  remainAmount: number = 0;
   depositSum: number = 0;
   currentDate: any;
   depositDate: any;
-  amount: number;
-  remainAmount: number = 0;
+  amount: number = 0;
+  actualValue: number = 0;
+  remainInterest: number = 0;
   interestRate: any;
-  totalDays:number = 0;
+  totalDays: number = 0;
   interest = [];
   customer: ICustomer = {
     id: null,
@@ -34,23 +38,26 @@ export class CustomerReportComponent implements OnInit {
     phone: null,
     ornaments: []
   };
-  
+  prevDate: Date;
+  nextDate: any;
 
-  
+
+
   constructor(private customerService: CustomerService,
-              private route: ActivatedRoute,
-              private router: Router) { }
-  
+    private route: ActivatedRoute,
+    private router: Router) { }
+
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
       const custId = +params.get('id');
       this.getCustomer(custId);
-      });
+    });
 
-      this.currentDate = moment();
-      this.depositDate = moment().format("YYYY-MM-DD").toString();
-      
+    this.currentDate = moment();
+    this.depositDate = moment().format("YYYY-MM-DD").toString();
+    // this.prevDate = 
+
   }
 
   getCustomer(id: number) {
@@ -62,52 +69,84 @@ export class CustomerReportComponent implements OnInit {
     )
   }
 
-
-  interestCalculateButtonClick(index: number) {
-    this.amount = this.customer.ornaments[index].rupees;
-    this.dateDifference(index);
-    this.depositCalculation(index);
-    this.interestFormula(index);
-  }
-  // Date difference function
-  dateDifference(index: number) {
-    this.totalDays = this.currentDate.diff(this.customer.ornaments[index].subDate, 'days');
-    console.log(this.totalDays);
-    
-  }
-
-  // Interest calculation function
-  interestFormula(index: number) {
-    this.interest[index] = (this.amount*this.interestRate*this.totalDays)/(100*30);
-    if (this.interest[index] > this.depositSum)
-    { 
-      this.interest[index] = this.interest[index] - this.depositSum
-    }
-    else
-    { 
-      this.remainAmount = (this.amount + this.interest[index]) - this.depositSum;
-    }
-  }
-
-  depositCalculation(index: number) {
-    for (let item of this.customer.ornaments[index].deposit){
-      this.depositSum +=  parseInt(item.depositAmount.toString());
-      // this.depositSum +=  item.depositAmount;
-      console.log(this.depositSum);
-   }
-  }
-
-  depositAmountButtonClick(index: number) {
-    this.customer.ornaments[index].deposit.push({'depositAmount': this.depositValue,'depositDate': this.depositDate});
-    // this.customer.ornaments[index].deposit[item+1]['depositAmount'] = this.depositValue;
-    // this.customer.ornaments[index].deposit[item+1]['depositDate'] = this.depositDate;
-    this.updateCustomer();
-  }
-
-  updateCustomer(){
+  updateCustomer() {
     this.customerService.updateCustomer(this.customer).subscribe(
       () => this.router.navigate(['home/customers']),
       (err: any) => console.log(err)
     );
   }
+
+  interestCalculateButtonClick(index: number) {
+    // this.amount = this.customer.ornaments[index].deposit[item].actualAmount;
+    this.arrayObjectCount(index);
+
+    console.log(this.count+ "one");
+
+    if (this.count <=1) {
+    switch (this.count) {
+      case 0:
+      this.amount = this.customer.ornaments[index].rupees;
+      // this.totalDays = this.currentDate.diff(this.customer.ornaments[index].subDate, 'days');
+      this.totalDays = moment("2018-06-30").diff(this.customer.ornaments[index].subDate, 'days');
+      console.log(this.totalDays);
+        break;
+      case 1:
+      this.amount = this.customer.ornaments[index].deposit[this.count-1].actualAmount;
+      this.nextDate = moment(this.depositDate, "YYYY-MM-DD");
+      this.prevDate = this.customer.ornaments[index].deposit[0].depositDate;
+      this.totalDays = this.nextDate.diff(this.prevDate, 'days');
+      console.log(this.totalDays);
+        break;
+      }
+    }
+    else{
+      this.amount = this.customer.ornaments[index].deposit[this.count - 1].actualAmount;
+      this.nextDate = moment(this.depositDate, "YYYY-MM-DD")
+      this.totalDays = this.nextDate.diff(this.customer.ornaments[index].deposit[this.count-1].depositDate, 'days');
+      console.log(this.totalDays);
+  }
+
+    console.log(this.count+"last");
+    this.interestFormula(index);
+  }
+
+
+  // Interest calculation function
+  interestFormula(index: number) {
+    this.interest[index] = (this.amount * this.interestRate * this.totalDays) / (100 * 30);
+  }
+
+  arrayObjectCount(index: number) {
+    for (let item of this.customer.ornaments[index].deposit) {
+      this.count += 1;
+    }
+  }
+
+  depositAmountButtonClick(index: number) {
+    this.afterDepositCalculation(index);
+    this.customer.ornaments[index].deposit.push({ 'depositDate': this.depositDate,
+      'depositAmount': this.depositValue, 'actualAmount': this.actualValue, 
+      'interest': this.interest[index], 'remainInterest': this.remainInterest,
+      'totalAmount':this.totalAmount });
+    // this.customer.ornaments[index].deposit[item+1]['depositAmount'] = this.depositValue;
+    // this.customer.ornaments[index].deposit[item+1]['depositDate'] = this.depositDate;
+    this.updateCustomer();
+  }
+
+  afterDepositCalculation(index: number){
+    this.interestCalculateButtonClick(index);
+    if (this.interest[index] > this.depositValue) {
+      this.actualValue = this.amount;
+      this.remainInterest = this.interest[index] - this.depositValue;
+      this.totalAmount = this.actualValue + this.remainInterest;
+      this.remainAmount = this.actualValue;
+    }
+    else {
+      this.actualValue = (this.amount + this.interest[index]) - this.depositValue;
+      this.remainInterest = 0;
+      this.totalAmount = this.actualValue;
+      this.remainAmount = this.actualValue;
+    }
+  }
+
 }

@@ -8,8 +8,12 @@ export class IOrnament {
     public rupees: number,
     public deposit: [
         {
+            depositDate: any,
             depositAmount: number,
-            depositDate: any
+            actualAmount: number,
+            interest: number,
+            remainInterest: number,
+            totalAmount: number,
         }
     ],
     ) {}
