@@ -41,7 +41,7 @@
               "actualAmount": 10000,
               "interest": 1200,
               "remainInterest": 200,
-              "totalAmount": 10200
+              "totalAmount": 10000
             },
             {
               "depositDate": "2018-12-31",
@@ -50,6 +50,14 @@
               "interest": 1226.6666666666667,
               "remainInterest": 0,
               "totalAmount": 6226.666666666666
+            },
+            {
+              "depositDate": "2019-04-10",
+              "depositAmount": 6641,
+              "actualAmount": 0.7777777777773736,
+              "interest": 415.1111111111111,
+              "remainInterest": 0,
+              "totalAmount": 0.7777777777773736
             }
           ]
         },
@@ -61,16 +69,22 @@
           "rupees": 15000,
           "deposit": [
             {
-              "depositDate": "2018-01-01",
-              "depositAmount": 1000,
-              "actualAmount": 13990,
+              "depositDate": "2018-12-31",
+              "depositAmount": 5000,
+              "actualAmount": 9990,
               "interest": -10,
               "remainInterest": 0,
-              "totalAmount": 13990
+              "totalAmount": 9990
             }
           ]
         }
       ]
+    }
+  ],
+  "auth": [
+    {
+      "username": "samar10188",
+      "password": "12345678"
     }
   ]
 }

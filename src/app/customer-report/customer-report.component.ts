@@ -25,6 +25,7 @@ export class CustomerReportComponent implements OnInit {
   amount: number = 0;
   actualValue: number = 0;
   remainInterest: number = 0;
+  prevInterest: number = 0;
   interestRate: any;
   totalDays: number = 0;
   interest = [];
@@ -77,10 +78,10 @@ export class CustomerReportComponent implements OnInit {
   }
 
   interestCalculateButtonClick(index: number) {
-    // this.amount = this.customer.ornaments[index].deposit[item].actualAmount;
+    this.initializeValues(index);
     this.arrayObjectCount(index);
 
-    console.log(this.count+ "one");
+    console.log(this.count+ "is count");
 
     if (this.count <=1) {
     switch (this.count) {
@@ -88,14 +89,14 @@ export class CustomerReportComponent implements OnInit {
       this.amount = this.customer.ornaments[index].rupees;
       // this.totalDays = this.currentDate.diff(this.customer.ornaments[index].subDate, 'days');
       this.totalDays = moment("2018-06-30").diff(this.customer.ornaments[index].subDate, 'days');
-      console.log(this.totalDays);
+      console.log(this.totalDays+"=days");
         break;
       case 1:
       this.amount = this.customer.ornaments[index].deposit[this.count-1].actualAmount;
       this.nextDate = moment(this.depositDate, "YYYY-MM-DD");
       this.prevDate = this.customer.ornaments[index].deposit[0].depositDate;
       this.totalDays = this.nextDate.diff(this.prevDate, 'days');
-      console.log(this.totalDays);
+      console.log(this.totalDays+"=days");
         break;
       }
     }
@@ -103,20 +104,29 @@ export class CustomerReportComponent implements OnInit {
       this.amount = this.customer.ornaments[index].deposit[this.count - 1].actualAmount;
       this.nextDate = moment(this.depositDate, "YYYY-MM-DD")
       this.totalDays = this.nextDate.diff(this.customer.ornaments[index].deposit[this.count-1].depositDate, 'days');
-      console.log(this.totalDays);
+      console.log(this.totalDays+"=days");
   }
 
-    console.log(this.count+"last");
     this.interestFormula(index);
+    this.remainInterestCalculation(index);
     this.amountAnalysis(index);
   }
 
+  initializeValues(index: number){
+    this.actualValue = 0;
+    this.totalAmount = 0;
+    this.interest[index] = 0;
+    this.count = 0;
+    this.remainInterest = 0;
+    this.prevInterest = 0;
+  }
 
   // Interest calculation function
   interestFormula(index: number) {
     this.interest[index] = (this.amount * this.interestRate * this.totalDays) / (100 * 30);
   }
 
+  // Counter for deposit Array
   arrayObjectCount(index: number) {
     for (let item of this.customer.ornaments[index].deposit) {
       this.count += 1;
@@ -139,13 +149,29 @@ export class CustomerReportComponent implements OnInit {
     if (this.interest[index] > this.depositValue) {
       this.actualValue = this.amount;
       this.remainInterest = this.interest[index] - this.depositValue;
-      this.totalAmount = this.actualValue + this.remainInterest;
+      this.totalAmount = this.actualValue + this.remainInterest ;
     }
     else {
       this.actualValue = (this.amount + this.interest[index]) - this.depositValue;
+      if (this.actualValue < 0){
+        this.actualValue = 0
+      }
+      else
+      {
+        this.actualValue = (this.amount + this.interest[index]) - this.depositValue;
+      }
       this.remainInterest = 0;
-      this.totalAmount = this.actualValue;
+      this.totalAmount = this.actualValue ;
     }
   }
+
+    // Calculation for total remaining Interest
+    remainInterestCalculation(index: number) {
+      for (let item of this.customer.ornaments[index].deposit) {
+        this.prevInterest += item.remainInterest;
+        console.log(this.prevInterest+"is previous interest");
+        
+      }
+    }
 
 }

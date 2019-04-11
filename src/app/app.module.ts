@@ -9,12 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
+
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { FormBuilder } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { HomeComponent } from './home.component';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
+import {AuthGuard} from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -29,12 +31,14 @@ import { CustomerReportComponent } from './customer-report/customer-report.compo
     CustomerModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule,
+    RouterModule.forRoot([
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard]}
+    ]),
     AppRoutingModule,
     HttpClientModule
     
   ],
-  providers: [FormBuilder],
+  providers: [FormBuilder, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

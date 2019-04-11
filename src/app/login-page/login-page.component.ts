@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from "@angular/forms";
-import { ActivatedRoute, Router } from '@angular/router';
-import { IAdmin } from "./login-details";
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { authData } from '../Authdata';
+
 
 @Component({
   selector: 'app-login-page',
@@ -9,36 +10,40 @@ import { IAdmin } from "./login-details";
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  userForm: FormGroup;
-  // loginId: string = "abc@y.com";
-  // passcode: string = "password";
-  login: IAdmin;
-
-  constructor(private fb: FormBuilder,
-    private route: ActivatedRoute,
+  myData: authData = {
+    username: null,
+    password: null
+  };
+  constructor(private Auth: AuthService,
     private router: Router) { }
 
   ngOnInit() {
-    this.userForm = this.fb.group({
-      userName: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    })
+    this.Auth.getUserDetails().subscribe(data => {
+      console.log("we got", data);
+      this.myData = data;
+      
+    });
   }
 
-  onSignIn(): void {
-    if ((this.userForm.value.userName = "abc@y.com")
-      &&
-      (this.userForm.value.password = "samar123")) {
-      this.router.navigate(['home']);
+
+  loginUser(event) {
+    event.preventDefault()
+    const target = event.target
+    const username = target.elements[0].value;
+    const password = target.elements[1].value;
+
+    this.Auth.getUserDetails().subscribe(data => {
+      this.myData = data;
+      });
+
+    if(username == this.myData[0].username && password == this.myData[0].password){
+      this.router.navigate(['home'])
+      this.Auth.setLoggedIn(true)
     }
-    else {
-      alert("wrong credentials")
+    else{
+      window.alert("Wrong Credentials")
     }
+    console.log(username, password);
   }
 
-  // mapFormValuesToEmployeeModel() {
-  //   this.login.userName = this.userForm.value.userName;
-  //   this.login.password = this.userForm.value.password;
-
-  // }
 }

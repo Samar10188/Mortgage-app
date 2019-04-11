@@ -8,11 +8,12 @@ import { HomeComponent } from './home.component';
 import { ListCustomerComponent } from './customer/list-customer.component';
 import { CreateCustomerComponent } from './customer/create-customer.component';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
+import { AuthGuard } from './auth.guard';
 
  
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
-  { path: 'home', component: HomeComponent , children: [
+  { path: 'home', component: HomeComponent , canActivate: [AuthGuard], children: [
     { path: 'customers', component: ListCustomerComponent},
     { path: 'create', component: CreateCustomerComponent},
     { path: "edit/:id", component: CreateCustomerComponent },
