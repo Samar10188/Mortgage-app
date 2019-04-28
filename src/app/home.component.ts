@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  currentDate = moment().format("DD-MM-YYYY");
+  timeMessage: string;
+  constructor() { 
+    setInterval(() =>  {
+      var currentTime = moment().format("hh.mm.ss");
+      this.timeMessage = currentTime;    
+    }
+      , 1000);
+     
+  }
 
   ngOnInit() {
   }

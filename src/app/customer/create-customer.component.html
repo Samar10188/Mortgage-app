@@ -95,26 +95,13 @@
           formGroupName="{{i}}">
 
           <br />
-          <div class="form-column">
-
-            <div class="col-md-10 mb-4">
+            <div class="col-md-2 mb-8">
               <label [attr.for]="'subDate'+i">
                 Date
               </label>
               <input type="date" class="form-control" [id]="'subDate'+i" formControlName="subDate">
             </div>
             <br />
-            <!-- <div class="well">
-              <link rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-              <div class="col-md-10 mb-8" *ngIf="custForm.get('ornaments').length>1">
-                <button type="button" class="btn-delete" title="delete ornament"
-                  (click)="removeOrnamentButtonClick(i)"><i class="fa fa-trash"></i>Delete
-                </button>
-              </div>
-            </div> -->
-
-          </div>
 
           <div class="col-md-2 mb-8">
             <label [attr.for]="'ornament'+i">

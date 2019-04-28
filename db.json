@@ -13,9 +13,8 @@
           "subDate": "2019-01-06",
           "ornament": "Ring",
           "metal": "Gold",
-          "weight": 5,
-          "rupees": 8000,
-          "deposit": []
+          "weight": 6,
+          "rupees": 8000
         }
       ]
     },
@@ -50,14 +49,6 @@
               "interest": 1226.6666666666667,
               "remainInterest": 0,
               "totalAmount": 6226.666666666666
-            },
-            {
-              "depositDate": "2019-04-10",
-              "depositAmount": 6641,
-              "actualAmount": 0.7777777777773736,
-              "interest": 415.1111111111111,
-              "remainInterest": 0,
-              "totalAmount": 0.7777777777773736
             }
           ]
         },
@@ -79,12 +70,39 @@
           ]
         }
       ]
+    },
+    {
+      "id": 3,
+      "date": "2018-02-02",
+      "custName": "Arpit Verma",
+      "relation": "S/O",
+      "relName": "R K Verma",
+      "village": "malawan",
+      "phone": "7786789098",
+      "ornaments": [
+        {
+          "subDate": "2018-03-02",
+          "ornament": "chain",
+          "metal": "Gold",
+          "weight": 15,
+          "rupees": 25000,
+          "deposit": []
+        },
+        {
+          "subDate": "2018-07-05",
+          "ornament": "ring",
+          "metal": "Gold",
+          "weight": 5,
+          "rupees": 5000,
+          "deposit": []
+        }
+      ]
     }
   ],
   "auth": [
     {
-      "username": "samar10188",
-      "password": "12345678"
+      "username": "samar",
+      "password": "samar"
     }
   ]
 }

@@ -91,32 +91,31 @@
                                         </tr>
                                 </table>
                                 <hr class="new1">
-                                        <div class="col-md-2 mb-3">
-                                                <label [attr.for]="'deposit'+p">Deposit</label>
-                                                <input type="number" class="form-control-input-tag" [id]="'deposit'+p"
-                                                        [(ngModel)]=depositValue>
-                                        </div>
+                                <div class="col-md-2 mb-3">
+                                        <label [attr.for]="'deposit'+p">Deposit</label>
+                                        <input type="number" class="form-control-input-tag" [id]="'deposit'+p"
+                                                [(ngModel)]=depositValue>
+                                </div>
 
-                                        <div class="col-md-2 mb-3">
-                                                <label [attr.for]="'ROI'+i">Rate</label>
-                                                <input class="form-control-input-tag" type="number" [id]="'ROI'+i"
-                                                        value="interestRate[i]"
-                                                        (input)='interestRate=$event.target.value'
-                                                        placeholder="Enter Rate">
-                                        </div>
+                                <div class="col-md-2 mb-3">
+                                        <label [attr.for]="'ROI'+i">Rate</label>
+                                        <input class="form-control-input-tag" type="number" [id]="'ROI'+i"
+                                                value="interestRate[i]" (input)='interestRate=$event.target.value'
+                                                placeholder="Enter Rate">
+                                </div>
 
-                                        <div class="col-md-3 mb-3">
-                                                <label [attr.for]="'depositDate'+p">Date </label>
-                                                <input type="date" class="form-control" [id]="'depositDate'+p"
-                                                        [(ngModel)]=depositDate>
-                                        </div>
+                                <div class="col-md-3 mb-3">
+                                        <label [attr.for]="'depositDate'+p">Date </label>
+                                        <input type="date" class="form-control" [id]="'depositDate'+p"
+                                                [(ngModel)]=depositDate>
+                                </div>
 
-                                        <div class="col-md-1.5 mb-3">
-                                                <br />
-                                                <button class="btn btn-secondary" type="button"
-                                                        (click)="depositAmountButtonClick(i)">Deposit</button>
-                                        </div>
-                             
+                                <div class="col-md-1.5 mb-3">
+                                        <br />
+                                        <button class="btn btn-secondary" type="button"
+                                                (click)="depositAmountButtonClick(i)">Deposit</button>
+                                </div>
+
                                 <div class="form-row-calculation">
 
                                         <div class="col-md-2 mb-3">
