@@ -1,5 +1,5 @@
 {
-  "name": "ang6proj",
+  "name": "mortgage",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "bootstrap": "^3.4.1",
+    "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
