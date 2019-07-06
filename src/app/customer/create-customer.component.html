@@ -16,8 +16,8 @@
 
         <div class="col-md-8 mb-8" [ngClass]="{'has-error' : formErrors.custName}">
           <label for="custName">Customer Name</label>
-          <input type="text" formControlName="custName" class="form-control" id="custName"
-             placeholder="FullName" required>
+          <input type="text" formControlName="custName" class="form-control" id="custName" placeholder="FullName"
+            required>
           <span class="help-block" *ngIf="this.custForm.get('custName').errors?.required &&
               this.custForm.get('custName').touched">
             Customer FullName is required
@@ -28,13 +28,13 @@
           <label>Relation</label>
           <div>
             <label class="radio-inline">
-              <input type="radio" value="S/O"  formControlName="relation">S/O
+              <input type="radio" value="S/O" formControlName="relation">S/O
             </label>
             <label class="radio-inline">
-              <input type="radio" value="D/O"  formControlName="relation">D/O
+              <input type="radio" value="D/O" formControlName="relation">D/O
             </label>
             <label class="radio-inline">
-              <input type="radio" value="W/O"  formControlName="relation">W/O
+              <input type="radio" value="W/O" formControlName="relation">W/O
             </label>
             <span class="help-block" *ngIf="this.custForm.get('relation').errors?.required &&
               this.custForm.get('relation').touched">
@@ -46,8 +46,7 @@
 
         <div class="col-md-3 mb-8">
           <label for="relName">Relative Name</label>
-          <input type="text" formControlName="relName" class="form-control" id="relName" 
-            placeholder="Relative Name">
+          <input type="text" formControlName="relName" class="form-control" id="relName" placeholder="Relative Name">
           <span class="help-block" *ngIf="this.custForm.get('relName').errors?.required &&
               this.custForm.get('relName').touched">
             Relative name is required
@@ -56,8 +55,7 @@
 
         <div class="col-md-3 mb-8">
           <label for="village">Village</label>
-          <input type="text" formControlName="village" class="form-control" id="village" 
-            placeholder="village">
+          <input type="text" formControlName="village" class="form-control" id="village" placeholder="village">
           <span class="help-block" *ngIf="this.custForm.get('village').errors?.required &&
               this.custForm.get('village').touched">
             Village Name is required
@@ -66,8 +64,7 @@
 
         <div class="col-md-3 mb-8">
           <label for="phone">Phone No</label>
-          <input type="text" formControlName="phone" class="form-control" id="phone" 
-            placeholder="phone">
+          <input type="text" formControlName="phone" class="form-control" id="phone" placeholder="phone">
           <span class="help-block" *ngIf="this.custForm.get('phone').errors?.required &&
               this.custForm.get('phone').touched">
             Phone No is required
@@ -95,13 +92,13 @@
           formGroupName="{{i}}">
 
           <br />
-            <div class="col-md-2 mb-8">
-              <label [attr.for]="'subDate'+i">
-                Date
-              </label>
-              <input type="date" class="form-control" [id]="'subDate'+i" formControlName="subDate">
-            </div>
-            <br />
+          <div class="col-md-2 mb-8">
+            <label [attr.for]="'subDate'+i">
+              Date
+            </label>
+            <input type="date" class="form-control" [id]="'subDate'+i" formControlName="subDate">
+          </div>
+          <br />
 
           <div class="col-md-2 mb-8">
             <label [attr.for]="'ornament'+i">
@@ -173,14 +170,16 @@
 
         </div>
 
-      </div>
-      <div class="col-md-3 mb-8">
-        <div class="col-ornament">
-          <br />
-          <br />
-          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+        <div class="col-md-3 mb-8">
+          <div class="col-ornament">
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+          </div>
         </div>
+
       </div>
+
     </div>
   </form>
 </div>

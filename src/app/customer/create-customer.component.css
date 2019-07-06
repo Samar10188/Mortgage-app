@@ -61,11 +61,11 @@
     font-size: 12px
 }
 .cust-body {
-    background-color: rgba(121, 159, 207, 0.74);
+    background-color: rgba(238, 240, 241, 0.74);
     padding-right: 20px;
     padding-left: 20px;
     border-width: 5px;
-    border-radius: 10px;
-    border-style: inset;
+    border-radius: 100px;
+    border-style: hidden;
 }
       

@@ -88,7 +88,7 @@ export class CustomerReportComponent implements OnInit {
       case 0:
       this.amount = this.customer.ornaments[index].rupees;
       // this.totalDays = this.currentDate.diff(this.customer.ornaments[index].subDate, 'days');
-      this.totalDays = moment("2018-06-30").diff(this.customer.ornaments[index].subDate, 'days');
+      this.totalDays = moment("2019-01-31").diff(this.customer.ornaments[index].subDate, 'days');
       console.log(this.totalDays+"=days");
         break;
       case 1:

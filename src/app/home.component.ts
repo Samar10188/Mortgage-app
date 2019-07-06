@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { stringify } from '@angular/core/src/render3/util';
+import { CustomerService } from './customer/customer.service';
 
 
 @Component({
@@ -11,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   currentDate = moment().format("DD-MM-YYYY");
   timeMessage: string;
-  constructor() { 
+  constructor(private customerService: CustomerService ) { 
     setInterval(() =>  {
       var currentTime = moment().format("hh.mm.ss");
       this.timeMessage = currentTime;    
@@ -19,8 +21,8 @@ export class HomeComponent implements OnInit {
       , 1000);
      
   }
-
   ngOnInit() {
-  }
 
+  }
+  
 }
