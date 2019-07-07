@@ -23,7 +23,7 @@ hr.new1 {
   
 }
 .cust-body {
-    background-color: rgba(243, 189, 189, 0.76);
+    background-color: rgba(250, 249, 249, 0.76);
     /* border: outset; */
     padding-right: 20px;
     padding-left: 20px;
@@ -32,7 +32,7 @@ hr.new1 {
     border-style: groove;
 }
 .form-row-ornam {
-  background-color: #ced4da;
+  background-color: #f8fafc;
   border-style: ridge;
   border-radius: 5px;
   display: -ms-flexbox;
@@ -52,7 +52,7 @@ hr.new1 {
   padding-left: 5px;
 }
 .form-row-calculation {
-  background-color: wheat;
+  background-color: rgb(252, 250, 248);
   border-style: ridge;
   border-radius: 10px;
   display: -ms-flexbox;

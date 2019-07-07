@@ -148,6 +148,82 @@
           ]
         }
       ]
+    },
+    {
+      "id": 5,
+      "date": "2019-02-06",
+      "custName": "shalini singh",
+      "relation": "D/O",
+      "relName": "Naresh Singh",
+      "village": "begulal khera",
+      "phone": "8898189991",
+      "ornaments": [
+        {
+          "subDate": "2019-02-06",
+          "ornament": "bracelet",
+          "metal": "Gold",
+          "weight": 8,
+          "rupees": 14000,
+          "deposit": []
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "date": "2019-03-01",
+      "custName": "nishant sharma",
+      "relation": "S/O",
+      "relName": "V K Sharma",
+      "village": "Kota",
+      "phone": "9765432879",
+      "ornaments": [
+        {
+          "subDate": "2019-03-01",
+          "ornament": "chain",
+          "metal": "Gold",
+          "weight": 15,
+          "rupees": 25000,
+          "deposit": []
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "date": "2019-03-15",
+      "custName": "Vikil Newton",
+      "relation": "S/O",
+      "relName": "Rakesh Newton",
+      "village": "Etah",
+      "phone": "7898865434",
+      "ornaments": [
+        {
+          "subDate": "2019-03-15",
+          "ornament": "ring",
+          "metal": "Gold",
+          "weight": 4,
+          "rupees": 5000,
+          "deposit": []
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "date": "2019-04-01",
+      "custName": "Arun Singh",
+      "relation": "S/O",
+      "relName": "S P Singh",
+      "village": "Etah",
+      "phone": "9667745321",
+      "ornaments": [
+        {
+          "subDate": "2019-04-01",
+          "ornament": "ring",
+          "metal": "Gold",
+          "weight": 6,
+          "rupees": 6000,
+          "deposit": []
+        }
+      ]
     }
   ],
   "auth": [

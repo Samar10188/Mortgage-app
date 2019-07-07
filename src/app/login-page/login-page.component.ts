@@ -37,7 +37,7 @@ export class LoginPageComponent implements OnInit {
       });
 
     if(username == this.myData[0].username && password == this.myData[0].password){
-      this.router.navigate(['home'])
+      this.router.navigate(['home/calculation'])
       this.Auth.setLoggedIn(true)
     }
     else{

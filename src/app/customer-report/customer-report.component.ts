@@ -57,7 +57,6 @@ export class CustomerReportComponent implements OnInit {
 
     this.currentDate = moment();
     this.depositDate = moment().format("YYYY-MM-DD").toString();
-    // this.prevDate = 
 
   }
 

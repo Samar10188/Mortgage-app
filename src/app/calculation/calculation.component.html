@@ -1,0 +1,61 @@
+<div class="form-group row">
+  <div class="form-group col">
+    <!-- <div class="col-md-4 mb-3">
+      <label for="priceOfGold">GoldPrice</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend1">10gram</span>
+        </div>
+        <input type="text" class="col-sm-12 form-control" id="priceOfGold" [(ngModel)]="goldPrice">
+      </div>
+  
+    </div> -->
+    <div>
+        <label for="priceOfGold" class="col-sm-3 col-form-label">Gold Price</label>
+        <div class="col-sm-12">
+          <input type="text" class="col-sm-4 form-control" id="priceOfGold" 
+          [(ngModel)]="goldPrice">
+        </div>
+      </div>
+    <div>
+      <label for="weight" class="col-sm-3 col-form-label">Weight</label>
+      <div class="col-sm-12">
+        <input type="text" class="col-sm-4 form-control" id="weight" placeholder="in grams"
+        [(ngModel)]="weight">
+      </div>
+    </div>
+    <div>
+      <label for="weight" class="col-sm-3 col-form-label">Percent</label>
+      <div class="col-sm-12">
+        <input type="text" class="col-sm-4 form-control" id="weight" placeholder="%" 
+        [(ngModel)]="metalPercent">
+      </div>
+    </div>
+  </div>
+  <div class="form-group col">
+    <div>
+      <label for="weight" class="col-sm-3 col-form-label">Actual Price</label>
+      <div class="col-sm-10">
+        <input type="text" class="col-sm-4 form-control" id="weight" 
+        [(ngModel)]="actualPrice" disabled>
+      </div>
+    </div>
+    <div>
+      <label for="weight" class="col-sm-5 col-form-label">Collateral Price</label>
+      <div class="col-sm-10">
+        <input type="text" class="col-sm-4 form-control" id="weight" 
+        [(ngModel)]="collateralPrice" disabled>
+      </div>
+    </div>
+    <div>
+      <label for="weight" class="col-sm-3 col-form-label">Rest Amount</label>
+      <div class="col-sm-10">
+        <input type="text" class="col-sm-4 form-control" id="weight" 
+        [(ngModel)]="restAmount" disabled>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-10">
+  <button type="submit" class="btn btn-success" (click)="onClickCalculation()">Calculate</button>
+</div>

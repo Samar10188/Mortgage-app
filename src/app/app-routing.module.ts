@@ -9,12 +9,14 @@ import { ListCustomerComponent } from './customer/list-customer.component';
 import { CreateCustomerComponent } from './customer/create-customer.component';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 import { AuthGuard } from './auth.guard';
+import { CalculationComponent } from './calculation/calculation.component';
 
  
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
   // { path: 'home', component: HomeComponent , canActivate: [AuthGuard], children: [
     { path: 'home', component: HomeComponent , children: [
+    { path: 'calculation', component: CalculationComponent},      
     { path: 'customers', component: ListCustomerComponent},
     { path: 'create', component: CreateCustomerComponent},
     { path: "edit/:id", component: CreateCustomerComponent },

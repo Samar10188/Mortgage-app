@@ -17,6 +17,7 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { HomeComponent } from './home.component';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 import {AuthGuard} from './auth.guard';
+import { CalculationComponent } from './calculation/calculation.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {AuthGuard} from './auth.guard';
     PageNotFoundComponent,
     HomeComponent,
     CustomerReportComponent,
+    CalculationComponent,
   ],
   imports: [
     BrowserModule,
