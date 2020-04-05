@@ -6,6 +6,7 @@ export class IOrnament {
     public metal: string,
     public weight: number,
     public rupees: number,
+    public priceofmetal: number,
     public deposit: [
         {
             depositDate: any,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MetalPriceService } from '../metal-price.service';
 
 @Component({
   selector: 'app-calculation',
@@ -8,23 +9,45 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class CalculationComponent implements OnInit {
 
-
-  goldPrice: number = 0;
+  metalPrice: any = 0;
+  goldPrice: any = 0;
+  silverPrice: any = 0;
   weight: number = 0;
   metalPercent: number = 0;
   actualPrice: number = 0;
   collateralPrice: number = 0;
   restAmount: number = 0;
+  value: any;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private metalPriceService: MetalPriceService ) { }
 
   ngOnInit() {
 
+    this.goldPrice = localStorage.getItem("goldPrice");
+    this.silverPrice = localStorage.getItem("silverPrice");
+
   }
-  onClickCalculation(){
-    this.actualPrice = (this.goldPrice*this.weight*this.metalPercent)/1000;
-    this.collateralPrice = (this.goldPrice*this.weight*(0.6))/10;
+  onClickCalculation(gPrice){
+    this.actualPrice = (this.metalPrice*this.weight*this.metalPercent)/1000;
+    this.collateralPrice = (this.actualPrice*(0.7));
     this.restAmount = this.actualPrice - this.collateralPrice;
+  }
+
+  slideToggle(event){
+    if ( event.checked == true ){
+      this.metalPrice = this.goldPrice;
+      this.actualPrice = 0;
+      this.collateralPrice = 0;
+      this.restAmount = 0;
+
+    }
+    else{
+      this.metalPrice = this.silverPrice;
+      this.actualPrice = 0;
+      this.collateralPrice = 0;
+      this.restAmount = 0;
+    }
   }
 
 }

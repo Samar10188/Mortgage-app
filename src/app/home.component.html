@@ -1,46 +1,74 @@
-<body background="/assets/images/homeScreen.jpg">
-<div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-    aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <img class="rounded float-left mr-4" src="/assets/images/logo-small.JPG">
-    <ul class="navbar-nav mr-auto mt-5 mt-lg-1">
-      <!-- <li class="nav-item">
+<body background="/assets/images/homeScreen.jpg" class="rounded">
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01" text-align:justify>
+        <img class="rounded float-left mr-4" src="/assets/images/logo-small.JPG">
+        <ul class="navbar-nav mr-auto mt-5 mt-lg-1">
+          <!-- <li class="nav-item">
         <a class="nav-link mr-4" href="home">Home <span class="sr-only">(current)</span></a>
       </li> -->
-      <li class="nav-item">
-        <a class="nav-link mr-4" routerLinkActive="active" routerLink="calculation">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mr-4" routerLinkActive="active" routerLink="create">Create</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="customers">List</a>
-      </li>
+          <li class="nav-item">
+            <a class="nav-link mr-4" routerLinkActive="active" routerLink="calculation">Calculation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mr-4" routerLinkActive="active" routerLink="create">Create</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="customers">List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="invoice">List</a>
+          </li>
 
-    </ul>
-    <div class="form-control-right">
-      <button type="button" class="btn btn-secondary mr-2">{{currentDate}}</button>
-      <button type="button" class="btn btn-secondary" >{{timeMessage}}</button>
-    </div>
-  
-      <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>  -->
+        </ul>
+        <div class="form-control-right">
+          <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#myModal">
+            Price of Gold/Silver
+          </button>
+          <button type="button" class="btn btn-secondary mr-2">{{currentDate}}</button>
+          <button type="button" class="btn btn-secondary">{{timeMessage}}</button>
+        </div>
+      </div>
+    </nav>
   </div>
-</nav>
-</div>
-<!-- <div>
-    <img class="img-fluid" alt="Responsive image" src="/assets/images/homeScreen.jpg">
-</div> -->
-<!-- <div>
-  <img class="home" src="/assets/images/homeScreen.jpg">
-</div> -->
-<div>
-<router-outlet></router-outlet>
-</div>
+  <div>
+    <!-- {{goldPrice}} <br>
+    {{silverPrice}} -->
+  </div>
+
+
+  <!-- Create Modal HTML Template -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createModalLabel">Enter prices for Metals</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Gold Price: <input class="form-control" type="number" [(ngModel)]="goldPrice" placeholder="Enter Gold Price"
+            required>
+          Silver Price: <input class="form-control" type="number" [(ngModel)]="silverPrice"
+            placeholder="Enter Silver Price" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="onClickPriceSubmit(goldPrice, silverPrice)"
+            data-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
 </body>

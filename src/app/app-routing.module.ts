@@ -10,6 +10,8 @@ import { CreateCustomerComponent } from './customer/create-customer.component';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 import { AuthGuard } from './auth.guard';
 import { CalculationComponent } from './calculation/calculation.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { BillComponent } from './invoice/bill.component';
 
  
 const routes: Routes = [
@@ -19,6 +21,9 @@ const routes: Routes = [
     { path: 'calculation', component: CalculationComponent},      
     { path: 'customers', component: ListCustomerComponent},
     { path: 'create', component: CreateCustomerComponent},
+    { path: 'invoice', component: InvoiceComponent, children: [
+      { path: 'bill', component: BillComponent}
+    ]},
     { path: "edit/:id", component: CreateCustomerComponent },
     { path: "view/:id", component: CustomerReportComponent}
   ]},

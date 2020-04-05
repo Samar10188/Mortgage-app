@@ -6,7 +6,8 @@ import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import { CustomerModule } from './customer/customer.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import * as bootstrap from "bootstrap";
+import * as $ from "jquery";
 
 
 
@@ -18,6 +19,11 @@ import { HomeComponent } from './home.component';
 import { CustomerReportComponent } from './customer-report/customer-report.component';
 import {AuthGuard} from './auth.guard';
 import { CalculationComponent } from './calculation/calculation.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { BillComponent } from './invoice/bill.component';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +33,8 @@ import { CalculationComponent } from './calculation/calculation.component';
     HomeComponent,
     CustomerReportComponent,
     CalculationComponent,
+    InvoiceComponent,
+    BillComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +45,9 @@ import { CalculationComponent } from './calculation/calculation.component';
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard]}
     ]),
     AppRoutingModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule
   ],
   providers: [FormBuilder, AuthGuard],
   bootstrap: [AppComponent]

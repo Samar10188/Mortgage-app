@@ -15,7 +15,49 @@
           "metal": "Gold",
           "weight": 10,
           "rupees": 10000,
-          "priceofmetal": null
+          "deposit": [
+            {
+              "depositDate": "2018-06-30",
+              "depositAmount": 1000,
+              "actualAmount": 10000,
+              "interest": 1200,
+              "remainInterest": 200,
+              "totalAmount": 10000
+            },
+            {
+              "depositDate": "2018-12-31",
+              "depositAmount": 5000,
+              "actualAmount": 6226.666666666666,
+              "interest": 1226.6666666666667,
+              "remainInterest": 0,
+              "totalAmount": 6226.666666666666
+            },
+            {
+              "depositDate": "2019-03-19",
+              "depositAmount": 1000,
+              "actualAmount": 5550.453333333333,
+              "interest": 323.78666666666663,
+              "remainInterest": 0,
+              "totalAmount": 5550.453333333333
+            }
+          ]
+        },
+        {
+          "subDate": "2018-07-01",
+          "ornament": "Ring",
+          "metal": "Gold",
+          "weight": 8,
+          "rupees": 15000,
+          "deposit": [
+            {
+              "depositDate": "2018-12-31",
+              "depositAmount": 5000,
+              "actualAmount": 9990,
+              "interest": -10,
+              "remainInterest": 0,
+              "totalAmount": 9990
+            }
+          ]
         }
       ]
     },
@@ -179,157 +221,6 @@
           "metal": "Gold",
           "weight": 6,
           "rupees": 6000,
-          "deposit": []
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "date": "2019-09-04",
-      "custName": "abcd",
-      "relation": "S/O",
-      "relName": "pqrs",
-      "village": "xyz",
-      "phone": "09090909",
-      "ornaments": [
-        {
-          "subDate": "2019-09-11",
-          "ornament": "ring",
-          "metal": "Gold",
-          "weight": 2,
-          "rupees": 3000,
-          "deposit": []
-        },
-        {
-          "subDate": "2019-09-24",
-          "ornament": "chain",
-          "metal": "Silver",
-          "weight": 100,
-          "rupees": 3000,
-          "deposit": []
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "date": "2019-08-14",
-      "custName": "ratanlal",
-      "relation": "S/O",
-      "relName": "surajpal",
-      "village": "hadai",
-      "phone": "98989898980",
-      "ornaments": [
-        {
-          "subDate": "2019-08-14",
-          "ornament": "ring",
-          "metal": "Gold",
-          "weight": 5,
-          "rupees": 8500,
-          "deposit": [
-            {
-              "depositDate": "2019-09-14",
-              "depositAmount": 1000,
-              "actualAmount": 7719.583333333334,
-              "interest": 219.58333333333334,
-              "remainInterest": 0,
-              "totalAmount": 7719.583333333334
-            },
-            {
-              "depositDate": "2019-10-28",
-              "depositAmount": 4000,
-              "actualAmount": 4002.634722222223,
-              "interest": 283.05138888888894,
-              "remainInterest": 0,
-              "totalAmount": 4002.634722222223
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "date": "2019-11-05",
-      "custName": "Vivek Nagare",
-      "relation": "S/O",
-      "relName": "MK Nagare",
-      "village": "aurangabad",
-      "phone": "9898765443",
-      "ornaments": [
-        {
-          "subDate": "2019-11-20",
-          "ornament": "ring",
-          "metal": "Gold",
-          "weight": 5,
-          "rupees": 10000,
-          "priceofmetal": "",
-          "deposit": []
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "date": "2020-02-12",
-      "custName": "Rajan",
-      "relation": "S/O",
-      "relName": "K PSingh ",
-      "village": "Antra",
-      "phone": "9898765443",
-      "ornaments": [
-        {
-          "subDate": "2020-02-12",
-          "ornament": "ring",
-          "metal": "Gold",
-          "weight": "7",
-          "rupees": 15000,
-          "priceofmetal": 40000
-        }
-      ]
-    },
-    {
-      "id": 13,
-      "date": "2020-03-16",
-      "custName": "Sudhanshu Verma",
-      "relation": "S/O",
-      "relName": "Benny Shyam Verma",
-      "village": "chibramau",
-      "phone": "7838990098",
-      "ornaments": [
-        {
-          "subDate": "2020-03-16",
-          "ornament": "chain",
-          "metal": "Gold",
-          "weight": 10,
-          "rupees": 22400,
-          "priceOfMetal": 40000,
-          "deposit": [
-            {
-              "depositDate": "2020-08-16",
-              "depositAmount": 10000,
-              "actualAmount": 10309.333333333332,
-              "interest": -2090.6666666666665,
-              "remainInterest": 0,
-              "totalAmount": 10309.333333333332
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 14,
-      "date": "2020-03-10",
-      "custName": "abcd",
-      "relation": "S/O",
-      "relName": "pqrs",
-      "village": "bim",
-      "phone": "9898765443",
-      "ornaments": [
-        {
-          "subDate": "2020-03-24",
-          "ornament": "ring",
-          "metal": "Gold",
-          "weight": 122,
-          "rupees": 67677,
-          "priceOfMetal": 34554,
           "deposit": []
         }
       ]

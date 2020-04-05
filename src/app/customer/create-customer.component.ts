@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl, FormArray, } from '@angular/forms';
 import { CustomerService } from './customer.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { ICustomer } from './ICustomer';
 import { IOrnament } from './IOrnament';
 import * as moment from 'moment';
 import { format } from 'url';
+import { MetalPriceService } from '../metal-price.service';
 
 
 
@@ -16,11 +17,18 @@ import { format } from 'url';
 })
 export class CreateCustomerComponent implements OnInit {
 
+  @Input() gPrice: number;
+  @Input() sPrice: number;
+
   custForm: FormGroup;
   pageTitle: string;
   curDate: string;
   today = new Date();
   currentDate: any;
+  goldPrice: any;
+  silverPrice: any;
+  metalPrice: number;
+
   customer: ICustomer = {
     id: null,
     date: null,
@@ -41,53 +49,67 @@ export class CreateCustomerComponent implements OnInit {
     'phone': ''
   };
 
-    // This object contains all the validation messages for this form
-    validationMessages = {
-      'date': {
-        'required': 'date is required.'
-      },
-      'custName': {
-        'required': 'Customer Name is required.'
-      },
-      'relation': {
-        'required': 'Relation is required.'
-      },
-      'relName': {
-        'required': 'Relative Name is required.'
-      },
-      'village': {
-        'required': 'Village name is required.'
-      },
-      'phone': {
-        'required': 'Phone number is required.'
-      }
-    };
+  // This object contains all the validation messages for this form
+  validationMessages = {
+    'date': {
+      'required': 'date is required.'
+    },
+    'custName': {
+      'required': 'Customer Name is required.'
+    },
+    'relation': {
+      'required': 'Relation is required.'
+    },
+    'relName': {
+      'required': 'Relative Name is required.'
+    },
+    'village': {
+      'required': 'Village name is required.'
+    },
+    'phone': {
+      'required': 'Phone number is required.'
+    }
+  };
+
 
   constructor(private fb: FormBuilder,
     private customerService: CustomerService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private metalPriceService: MetalPriceService) {
 
-    
+    //   this.metalPriceService.goldPrice$.subscribe
+    //   (goldPrice => {
+    //    this.priceOfGold = goldPrice;
+    //   })
+  
+    // this.metalPriceService.silverPrice$.subscribe
+    //   (silverPrice => {
+    //     this.priceOfSilver = silverPrice;
+    //   })
+  }
+
+
   ngOnInit() {
+
+
     this.custForm = this.fb.group({
       date: [this.currentDate],
       custName: ['', [Validators.required]],
-      relation: ['', [Validators.required]],
+      relation: ['S/O', [Validators.required]],
       relName: ['', [Validators.required]],
       village: ['', [Validators.required]],
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      phone: ['9898765443', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       ornaments: this.fb.array([
         this.addOrnamentsFormGroup()
       ])
     });
 
+
     // this.custForm.valueChanges.subscribe((data) => {
     //   this.logValidationErrors(this.custForm);
     // });
 
-  
-    // this.customer
 
     // this.route.paramMap.subscribe(params => {
     //   const custId = +params.get('id');
@@ -105,7 +127,7 @@ export class CreateCustomerComponent implements OnInit {
         this.pageTitle = "Create Customer";
         this.customer = {
           "id": null,
-          "date": "" ,
+          "date": "",
           "custName": "",
           "relation": "",
           "relName": "",
@@ -116,7 +138,11 @@ export class CreateCustomerComponent implements OnInit {
       }
     });
 
-    this.currentDate = moment().format('DD/MM/YYYY')
+    this.currentDate = moment().format('DD/MM/YYYY');
+
+    this.goldPrice = localStorage.getItem("goldPrice");
+    this.silverPrice = localStorage.getItem("silverPrice");
+
   }
 
   addOrnamentButtonClick(): void {
@@ -156,6 +182,7 @@ export class CreateCustomerComponent implements OnInit {
         metal: s.metal,
         weight: s.weight,
         rupees: s.rupees,
+        priceofmetal: s.priceofmetal
       }));
     })
     return formArray;
@@ -169,6 +196,15 @@ export class CreateCustomerComponent implements OnInit {
     skillsFormArray.markAsDirty();
   }
 
+  slideToggle(event){
+    if ( event.checked == true ){
+      this.metalPrice = this.goldPrice;
+    }
+    else{
+      this.metalPrice = this.silverPrice;
+    }
+  }
+
   addOrnamentsFormGroup(): FormGroup {
     return this.fb.group({
       subDate: [''],
@@ -176,6 +212,7 @@ export class CreateCustomerComponent implements OnInit {
       metal: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       rupees: ['', [Validators.required]],
+      priceOfMetal: [this.metalPrice, [Validators.required]],
       deposit: [[]]
     });
   }
@@ -208,30 +245,32 @@ export class CreateCustomerComponent implements OnInit {
   // }
 
 
-    onSubmit(): void {
-      this.mapFormValuesTocustomerModel();
-      if (this.customer.id) {
-        this.customerService.updateCustomer(this.customer).subscribe(
-          () => this.router.navigate(['home/customers']),
-          (err: any) => console.log(err)
-        );
-      }
-      else {
+  onSubmit(): void {
+    this.mapFormValuesTocustomerModel();
+    if (this.customer.id) {
+      this.customerService.updateCustomer(this.customer).subscribe(
+        () => this.router.navigate(['home/customers']),
+        (err: any) => console.log(err)
+      );
+      console.log(this.custForm);
+    }
+    else {
       this.customerService.addCustomer(this.customer).subscribe(
         () => this.router.navigate(['home/customers']),
         (err: any) => console.log(err)
       );
+      console.log(this.custForm);
     }
   }
 
-    mapFormValuesTocustomerModel() {
-      this.customer.date = this.custForm.value.date;
-      this.customer.custName = this.custForm.value.custName;
-      this.customer.relation = this.custForm.value.relation;
-      this.customer.relName = this.custForm.value.relName;
-      this.customer.village = this.custForm.value.village;
-      this.customer.phone = this.custForm.value.phone;
-      this.customer.ornaments = this.custForm.value.ornaments;
+  mapFormValuesTocustomerModel() {
+    this.customer.date = this.custForm.value.date;
+    this.customer.custName = this.custForm.value.custName;
+    this.customer.relation = this.custForm.value.relation;
+    this.customer.relName = this.custForm.value.relName;
+    this.customer.village = this.custForm.value.village;
+    this.customer.phone = this.custForm.value.phone;
+    this.customer.ornaments = this.custForm.value.ornaments;
 
-    }
   }
+}

@@ -1,9 +1,13 @@
 <div class="cust-body">
+  <div class="d-flex justify-content-lg-center">
+    Silver<mat-slide-toggle (change)="slideToggle($event)"></mat-slide-toggle>Gold
+  </div>
   <form [formGroup]="custForm" class="form-horizontal">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">{{pageTitle}}</h3>
         <h4>{{currentDate}}</h4>
+        <!-- <h4>{{priceOfGold}}</h4> -->
       </div>
       <div class="form-row">
         <div class="col-md-3 mb-3" [ngClass]="{'has-error' : formErrors.date}">
@@ -75,11 +79,11 @@
       <br />
 
       <div class="form-column">
-        <h5>Ornament Details</h5>
-        <br />
+        <h3>Ornament Details</h3>
+        <!-- <br /> -->
         <div class="col-md-6 mb-8">
           <div class="col-md-offset-2 col-md-4">
-            <button type='button' class="btn btn-primary" (click)="addOrnamentButtonClick()"
+            <button type='button' class="btn btn-primary d-flex justify-content-lg-right" (click)="addOrnamentButtonClick()"
               [disabled]="custForm.get('ornaments').invalid" title="Add ornament">
               Add Ornament
             </button>
@@ -88,9 +92,8 @@
       </div>
       <div formArrayName="ornaments">
 
-        <div class="form-row" *ngFor="let ornam of custForm.controls.ornaments.controls; let i = index"
+        <div class="form-row" *ngFor="let ornam of this.custForm.get('ornaments').controls; let i = index"
           formGroupName="{{i}}">
-
           <br />
           <div class="col-md-2 mb-8">
             <label [attr.for]="'subDate'+i">
@@ -157,7 +160,36 @@
             </span>
             <br />
           </div>
-
+          <div *ngIf="ornam.get('metal').value == Gold">
+          <div class="col-md-2 mb-8">
+            <label [attr.for]="'price'+i">
+              Gold Price
+            </label>
+            <input type="number" class="form-control" [id]="'price'+i" formControlName="priceOfMetal"
+              placeholder="In Rupees" [ngModel]="goldPrice">
+            <br />
+          </div>
+          </div>
+          <div *ngIf="ornam.get('metal').value == Silver">
+            <div class="col-md-2 mb-8">
+              <label [attr.for]="'price'+i">
+                Gold Price
+              </label>
+              <input type="number" class="form-control" [id]="'price'+i" formControlName="priceOfMetal"
+                placeholder="In Rupees" [ngModel]="SilverPrice">
+              <br />
+            </div>
+            </div>
+          <!-- <div *ngIf="this.custForm.metal == Silver">
+          <div class="col-md-2 mb-8">
+            <label [attr.for]="'price'+i">
+              Silver Price
+            </label>
+            <input type="number" class="form-control" [id]="'price'+i" formControlName="priceOfMetal"
+              placeholder="In Rupees" [ngModel]="priceOfGold">
+            <br />
+          </div>
+          </div> --> -->
           <div class="col-md-1 mb-8">
             <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

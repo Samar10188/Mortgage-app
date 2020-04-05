@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomerService } from '../customer/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICustomer } from '../customer/ICustomer';
-import { ReturnStatement } from '@angular/compiler';
 import * as moment from 'moment';
-import { indexDebugNode } from '@angular/core/src/debug/debug_node';
-import { DecimalPipe } from '@angular/common';
-import { CONTAINER_INDEX } from '@angular/core/src/render3/interfaces/view';
+
 
 @Component({
   selector: 'app-customer-report',
@@ -14,6 +11,9 @@ import { CONTAINER_INDEX } from '@angular/core/src/render3/interfaces/view';
   styleUrls: ['./customer-report.component.css']
 })
 export class CustomerReportComponent implements OnInit {
+
+  @Input() gPrice: number;
+  @Input() sPrice: number;
 
   count: number = 0;
   depositValue: number = 0;
@@ -87,7 +87,7 @@ export class CustomerReportComponent implements OnInit {
       case 0:
       this.amount = this.customer.ornaments[index].rupees;
       // this.totalDays = this.currentDate.diff(this.customer.ornaments[index].subDate, 'days');
-      this.totalDays = moment("2019-01-31").diff(this.customer.ornaments[index].subDate, 'days');
+      this.totalDays = moment("2019-10-28").diff(this.customer.ornaments[index].subDate, 'days');
       console.log(this.totalDays+"=days");
         break;
       case 1:

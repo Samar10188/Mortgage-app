@@ -8,6 +8,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { CreateCustomerComponent } from './create-customer.component';
 import { ListCustomerComponent } from './list-customer.component';
 import { SharedModule } from "../shared/shared.module";
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -20,7 +21,8 @@ import { SharedModule } from "../shared/shared.module";
   imports: [
     FormsModule,
     CustomerRoutingModule,
-    SharedModule
+    SharedModule,
+    MatSlideToggleModule
   ],
   exports: [
     ListCustomerComponent,
