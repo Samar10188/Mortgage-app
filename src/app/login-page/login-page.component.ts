@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../authentication/auth.service';
 import { Router } from '@angular/router';
-import { authData } from '../Authdata';
+import { authData } from '../authentication/Authdata';
 
 
 @Component({
@@ -10,40 +10,68 @@ import { authData } from '../Authdata';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+  username: any = null;
+  password: any = null;
   myData: authData = {
     username: null,
     password: null
   };
+  authenticate: any = null;
+  headerProperty: string;
+  // myData: any;
   constructor(private Auth: AuthService,
     private router: Router) { }
 
   ngOnInit() {
-    this.Auth.getUserDetails().subscribe(data => {
-      console.log("we got", data);
-      this.myData = data;
+    // this.Auth.getUserDetails(this.myData).subscribe(data => {
+    //   console.log("we got", data);
+    //   this.authenticate = data;
       
-    });
+    // });
   }
 
 
-  loginUser(event) {
-    event.preventDefault()
-    const target = event.target
-    const username = target.elements[0].value;
-    const password = target.elements[1].value;
-
-    this.Auth.getUserDetails().subscribe(data => {
-      this.myData = data;
+  loginUser() {
+    console.log("username", this.myData.username)
+    console.log("password", this.myData.password)
+    this.Auth.getUserDetails(this.myData).subscribe(data => {
+      console.log("value of authenticate", data);
+      // this.authenticate = data;
+      if(data == true){
+        this.router.navigate(['home/calculation']);
+        this.Auth.setLoggedIn(true);
+      }
+      else{
+        window.alert("Wrong Credentials");
+      }
+      // this.authenticateUser()
       });
+      // this.Auth.getUserDetails(this.myData).subscribe((res: any) =>{
+      //   this.headerProperty = res.headers.get('property name here');
+      //   // if(res){
+      //     console.log("header ", res.headers);
+      //     console.log("header property", this.headerProperty);
+      //   // }
+      // })
 
-    if(username == this.myData[0].username && password == this.myData[0].password){
-      this.router.navigate(['home/calculation'])
-      this.Auth.setLoggedIn(true)
-    }
-    else{
-      window.alert("Wrong Credentials")
-    }
-    console.log(username, password);
+    // if(this.authenticate == true){
+    //   this.router.navigate(['home/calculation'])
+    //   // this.Auth.setLoggedIn(true)
+    // }
+    // else{
+    //   window.alert("Wrong Credentials")
+    // }
+    // console.log(username, password);
   }
+
+  // authenticateUser(){
+    // if(this.authenticate == true){
+    //   this.router.navigate(['home/calculation']);
+    //   this.Auth.setLoggedIn(true);
+    // }
+    // else{
+    //   window.alert("Wrong Credentials");
+    // }
+  // }
 
 }

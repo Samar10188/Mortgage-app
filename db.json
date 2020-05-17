@@ -5,7 +5,7 @@
       "date": "2019-04-09",
       "custName": "Samarpit Verma",
       "relation": "S/O",
-      "relName": "R K Verma",
+      "relative": "R K Verma",
       "village": "malawan",
       "phone": "8899822074",
       "ornaments": [
@@ -24,7 +24,7 @@
       "date": "2018-02-02",
       "custName": "Arpit Verma",
       "relation": "S/O",
-      "relName": "R K Verma",
+      "relative": "R K Verma",
       "village": "malawan",
       "phone": "7786789098",
       "ornaments": [
@@ -50,6 +50,22 @@
               "interest": 2482,
               "remainInterest": 1982,
               "totalAmount": 18982
+            },
+            {
+              "depositDate": "2020-05-01",
+              "depositAmount": 15000,
+              "actualAmount": 5966.666666666668,
+              "interest": 3966.6666666666665,
+              "remainInterest": 0,
+              "totalAmount": 5966.666666666668
+            },
+            {
+              "depositDate": "2020-05-01",
+              "depositAmount": 5966.67,
+              "actualAmount": 0,
+              "interest": 0,
+              "remainInterest": 0,
+              "totalAmount": 0
             }
           ]
         },
@@ -77,7 +93,7 @@
       "date": "2019-01-01",
       "custName": "Richa Verma",
       "relation": "D/O",
-      "relName": "R K Verma",
+      "relative": "R K Verma",
       "village": "Malawan",
       "phone": "9643439440",
       "ornaments": [
@@ -112,7 +128,7 @@
       "date": "2019-02-06",
       "custName": "shalini singh",
       "relation": "D/O",
-      "relName": "Naresh Singh",
+      "relative": "Naresh Singh",
       "village": "begulal khera",
       "phone": "8898189991",
       "ornaments": [
@@ -131,7 +147,7 @@
       "date": "2019-03-01",
       "custName": "nishant sharma",
       "relation": "S/O",
-      "relName": "V K Sharma",
+      "relative": "V K Sharma",
       "village": "Kota",
       "phone": "9765432879",
       "ornaments": [
@@ -150,7 +166,7 @@
       "date": "2019-03-15",
       "custName": "Vikil Newton",
       "relation": "S/O",
-      "relName": "Rakesh Newton",
+      "relative": "Rakesh Newton",
       "village": "Etah",
       "phone": "7898865434",
       "ornaments": [
@@ -169,7 +185,7 @@
       "date": "2019-04-01",
       "custName": "Arun Singh",
       "relation": "S/O",
-      "relName": "S P Singh",
+      "relative": "S P Singh",
       "village": "Etah",
       "phone": "9667745321",
       "ornaments": [
@@ -188,7 +204,7 @@
       "date": "2019-09-04",
       "custName": "abcd",
       "relation": "S/O",
-      "relName": "pqrs",
+      "relative": "pqrs",
       "village": "xyz",
       "phone": "09090909",
       "ornaments": [
@@ -215,7 +231,7 @@
       "date": "2019-08-14",
       "custName": "ratanlal",
       "relation": "S/O",
-      "relName": "surajpal",
+      "relative": "surajpal",
       "village": "hadai",
       "phone": "98989898980",
       "ornaments": [
@@ -251,7 +267,7 @@
       "date": "2019-11-05",
       "custName": "Vivek Nagare",
       "relation": "S/O",
-      "relName": "MK Nagare",
+      "relative": "MK Nagare",
       "village": "aurangabad",
       "phone": "9898765443",
       "ornaments": [
@@ -271,7 +287,7 @@
       "date": "2020-02-12",
       "custName": "Rajan",
       "relation": "S/O",
-      "relName": "K PSingh ",
+      "relative": "K PSingh ",
       "village": "Antra",
       "phone": "9898765443",
       "ornaments": [
@@ -290,7 +306,7 @@
       "date": "2020-03-16",
       "custName": "Sudhanshu Verma",
       "relation": "S/O",
-      "relName": "Benny Shyam Verma",
+      "relative": "Benny Shyam Verma",
       "village": "chibramau",
       "phone": "7838990098",
       "ornaments": [
@@ -319,7 +335,7 @@
       "date": "2020-03-10",
       "custName": "abcd",
       "relation": "S/O",
-      "relName": "pqrs",
+      "relative": "pqrs",
       "village": "bim",
       "phone": "9898765443",
       "ornaments": [
@@ -333,12 +349,32 @@
           "deposit": []
         }
       ]
+    },
+    {
+      "id": 15,
+      "date": "2020-04-28",
+      "custName": "Shampy",
+      "relation": "S/O",
+      "relative": "RK Verma",
+      "village": "malawan",
+      "phone": "9898765443",
+      "ornaments": [
+        {
+          "subDate": "",
+          "ornament": "Ring",
+          "metal": "Gold",
+          "weight": 5,
+          "rupees": 10000,
+          "priceOfMetal": "45000",
+          "deposit": []
+        }
+      ]
     }
   ],
   "auth": [
     {
       "username": "samar",
-      "password": "samar"
+      "password": "12345"
     }
   ]
 }

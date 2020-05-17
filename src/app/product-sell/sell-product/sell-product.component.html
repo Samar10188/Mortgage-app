@@ -1,0 +1,89 @@
+<div class="cust-body">
+  <form [formGroup]="customerForm">
+    <div class="form-row">
+      <div class="col-md-2 mb-3">
+        <label for="date">Date</label>
+        <input type="date" formControlName="date" class="form-control" id="date" placeholder="Date">
+        <span class="help-block" *ngIf="this.customerForm.get('date').errors?.required &&
+            this.customerForm.get('date').touched">
+          Date is required
+        </span>
+      </div>
+
+      <div class="col-md-4 mb-8" >
+        <label for="custName">Customer Name</label>
+        <input type="text" formControlName="custName" class="form-control" id="custName" placeholder="FullName"
+          required>
+        <span class="help-block" *ngIf="this.customerForm.get('custName').errors?.required &&
+            this.customerForm.get('custName').touched">
+          Customer FullName is required
+        </span>
+      </div>
+
+      <div class="col-md-2 mb-8">
+        <label>Relation</label>
+        <div>
+          <label class="radio-inline">
+            <input type="radio" value="S/O" formControlName="relation">S/O
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="D/O" formControlName="relation">D/O
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="W/O" formControlName="relation">W/O
+          </label>
+          <span class="help-block" *ngIf="this.customerForm.get('relation').errors?.required &&
+            this.customerForm.get('relation').touched">
+            Relation is required
+          </span>
+        </div>
+      </div>
+
+
+      <div class="col-md-3 mb-8">
+        <label for="relative">Relative Name</label>
+        <input type="text" formControlName="relative" class="form-control" id="relative" placeholder="Relative Name">
+        <span class="help-block" *ngIf="this.customerForm.get('relative').errors?.required &&
+            this.customerForm.get('relative').touched">
+          Relative name is required
+        </span>
+      </div>
+
+      <div class="col-md-3 mb-8">
+        <label for="district">District</label>
+        <input type="text" formControlName="district" class="form-control" id="district" placeholder="district">
+        <span class="help-block" *ngIf="this.customerForm.get('district').errors?.required &&
+            this.customerForm.get('district').touched">
+          District Name is required
+        </span>
+      </div>
+
+      <div class="col-md-3 mb-8">
+        <label for="village">Village</label>
+        <input type="text" formControlName="village" class="form-control" id="village" placeholder="village">
+        <span class="help-block" *ngIf="this.customerForm.get('village').errors?.required &&
+            this.customerForm.get('village').touched">
+          Village Name is required
+        </span>
+      </div>
+
+      <div class="col-md-3 mb-8">
+        <label for="phone">Phone No</label>
+        <input type="text" formControlName="phone" class="form-control" id="phone" placeholder="phone">
+        <span class="help-block" *ngIf="this.customerForm.get('phone').errors?.required &&
+            this.customerForm.get('phone').touched">
+          Phone No is required
+        </span>
+      </div>
+    </div>
+
+    
+    <div class="col-md-3 mb-8">
+      <div class="col-ornament">
+        <br>
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()" 
+        [disabled]="!customerForm.valid">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

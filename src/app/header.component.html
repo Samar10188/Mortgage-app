@@ -1,4 +1,4 @@
-<body background="/assets/images/homeScreen.jpg" class="rounded">
+<body class="rounded">
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
@@ -21,7 +21,10 @@
             <a class="nav-link" routerLinkActive="active" routerLink="customers">List</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="invoice">List</a>
+            <a class="nav-link" routerLinkActive="active" routerLink="sell-product/create">Sell</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="sell-product/list">Sold List</a>
           </li>
 
         </ul>
@@ -35,12 +38,6 @@
       </div>
     </nav>
   </div>
-  <div>
-    <!-- {{goldPrice}} <br>
-    {{silverPrice}} -->
-  </div>
-
-
   <!-- Create Modal HTML Template -->
 
   <!-- Modal -->
@@ -68,7 +65,10 @@
       </div>
     </div>
   </div>
-  <div>
+  <!-- <div>
     <router-outlet></router-outlet>
-  </div>
+  </div> -->
 </body>
+<div>
+  <router-outlet></router-outlet>
+</div>

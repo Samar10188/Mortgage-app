@@ -1,13 +1,9 @@
 <div class="cust-body">
-  <div class="d-flex justify-content-lg-center">
-    Silver<mat-slide-toggle (change)="slideToggle($event)"></mat-slide-toggle>Gold
-  </div>
   <form [formGroup]="custForm" class="form-horizontal">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">{{pageTitle}}</h3>
-        <h4>{{currentDate}}</h4>
-        <!-- <h4>{{priceOfGold}}</h4> -->
+        <h1 class="d-flex justify-content-lg-center mt-2">Customer for Loan</h1>
+        <h3 class="panel-title" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-style: inherit; font-size: 20px;">{{pageTitle}}</h3>
       </div>
       <div class="form-row">
         <div class="col-md-3 mb-3" [ngClass]="{'has-error' : formErrors.date}">
@@ -49,10 +45,10 @@
 
 
         <div class="col-md-3 mb-8">
-          <label for="relName">Relative Name</label>
-          <input type="text" formControlName="relName" class="form-control" id="relName" placeholder="Relative Name">
-          <span class="help-block" *ngIf="this.custForm.get('relName').errors?.required &&
-              this.custForm.get('relName').touched">
+          <label for="relative">Relative Name</label>
+          <input type="text" formControlName="relative" class="form-control" id="relative" placeholder="Relative Name">
+          <span class="help-block" *ngIf="this.custForm.get('relative').errors?.required &&
+              this.custForm.get('relative').touched">
             Relative name is required
           </span>
         </div>
@@ -79,12 +75,12 @@
       <br />
 
       <div class="form-column">
-        <h3>Ornament Details</h3>
+        <h3 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-style: inherit; font-size: 20px;">Ornament Details</h3>
         <!-- <br /> -->
-        <div class="col-md-6 mb-8">
-          <div class="col-md-offset-2 col-md-4">
-            <button type='button' class="btn btn-primary d-flex justify-content-lg-right" (click)="addOrnamentButtonClick()"
-              [disabled]="custForm.get('ornaments').invalid" title="Add ornament">
+        <div class="form-control-right">
+          <div>
+            <button type='button' class="btn btn-primary d-flex justify-content-lg-right"
+              (click)="addOrnamentButtonClick()" [disabled]="custForm.get('ornaments').invalid" title="Add ornament">
               Add Ornament
             </button>
           </div>
@@ -115,7 +111,7 @@
             </span>
           </div>
 
-          <div class="col-md-2 mb-3">
+          <!-- <div class="col-md-2 mb-3">
             <div class="form-group">
               <label class="col-sm-2 control-label">
                 Metal
@@ -133,6 +129,18 @@
                 Metal is required
               </span>
             </div>
+          </div> -->
+
+          <div class="col-md-2 mb-3">
+            <label [id]="'metal'+i">Choose Metal</label>
+            <select class="form-control" [id]="'metal'+i" formControlName="metal" (change)="onSelect($event.target.value)">
+              <option value="Gold">Gold</option>
+              <option value="Silver">Silver</option>
+            </select>
+            <span class="help-block" *ngIf="ornam.get('metal').errors?.required &&
+                                                      ornam.get('metal').touched">
+              Metal is required
+            </span>
           </div>
 
           <div class="col-md-2 mb-8">
@@ -160,36 +168,18 @@
             </span>
             <br />
           </div>
-          <div *ngIf="ornam.get('metal').value == Gold">
           <div class="col-md-2 mb-8">
             <label [attr.for]="'price'+i">
-              Gold Price
+              Metal Price
             </label>
             <input type="number" class="form-control" [id]="'price'+i" formControlName="priceOfMetal"
-              placeholder="In Rupees" [ngModel]="goldPrice">
-            <br />
+              placeholder="In Rupees">
+              <!-- placeholder="In Rupees" [ngModel]="metalPrice" -->
+            <span class="help-block" *ngIf="ornam.get('priceOfMetal').errors?.required && 
+            ornam.get('priceOfMetal').touched">
+              Metal Price is required
+            </span>
           </div>
-          </div>
-          <div *ngIf="ornam.get('metal').value == Silver">
-            <div class="col-md-2 mb-8">
-              <label [attr.for]="'price'+i">
-                Gold Price
-              </label>
-              <input type="number" class="form-control" [id]="'price'+i" formControlName="priceOfMetal"
-                placeholder="In Rupees" [ngModel]="SilverPrice">
-              <br />
-            </div>
-            </div>
-          <!-- <div *ngIf="this.custForm.metal == Silver">
-          <div class="col-md-2 mb-8">
-            <label [attr.for]="'price'+i">
-              Silver Price
-            </label>
-            <input type="number" class="form-control" [id]="'price'+i" formControlName="priceOfMetal"
-              placeholder="In Rupees" [ngModel]="priceOfGold">
-            <br />
-          </div>
-          </div> --> -->
           <div class="col-md-1 mb-8">
             <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -199,24 +189,30 @@
               </button>
             </div>
           </div>
-
         </div>
-
         <div class="col-md-3 mb-8">
           <div class="col-ornament">
-            <br />
-            <br />
-            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+            <br>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()" 
+            [disabled]="!custForm.valid">Submit</button>
           </div>
         </div>
-
       </div>
-
     </div>
   </form>
-</div>
-<!-- <div>
-  Enter the Rate of Interest: 
-  <input type="number" id="ROI" [(ngModel)]="InterestRate">
-  Rate of Interest is: {{InterestRate}}
+
+<!-- <table border="2">
+    <tr>
+      <th style="padding: 10px">FormGroup</th>
+      <th style="padding: 10px">FormControl (fullName)</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px">
+        touched : {{ custForm.touched }}
+        <br /> dirty : {{ custForm.dirty }}
+        <br /> valid : {{ custForm.valid }}
+        <br /> Form values : {{ custForm.value | json }}
+      </td>
+    </tr>
+  </table>
 </div> -->

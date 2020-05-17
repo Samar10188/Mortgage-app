@@ -6,7 +6,6 @@ import { ICustomer } from './ICustomer';
 import { IOrnament } from './IOrnament';
 import * as moment from 'moment';
 import { format } from 'url';
-import { MetalPriceService } from '../metal-price.service';
 
 
 
@@ -30,11 +29,11 @@ export class CreateCustomerComponent implements OnInit {
   metalPrice: number;
 
   customer: ICustomer = {
-    id: null,
+    _id: null,
     date: null,
     custName: null,
     relation: null,
-    relName: null,
+    relative: null,
     village: null,
     phone: null,
     ornaments: [null]
@@ -44,7 +43,7 @@ export class CreateCustomerComponent implements OnInit {
     'date': '',
     'custName': '',
     'relation': '',
-    'relName': '',
+    'relative': '',
     'village': '',
     'phone': ''
   };
@@ -60,7 +59,7 @@ export class CreateCustomerComponent implements OnInit {
     'relation': {
       'required': 'Relation is required.'
     },
-    'relName': {
+    'relative': {
       'required': 'Relative Name is required.'
     },
     'village': {
@@ -75,29 +74,20 @@ export class CreateCustomerComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private customerService: CustomerService,
     private router: Router,
-    private route: ActivatedRoute,
-    private metalPriceService: MetalPriceService) {
+    private route: ActivatedRoute) {
 
-    //   this.metalPriceService.goldPrice$.subscribe
-    //   (goldPrice => {
-    //    this.priceOfGold = goldPrice;
-    //   })
-  
-    // this.metalPriceService.silverPrice$.subscribe
-    //   (silverPrice => {
-    //     this.priceOfSilver = silverPrice;
-    //   })
   }
 
 
   ngOnInit() {
 
+    this.currentDate = moment();
 
     this.custForm = this.fb.group({
       date: [this.currentDate],
       custName: ['', [Validators.required]],
       relation: ['S/O', [Validators.required]],
-      relName: ['', [Validators.required]],
+      relative: ['', [Validators.required]],
       village: ['', [Validators.required]],
       phone: ['9898765443', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       ornaments: this.fb.array([
@@ -117,20 +107,21 @@ export class CreateCustomerComponent implements OnInit {
     //     this.pageTitle = "Edit Employee";
     // });
     this.route.paramMap.subscribe(params => {
-      const custId = +params.get('id');
+      var custId = params.get('_id');
+      console.log("CustId is :",custId);
       if (custId) {
         this.getCustomer(custId);
         this.pageTitle = "Edit Customer";
       }
       else {
-        this.currentDate = moment().format('dd MM YYYY');
+        this.currentDate = moment().format('DD/MM/YYYY');
         this.pageTitle = "Create Customer";
         this.customer = {
-          "id": null,
-          "date": "",
+          "_id":"",
+          "date": this.currentDate,
           "custName": "",
           "relation": "",
-          "relName": "",
+          "relative": "",
           "village": "",
           "phone": null,
           "ornaments": []
@@ -139,21 +130,36 @@ export class CreateCustomerComponent implements OnInit {
     });
 
     this.currentDate = moment().format('DD/MM/YYYY');
+    console.log("currentdate", this.currentDate)
 
     this.goldPrice = localStorage.getItem("goldPrice");
     this.silverPrice = localStorage.getItem("silverPrice");
 
   }
 
+  onSelect(value: string){
+    if(value == "Gold"){
+      this.metalPrice = this.goldPrice
+    }
+    else if (value == "Silver"){
+      this.metalPrice = this.silverPrice
+    }
+    else{
+      console.log("Metal is not known")
+    }
+    console.log("Metal changes :",value)
+  }
+
   addOrnamentButtonClick(): void {
     (<FormArray>this.custForm.get('ornaments')).push(this.addOrnamentsFormGroup());
   }
 
-  getCustomer(id: number) {
+  getCustomer(id) {
     this.customerService.getCustomer(id).subscribe(
       (cust: ICustomer) => {
         this.editCustomer(cust);
         this.customer = cust;
+        console.log("Customer details are :", this.customer);
       },
       (err: any) => console.log(err)
     )
@@ -164,7 +170,7 @@ export class CreateCustomerComponent implements OnInit {
       date: customer.date,
       custName: customer.custName,
       relation: customer.relation,
-      relName: customer.relName,
+      relative: customer.relative,
       village: customer.village,
       phone: customer.phone
 
@@ -176,13 +182,15 @@ export class CreateCustomerComponent implements OnInit {
   setExistingSkills(ornamentSets: IOrnament[]): FormArray {
     const formArray = new FormArray([]);
     ornamentSets.forEach(s => {
+      console.log("ornament sets :", s);
       formArray.push(this.fb.group({
         subDate: s.subDate,
         ornament: s.ornament,
         metal: s.metal,
         weight: s.weight,
         rupees: s.rupees,
-        priceofmetal: s.priceofmetal
+        priceOfMetal: s.priceOfMetal,
+        // deposit: []
       }));
     })
     return formArray;
@@ -196,15 +204,6 @@ export class CreateCustomerComponent implements OnInit {
     skillsFormArray.markAsDirty();
   }
 
-  slideToggle(event){
-    if ( event.checked == true ){
-      this.metalPrice = this.goldPrice;
-    }
-    else{
-      this.metalPrice = this.silverPrice;
-    }
-  }
-
   addOrnamentsFormGroup(): FormGroup {
     return this.fb.group({
       subDate: [''],
@@ -212,15 +211,15 @@ export class CreateCustomerComponent implements OnInit {
       metal: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       rupees: ['', [Validators.required]],
-      priceOfMetal: [this.metalPrice, [Validators.required]],
+      priceOfMetal: ['', [Validators.required]],
       deposit: [[]]
     });
   }
 
 
-  get ornamentsArray() {
-    return <FormArray>this.custForm.get('ornaments');
-  }
+  // get ornamentsArray() {
+  //   return <FormArray>this.custForm.get('ornaments');
+  // }
 
   // logValidationErrors(group: FormGroup = this.custForm): void {
   //   Object.keys(group.controls).forEach((key: string) => {
@@ -247,27 +246,28 @@ export class CreateCustomerComponent implements OnInit {
 
   onSubmit(): void {
     this.mapFormValuesTocustomerModel();
-    if (this.customer.id) {
+    if (this.customer._id) {
       this.customerService.updateCustomer(this.customer).subscribe(
-        () => this.router.navigate(['home/customers']),
+        // () => this.router.navigate(['home/customers']),
         (err: any) => console.log(err)
       );
       console.log(this.custForm);
     }
     else {
       this.customerService.addCustomer(this.customer).subscribe(
-        () => this.router.navigate(['home/customers']),
+        // () => this.router.navigate(['home/customers']),
         (err: any) => console.log(err)
       );
-      console.log(this.custForm);
+      console.log(this.custForm.value);
     }
+    this.router.navigate(['home/customers']);
   }
 
   mapFormValuesTocustomerModel() {
     this.customer.date = this.custForm.value.date;
     this.customer.custName = this.custForm.value.custName;
     this.customer.relation = this.custForm.value.relation;
-    this.customer.relName = this.custForm.value.relName;
+    this.customer.relative = this.custForm.value.relative;
     this.customer.village = this.custForm.value.village;
     this.customer.phone = this.custForm.value.phone;
     this.customer.ornaments = this.custForm.value.ornaments;

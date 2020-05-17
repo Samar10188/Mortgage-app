@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { MetalPriceService } from '../metal-price.service';
 
 @Component({
   selector: 'app-calculation',
@@ -19,8 +18,7 @@ export class CalculationComponent implements OnInit {
   restAmount: number = 0;
   value: any;
 
-  constructor(private fb: FormBuilder,
-              private metalPriceService: MetalPriceService ) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
 

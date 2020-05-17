@@ -15,6 +15,7 @@ export class CustomerReportComponent implements OnInit {
   @Input() gPrice: number;
   @Input() sPrice: number;
 
+  deposit_array: [{}];
   count: number = 0;
   depositValue: number = 0;
   totalAmount: number = 0;
@@ -30,17 +31,18 @@ export class CustomerReportComponent implements OnInit {
   totalDays: number = 0;
   interest = [];
   customer: ICustomer = {
-    id: null,
+    _id: null,
     date: null,
     custName: null,
     relation: null,
-    relName: null,
+    relative: null,
     village: null,
     phone: null,
     ornaments: []
   };
   prevDate: Date;
   nextDate: any;
+  firstDate: any;
 
 
 
@@ -51,7 +53,7 @@ export class CustomerReportComponent implements OnInit {
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
-      const custId = +params.get('id');
+      const custId = params.get('_id');
       this.getCustomer(custId);
     });
 
@@ -60,10 +62,11 @@ export class CustomerReportComponent implements OnInit {
 
   }
 
-  getCustomer(id: number) {
-    this.customerService.getCustomer(id).subscribe(
+  getCustomer(_id) {
+    this.customerService.getCustomer(_id).subscribe(
       (cust: ICustomer) => {
         this.customer = cust;
+        console.log("view customer", cust)
       },
       (err: any) => console.log(err)
     )
@@ -80,38 +83,78 @@ export class CustomerReportComponent implements OnInit {
     this.initializeValues(index);
     this.arrayObjectCount(index);
 
-    console.log(this.count+ "is count");
+    console.log(this.count + "is count");
 
-    if (this.count <=1) {
-    switch (this.count) {
-      case 0:
-      this.amount = this.customer.ornaments[index].rupees;
-      // this.totalDays = this.currentDate.diff(this.customer.ornaments[index].subDate, 'days');
-      this.totalDays = moment("2019-10-28").diff(this.customer.ornaments[index].subDate, 'days');
-      console.log(this.totalDays+"=days");
-        break;
-      case 1:
-      this.amount = this.customer.ornaments[index].deposit[this.count-1].actualAmount;
-      this.nextDate = moment(this.depositDate, "YYYY-MM-DD");
-      this.prevDate = this.customer.ornaments[index].deposit[0].depositDate;
-      this.totalDays = this.nextDate.diff(this.prevDate, 'days');
-      console.log(this.totalDays+"=days");
-        break;
+    if (this.count <= 1) {
+      switch (this.count) {
+        case 0:
+          this.amount = this.customer.ornaments[index].rupees;
+          this.firstDate = moment(this.currentDate, "YYYY-MM-DD");
+          // console.log("deposit date", this.depositDate);
+          this.totalDays = this.firstDate.diff(this.customer.ornaments[index].subDate, 'days');
+          // this.totalDays = moment("2019-05-15").diff(this.customer.ornaments[index].subDate, 'days');
+          console.log(this.totalDays + "=days");
+          break;
+        case 1:
+          this.amount = this.customer.ornaments[index].deposit[this.count - 1].actualAmount;
+          this.nextDate = moment(this.currentDate, "YYYY-MM-DD");
+          this.prevDate = this.customer.ornaments[index].deposit[0].depositDate;
+          this.totalDays = this.nextDate.diff(this.prevDate, 'days');
+          console.log(this.totalDays + "=days");
+          break;
       }
     }
-    else{
+    else {
+      this.amount = this.customer.ornaments[index].deposit[this.count - 1].actualAmount;
+      this.nextDate = moment(this.currentDate, "YYYY-MM-DD")
+      this.totalDays = this.nextDate.diff(this.customer.ornaments[index].deposit[this.count - 1].depositDate, 'days');
+      console.log(this.totalDays + "=days");
+    }
+
+    this.interestFormula(index);
+    this.remainInterestCalculation(index);
+    this.depositValue = 0;
+    this.amountAnalysis(index);
+  }
+
+  depositInterestCalculate(index: number) {
+    this.initializeValues(index);
+    this.arrayObjectCount(index);
+
+    console.log(this.count + "is count");
+
+    if (this.count <= 1) {
+      switch (this.count) {
+        case 0:
+          this.amount = this.customer.ornaments[index].rupees;
+          this.firstDate = moment(this.depositDate, "YYYY-MM-DD");
+          console.log("deposit date", this.depositDate);
+          this.totalDays = this.firstDate.diff(this.customer.ornaments[index].subDate, 'days');
+          // this.totalDays = moment("2019-05-15").diff(this.customer.ornaments[index].subDate, 'days');
+          console.log(this.totalDays + "=days");
+          break;
+        case 1:
+          this.amount = this.customer.ornaments[index].deposit[this.count - 1].actualAmount;
+          this.nextDate = moment(this.depositDate, "YYYY-MM-DD");
+          this.prevDate = this.customer.ornaments[index].deposit[0].depositDate;
+          this.totalDays = this.nextDate.diff(this.prevDate, 'days');
+          console.log(this.totalDays + "=days");
+          break;
+      }
+    }
+    else {
       this.amount = this.customer.ornaments[index].deposit[this.count - 1].actualAmount;
       this.nextDate = moment(this.depositDate, "YYYY-MM-DD")
-      this.totalDays = this.nextDate.diff(this.customer.ornaments[index].deposit[this.count-1].depositDate, 'days');
-      console.log(this.totalDays+"=days");
-  }
+      this.totalDays = this.nextDate.diff(this.customer.ornaments[index].deposit[this.count - 1].depositDate, 'days');
+      console.log(this.totalDays + "=days");
+    }
 
     this.interestFormula(index);
     this.remainInterestCalculation(index);
     this.amountAnalysis(index);
   }
 
-  initializeValues(index: number){
+  initializeValues(index: number) {
     this.actualValue = 0;
     this.totalAmount = 0;
     this.interest[index] = 0;
@@ -122,55 +165,83 @@ export class CustomerReportComponent implements OnInit {
 
   // Interest calculation function
   interestFormula(index: number) {
-    this.interest[index] = (this.amount * this.interestRate * this.totalDays) / (100 * 30);
+    var interestLeft = this.customer.ornaments[index].deposit[this.count - 1].remainInterest
+    if(interestLeft > 0){
+      this.amount = this.customer.ornaments[index].deposit[this.count - 1].totalAmount
+      this.interest[index] = (this.amount * this.interestRate * this.totalDays) / (100 * 30);
+    }
+    else{
+      this.interest[index] = (this.amount * this.interestRate * this.totalDays) / (100 * 30);
+    }
   }
 
   // Counter for deposit Array
   arrayObjectCount(index: number) {
-    for (let item of this.customer.ornaments[index].deposit) {
-      this.count += 1;
-    }
+    var deposit = this.customer.ornaments[index].deposit;
+    // if (deposit) {
+      for (let item of deposit) {
+        console.log("item is", item);
+        this.count += 1;
+      }
+    // }
+    // else {
+    //   this.count = 0;
+    // }
+    // this.deposit_array = this.customer.ornaments[index].deposit
+    // this.count = this.deposit_array.length;
   }
 
   depositAmountButtonClick(index: number) {
-    this.interestCalculateButtonClick(index);
-    this.customer.ornaments[index].deposit.push({ 'depositDate': this.depositDate,
-      'depositAmount': this.depositValue, 'actualAmount': this.actualValue, 
+    this.depositInterestCalculate(index);
+    console.log('depositDate', this.depositDate);
+    console.log('depositAmount', this.depositValue);
+    console.log('actualAmount', this.actualValue);
+    console.log('interest', this.interest[index]);
+    console.log('remainInterest', this.remainInterest);
+    console.log('totalAmount', this.totalAmount);
+    this.customer.ornaments[index].deposit.push({
+      'depositDate': this.depositDate,
+      'depositAmount': this.depositValue, 'actualAmount': this.actualValue,
       'interest': this.interest[index], 'remainInterest': this.remainInterest,
-      'totalAmount':this.totalAmount });
+      'totalAmount': this.totalAmount
+    });
     // this.customer.ornaments[index].deposit[item+1]['depositAmount'] = this.depositValue;
     // this.customer.ornaments[index].deposit[item+1]['depositDate'] = this.depositDate;
     this.updateCustomer();
   }
 
 
-  amountAnalysis(index: number){
+  amountAnalysis(index: number) {
     if (this.interest[index] > this.depositValue) {
       this.actualValue = this.amount;
       this.remainInterest = this.interest[index] - this.depositValue;
-      this.totalAmount = this.actualValue + this.remainInterest ;
+      this.totalAmount = this.actualValue + this.remainInterest;
     }
     else {
       this.actualValue = (this.amount + this.interest[index]) - this.depositValue;
-      if (this.actualValue < 0){
+      if (this.actualValue < 0) {
         this.actualValue = 0
       }
-      else
-      {
+      else {
         this.actualValue = (this.amount + this.interest[index]) - this.depositValue;
       }
       this.remainInterest = 0;
-      this.totalAmount = this.actualValue ;
+      this.totalAmount = this.actualValue;
     }
   }
 
-    // Calculation for total remaining Interest
-    remainInterestCalculation(index: number) {
+  // Calculation for total remaining Interest
+  remainInterestCalculation(index: number) {
+    // var deposit = this.customer.ornaments[index].deposit;
+    // if(deposit){
       for (let item of this.customer.ornaments[index].deposit) {
         this.prevInterest += item.remainInterest;
-        console.log(this.prevInterest+"is previous interest");
-        
+        console.log(this.prevInterest + "is previous interest");
       }
-    }
+    // }
+    // else{
+    //   this.prevInterest = 0;
+    // }
+  }
 
 }

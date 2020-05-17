@@ -1,8 +1,8 @@
-<br/>
+<br />
 <div class="d-flex justify-content-lg-center">
   Silver<mat-slide-toggle (change)="slideToggle($event)"></mat-slide-toggle>Gold
 </div>
-<br/>
+<br />
 <div class="form-group row">
   <div class="form-group col">
     <div>
@@ -20,7 +20,8 @@
     <div>
       <label for="percent" class="col-sm-3 col-form-label">Percent</label>
       <div class="col-sm-12">
-        <input type="text" class="col-sm-4 form-control" id="percent" placeholder="%" [(ngModel)]="metalPercent">
+        <input type="text" class="col-sm-4 form-control" id="percent" placeholder="%" maxlength="3"
+          [(ngModel)]="metalPercent">
       </div>
     </div>
   </div>

@@ -10,13 +10,17 @@ import { Router } from '@angular/router';
 })
 export class ListCustomerComponent implements OnInit {
 
+  // data: {email: "arpitkumarverma@gmail.com"};
+  sortoption: string = "";
+  searchTerm: string = "";
+  value: any;
   customers: ICustomer[];
   customer: ICustomer = {
-    id: null,
+    _id: null,
     date: null,
     custName: null,
     relation: null,
-    relName: null,
+    relative: null,
     village: null,
     phone: null,
     ornaments: [null]
@@ -27,13 +31,20 @@ export class ListCustomerComponent implements OnInit {
 
               
   ngOnInit() {
-    this.customerService.getCustomers().subscribe(
-      (listCustomers) => this.customers = listCustomers,
-      (err) => console.log(err)    
-      )
+    // this.customerService.getCustomers().subscribe(listCustomers => {
+    //   this.customers = listCustomers;
+    //   (err) => {
+    //     return console.log(err);
+    //   }    
+    // })
+      this.customerService.getCustomers().subscribe(data => {
+        this.customers = data;
+        console.log("we got", data);
+      });
   }
 
   editButtonClick(customerId: number){
+    console.log("Edit customer id",customerId);
     this.router.navigate(['home/edit', customerId])
   }
 
@@ -42,11 +53,17 @@ export class ListCustomerComponent implements OnInit {
   }
 
 
-  deleteButtonClick(customerId: number): void{
+  deleteButtonClick(customerId){
     this.customerService.deleteCustomer(customerId).subscribe(
-      () => this.router.navigate(['home']),
-      (err: any) => console.log(err)
-    );
+      (data)=> {
+        if(data){this.value = data}
+        else{
+          console.log("no data")
+        }
+      // this.router.navigate(['home/calculation']),
+      // (err: any) => console.log(err)
+          });
+          console.log("value is", this.value);
   }
 
 }
